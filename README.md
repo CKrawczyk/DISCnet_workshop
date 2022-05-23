@@ -27,11 +27,11 @@ pip install -e .[dev]
 ## run tests
 To run tests use
 ```bash
-pytest
+python -m unittest discover
 ```
 
 To run with coverage use
 ```bash
-coverage run -m pytest
+coverage run
 coverage report
 ```
