@@ -24,6 +24,6 @@ jobs:
         pip install -U pip
         pip install -U .[dev]
     - name: Run tests with coverage
-      run: coverage run -m pytest
+      run: coverage run -m unittest discover
     - name: Coverage report
       run: coverage report
