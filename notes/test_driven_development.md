@@ -243,6 +243,8 @@ If you want to test your code automatically every time new code is added you can
 
 This repository has two GHA set up one to check code style and the other to run tests and report coverage.  Although the testing code is currently only set up to run on python 3.9 it can easily be modified to test the code against many different versions of python.
 
+GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.
+
 ### tox
 
 While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  [Tox](https://tox.wiki/en/latest/) is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.
