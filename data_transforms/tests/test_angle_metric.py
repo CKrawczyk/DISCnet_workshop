@@ -34,3 +34,13 @@ class TestAngleMetric(unittest.TestCase):
     #     expected = 90
     #     result = angle_distance(a, b)
     #     self.assertEqual(result, expected)
+
+    # def test_small_angles(self):
+    #     '''Test distance between angles'''
+    #     a = [10, 0, 1, 720]
+    #     b = [90, 270, 359, 270]
+    #     expected = [80, 90, 2, 90]
+    #     for i, j, e in zip(a, b, expected):
+    #         with self.subTest(a=i, b=j):
+    #             result = angle_distance(i, j)
+    #             self.assertEqual(result, e)
