@@ -184,6 +184,65 @@ Take another look at the integration test example above.  In a future refactor o
 To help avoid this, when you have finished writing a test read it over and as yourself "what is the main goal of the code being tests and does this test only that?  Is a future refactor likely to break this test?"  Most of the time you don't really care how many times a function was called, just that it was called.
 
 
-## Overview of python testing frameworks 
+## Overview of python testing frameworks
 
-## Tox setup (quick touch on what this is, related to CI above)
+### Python built in unittest library
+
+Python comes with a built in testing library called [unittest](https://docs.python.org/3/library/unittest.html) that includes full object mocking capabilities.  Unittest organizes tests into classes (subclassed from `unittest.TestCase`) where each test is a method on the class that has a name starting with `test_`.  There are also special `setUp` and `tearDown` methods that, if defined, will turn before and after *each* test method.  This class also provides various assert functions such as `self.assertEqual`, `self.assertDictEqual`, and `self.assertGreater` (see [API documentation for full list](https://docs.python.org/3/library/unittest.html)) that provide more useful error messages when they fail than a plain `assert` statement does.  All the examples in this workshop use `unittest`'s framework and syntax. 
+
+Python will auto-discover any tests that are in your current directory by looking for any files that follow the pattern `test*.py` by default (this search pattern can be changed when the unittest command is run).  The test file must be importable from the top level directory of the project (i.e. `__init__.py` in the folders containing any tests).  To run the tests use the command:
+
+```bash
+python -m unittest discover
+```
+
+If this command does not find your tests you can specify various command line options to help it out, see [the discover documentation](https://docs.python.org/3/library/unittest.html#test-discovery) for more information.
+
+### test coverage
+
+To check test coverage you can use the [coverage package](https://coverage.readthedocs.io/en/latest/), once installed it will wrap around your chosen test runner and check how many lines of you package's code were run by your tests.  After the tests are run you can generate a report to see how many lines were covered.  The basic usage is:
+
+```bash
+coverage run --source <base folder of the package> --omit <pattern of files not to included in coverage percent> -m <test runner command> 
+
+coverage report --show-missing
+```
+
+For the case of this workshop the commands are:
+
+```bash
+coverage run --source data_transforms --omit *test* -m unittest discover
+
+coverage report --show-missing
+```
+
+These extra command line options can be included in your project's `setup.cfg` file (already done in this workshop's repo) to simplify these commands to:
+
+```bash
+coverage run
+
+coverage report
+```
+
+This leaves you with an easy to remember command for running your tests with all the project specific options placed in a single configuration file.
+
+### Other testing libraries
+
+The other commonly used python testing libraries are [pytest](https://docs.pytest.org/en/latest/) and [nosetest](https://nose.readthedocs.io/en/latest/) (note: `nosetest` is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in `unittest` syntax.  Both are also compatible with the `coverage` package.
+
+As `unittest` is the most universal of these libraries we will be using it for this workshop.
+
+## CI (continuous integration)
+
+If you want to test your code automatically every time new code is added you can set up CI to do this for you every time new code is committed to the repository.  These days this is easy to do on GitHub with GitHub Actions (GHA, GitLab has a similar system in place).  These are script you can write and place in the `.github/workflows` folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:
+
+- run all test when new code is pushed to any branch
+- ensure test coverage does not fall below a given amount when new code is pushed
+- check new code follows you chosen style
+- push your code to pypi when the version number is bumped
+
+This repository has two GHA set up one to check code style and the other to run tests and report coverage.  Although the testing code is currently only set up to run on python 3.9 it can easily be modified to test the code against many different versions of python.
+
+### tox
+
+While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  [Tox](https://tox.wiki/en/latest/) is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.
