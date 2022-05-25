@@ -1,37 +1,11 @@
 # DISCnet_workshop
 DISCnet workshop repository
 
-## Install
+The full workshop notes are hosted on this repositories GitHub Pages.
 
-### make a clean python env (optional)
-If using conda:
+You can also find them in the `docs/source` directory:
 
-```bash
-conda create --name discnet_env python=3.10
-conda activate discnet_env
-```
-
-If using venv
-
-```bash
-python3 -m venv discnet_env
-source discnet_env/bin/activate
-```
-
-### pip install locally in "edit" mode
-
-```bash
-pip install -e .[dev]
-```
-
-## run tests
-To run tests use
-```bash
-python -m unittest discover
-```
-
-To run with coverage use
-```bash
-coverage run
-coverage report
-```
+- [Getting Started](./docs/source/getting_started.md)
+- [Good Coding Practices](./docs/source/good_coding_practices.md)
+- [GitHub with Collaborators](./docs/source/GitHub_with_collaborators.md)
+- [Test Driven Development](./docs/source/test_driven_development.md)

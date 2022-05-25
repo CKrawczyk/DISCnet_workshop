@@ -99,7 +99,7 @@ The final part the setup is adjusting the `docs/source/conf.py` file to tell it 
 import os
 import sphinx_rtd_theme
 import sys
-sys.path.insert(0, os.path.abspath('..'))
+sys.path.insert(0, os.path.abspath('../..'))
 ```
 
 ```python
@@ -151,6 +151,34 @@ While I think the templates used by this command are not the best in the world, 
 
 As we will be running this command every time the docs are built (to check for new code files) the resulting `rst` files have been added to the `.gitignore` file.
 
+Lastly we need to update the `index.rst` file to include the files create with this command (and these class notes while we are at it):
+
+```rst
+Welcome to Data Transforms's documentation!
+===========================================
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Workshop Notes:
+
+   good_coding_practices
+   GitHub_with_collaborators
+   test_driven_development
+
+.. toctree::
+   :maxdepth: 2
+   :caption: API Documentation:
+   
+   modules
+
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+```
+
 ### Sphinx - building the docs
 
 With the `rst` files inplace, we can build the docs with:
@@ -161,6 +189,10 @@ make html
 ```
 
 This will create the static HTML files in the `docs/build/html` folder.  You can open `docs/build/html/index.html` in your favorite browser and see the results.
+
+```{note}
+Sometimes the side bar content will not update correctly when new pages are added, to fix this run `make clean` before `make html` to remove cached data.
+```
 
 To simplify the auto finding and doc building steps I have created a `build_docs.sh` script in the base repository to run the commands above in order.
 

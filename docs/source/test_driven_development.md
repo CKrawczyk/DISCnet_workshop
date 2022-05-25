@@ -87,7 +87,8 @@ class TestRunAll(unittest.TestCase):
     @patch('package.file.func_1', return_value=4)
     def test_run_all_calls(self, mock_func_1, mock_func_2):
         '''Test run_all calls the inner functions with the expected values'''
-        # an integration test to check data is being pass around in the the expected way inside the function
+        # an integration test to check data is being pass around in the the
+        # expected way inside the function
         result = run_all(3)  # input will not change output because mocks are used
         
         # test func_1 called with the argument provided to run_all
@@ -164,7 +165,8 @@ with patch('__main__.thing', **config) as mock_MyClass:
     # test this sub_method was called once with specific keywords
     mock_MyClass.method_3.return_value.sub_method.assert_called_once_with(a=1, b=2)
 
-    # define new return_values on the mock object directly rather than passing them into **config
+    # define new return_values on the mock object directly rather than passing them
+    # into **config
     mock_MyClass.method_4.return_value = 'new value'
 
     assert thing.method_4() == 'new value'
@@ -203,24 +205,22 @@ If this command does not find your tests you can specify various command line op
 To check test coverage you can use the [coverage package](https://coverage.readthedocs.io/en/latest/), once installed it will wrap around your chosen test runner and check how many lines of you package's code were run by your tests.  After the tests are run you can generate a report to see how many lines were covered.  The basic usage is:
 
 ```bash
-coverage run --source <base folder of the package> --omit <pattern of files not to included in coverage percent> -m <test runner command> 
-
-coverage report --show-missing
-```
-
-For the case of this workshop the commands are:
-
-```bash
 coverage run --source data_transforms --omit *test* -m unittest discover
-
 coverage report --show-missing
 ```
+
+The options passed to `run` are:
+- `-source data_transforms`: base folder for the package
+- `--omit *test*`: patter of files not to include in coverage percent
+- `-m unittest discover`: the test runner command
+
+The option passed to `report` is:
+- `--show-missing`: for each file list the line number(s) not covered by a test
 
 These extra command line options can be included in your project's `setup.cfg` file (already done in this workshop's repo) to simplify these commands to:
 
 ```bash
 coverage run
-
 coverage report
 ```
 
