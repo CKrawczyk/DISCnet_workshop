@@ -5,8 +5,8 @@ def angle_distance(a, b):
     '''A function that takes in two angles and returns the
     absolute values of the interior angle between them.
 
-    Params
-    ------
+    Parameters
+    ----------
     a : float
         The first angle in degrees
     b : float
@@ -15,7 +15,7 @@ def angle_distance(a, b):
     Returns
     -------
     d : float
-        The absolute value of the interior between a and b
+        The absolute value of the interior angle between a and b
         in degrees
     '''
     return abs(b - a)
