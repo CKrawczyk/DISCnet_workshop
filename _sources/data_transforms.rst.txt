@@ -1,0 +1,16 @@
+data\_transforms package
+========================
+
+.. automodule:: data_transforms
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
+Submodules
+----------
+
+
+.. automodule:: data_transforms.angle_metric
+   :members:
+   :undoc-members:
+   :show-inheritance:

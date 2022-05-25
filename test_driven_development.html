@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Test driven development &mdash; Data Transforms 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="data_transforms" href="modules.html" />
+    <link rel="prev" title="Using GitHub with collaborators" href="GitHub_with_collaborators.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Data Transforms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Workshop Notes:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="good_coding_practices.html">Good coding practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="GitHub_with_collaborators.html">Using GitHub with collaborators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Test driven development</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview-what-problems-do-tests-solve">Overview: What problems do tests solve?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-tests">What are tests</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#types-of-tests">Types of tests</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#unit-tests">Unit tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#integration-tests">Integration tests</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#validation-tests">Validation tests</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#test-coverage">Test coverage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mocks">Mocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-pitfalls">Common pitfalls</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#overview-of-python-testing-frameworks">Overview of python testing frameworks</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#python-built-in-unittest-library">Python built in unittest library</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#id1">test coverage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#other-testing-libraries">Other testing libraries</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#ci-continuous-integration">CI (continuous integration)</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#tox">tox</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">data_transforms</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Transforms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Test driven development</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/test_driven_development.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="test-driven-development">
+<h1>Test driven development<a class="headerlink" href="#test-driven-development" title="Permalink to this headline"></a></h1>
+<section id="overview-what-problems-do-tests-solve">
+<h2>Overview: What problems do tests solve?<a class="headerlink" href="#overview-what-problems-do-tests-solve" title="Permalink to this headline"></a></h2>
+<p>When writing code you want to make sure the code works as intended, when bugs are found that then don’t come back, and the code being written can solve the research question being asked of it.  Test driven development is a way to systematically achieve all of these goals.</p>
+</section>
+<section id="what-are-tests">
+<h2>What are tests<a class="headerlink" href="#what-are-tests" title="Permalink to this headline"></a></h2>
+<p>The basic function of a test is to take in a given input to your code that has <strong>a known</strong> output, run your code on the input, and check that the output matches your expectations.  The key here is the known output you are testing against comes from some source that is <strong>not</strong> your code (e.g. an analytic solution, work it out by hand, some other code you know works, etc…).</p>
+<p>These test cases are written as functions within your code and can be run at any time to ensure any changes made in the code have not broken any of the tests.  Using CI (e.g. GitHub actions) you can set up your code repository to run your tests any time a new PR is made and block the PR from merging if any of the tests fail.</p>
+<p>When bugs arise in your code, it is best practice to first write a new test that reproduces the bug before fixing the bug.  That way you can be sure changes made in the future will not reintroduce the bug that was fixed.</p>
+<p>Once you become comfortable with writing tests you may find it easier to write your tests first and the code second.  Doing this forces you to think about the main goals of the code you are about to write are, and gives a clear stopping point as you know once you have reached these goals (i.e. when the tests pass you can stop writing code).</p>
+</section>
+<section id="types-of-tests">
+<h2>Types of tests<a class="headerlink" href="#types-of-tests" title="Permalink to this headline"></a></h2>
+<p>There are several flavors of tests that can be written for code.  The main there that I have come across are:</p>
+<ul class="simple">
+<li><p>Unit tests</p></li>
+<li><p>Integration tests</p></li>
+<li><p>Validation tests</p></li>
+</ul>
+<p>While these are not the only three types of tests, they are a good starting point for writing your own tests.  Note: these are the names that make the most sense to me, but others might use different names.</p>
+<section id="unit-tests">
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this headline"></a></h3>
+<p>The goal of unit tests are to test a “unit” of code (e.g. a single function definition) in <strong>isolation</strong> from all the other units of code that make up the software.  These test are mostly for checking if the unit of code works as written (i.e. the algorithm was coded correctly).</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">N</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">package.file</span> <span class="kn">import</span> <span class="n">func</span>
+
+
+<span class="k">class</span> <span class="nc">TestFunc</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_func_default_N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test func with default N value&#39;&#39;&#39;</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="mi">3</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+    
+    <span class="k">def</span> <span class="nf">test_func_with_N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test func with N keyword set&#39;&#39;&#39;</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="mi">4</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="integration-tests">
+<h3>Integration tests<a class="headerlink" href="#integration-tests" title="Permalink to this headline"></a></h3>
+<p>The goal of integration tests are to test if multiple units of code work <strong>together</strong> correctly.  For example if you had a function who’s only job is to call three other functions in a particular order and pass the results from one function into the next, an integration test would check exactly these things.  It would <strong>not</strong> check that the three sub-functions return that correct values (that is the job of a unit test), just that that values passed back are sent to the correct place.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
+
+
+<span class="k">def</span> <span class="nf">func_2</span><span class="p">(</span><span class="n">b</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">b</span> <span class="o">+</span> <span class="mi">2</span>
+
+
+<span class="k">def</span> <span class="nf">run_all</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">func_1</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">func_2</span><span class="p">(</span><span class="n">b</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">c</span>
+</pre></div>
+</div>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">unittest</span>
+<span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span>
+<span class="kn">from</span> <span class="nn">package.file</span> <span class="kn">import</span> <span class="n">run_all</span>
+
+
+<span class="k">class</span> <span class="nc">TestRunAll</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">test_run_all_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test run_all give expected value&#39;&#39;&#39;</span>
+        <span class="c1"># a traditional unittest to check an known input gives a known output</span>
+        <span class="n">expected</span> <span class="o">=</span> <span class="mi">6</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">run_all</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
+
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;package.file.func_2&#39;</span><span class="p">,</span> <span class="n">return_value</span><span class="o">=</span><span class="mi">6</span><span class="p">)</span>
+    <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;package.file.func_1&#39;</span><span class="p">,</span> <span class="n">return_value</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">test_run_all_calls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_func_1</span><span class="p">,</span> <span class="n">mock_func_2</span><span class="p">):</span>
+        <span class="sd">&#39;&#39;&#39;Test run_all calls the inner functions with the expected values&#39;&#39;&#39;</span>
+        <span class="c1"># an integration test to check data is being pass around in the the</span>
+        <span class="c1"># expected way inside the function</span>
+        <span class="n">result</span> <span class="o">=</span> <span class="n">run_all</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># input will not change output because mocks are used</span>
+        
+        <span class="c1"># test func_1 called with the argument provided to run_all</span>
+        <span class="n">mock_func_1</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+        <span class="c1"># test func_2 called with the return value of func_1</span>
+        <span class="n">mock_func_2</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+        <span class="c1"># test run_all returns the func_2 return value</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">mock_func_2</span><span class="o">.</span><span class="n">return_value</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="validation-tests">
+<h3>Validation tests<a class="headerlink" href="#validation-tests" title="Permalink to this headline"></a></h3>
+<p>The goal of validation tests are to check if the code written is appropriate for problem you are trying to solve (i.e. is the code using the correct algorithm).  For example, can you get away with using a 2nd order ODE integrator or do you need to using a 4th order one to keep the desired level of accuracy.  Often these are just a flavor of an integration test, but with “science quality” data being passed in.</p>
+</section>
+</section>
+<section id="test-coverage">
+<h2>Test coverage<a class="headerlink" href="#test-coverage" title="Permalink to this headline"></a></h2>
+<p>Test coverage is a way of tracking what lines of your code were run when each of your tests ran.  When writing tests for a function you goal should be to have as much coverage as possible.  This typically means making sure you have at least one test for every branch in your code (i.e. one test for each <code class="docutils literal notranslate"><span class="pre">if</span></code> branch in the code).  Sometimes when writing you tests you will realize that there are branches in your code that can never be reached and can be safely removed from the code.</p>
+</section>
+<section id="mocks">
+<h2>Mocks<a class="headerlink" href="#mocks" title="Permalink to this headline"></a></h2>
+<p>In the integration tests section above the example makes use of what are called “function mocks.”  These are special classes that are used to <strong>fully replace</strong> an function or class.  This mock will keep track of how many times it is called, what arguments and keywords it was called with, and what what it should return when called.</p>
+<p>The easiest way to use a mock is with the <code class="docutils literal notranslate"><span class="pre">&#64;patch</span></code> decorator, this takes the full import path of the object to be mocked, and an optional <code class="docutils literal notranslate"><span class="pre">return_value</span></code> specifying what value should be returned when the mock is called.  By default any method or return value accessed on a mock is also a mock, so there is no need to know the full mock spec beforehand.</p>
+<p>The main use of mocks are:</p>
+<ul class="simple">
+<li><p>testing pipeline code passes data around correctly</p></li>
+<li><p>replace functions that take a long time to run with an object that returns instantly</p></li>
+<li><p>ensuring that bugs in sub-functions don’t make other functions’ tests fail (i.e. only testing the code you wrote and not the code coming from other packages).</p></li>
+<li><p>avoid having to read/write data to disk (<code class="docutils literal notranslate"><span class="pre">unittest.mock.mock_open</span></code> is its own function that helps when you need to test code that opens files)</p></li>
+</ul>
+<p>Example, we want to mock away class with some methods (we will use a <code class="docutils literal notranslate"><span class="pre">with</span></code> block this time instead of the decorator):</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">unittest.mock</span> <span class="kn">import</span> <span class="n">patch</span><span class="p">,</span> <span class="n">call</span>
+
+
+<span class="n">thing</span> <span class="o">=</span> <span class="nb">object</span><span class="p">()</span>
+<span class="n">config</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;method_1.return_value&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span>
+    <span class="s1">&#39;method_2.side_effect&#39;</span><span class="p">:</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">]</span>
+<span class="p">}</span>
+
+
+<span class="k">with</span> <span class="n">patch</span><span class="p">(</span><span class="s1">&#39;__main__.thing&#39;</span><span class="p">,</span> <span class="o">**</span><span class="n">config</span><span class="p">)</span> <span class="k">as</span> <span class="n">mock_MyClass</span><span class="p">:</span>
+    <span class="c1"># check the mock applied</span>
+    <span class="k">assert</span> <span class="n">thing</span> <span class="ow">is</span> <span class="n">mock_MyClass</span>
+
+    <span class="c1"># check method_1 returns what we set</span>
+    <span class="k">assert</span> <span class="n">thing</span><span class="o">.</span><span class="n">method_1</span><span class="p">()</span> <span class="o">==</span> <span class="mi">5</span>
+
+    <span class="c1"># how to test it is called exactly once</span>
+    <span class="n">mock_MyClass</span><span class="o">.</span><span class="n">method_1</span><span class="o">.</span><span class="n">assert_called_once</span><span class="p">()</span>
+
+    <span class="c1"># check method_2 returns each values set in turn</span>
+    <span class="k">assert</span> <span class="n">thing</span><span class="o">.</span><span class="n">method_2</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="k">assert</span> <span class="n">thing</span><span class="o">.</span><span class="n">method_2</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span> <span class="o">==</span> <span class="mi">2</span>
+    <span class="k">assert</span> <span class="n">thing</span><span class="o">.</span><span class="n">method_2</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span> <span class="o">==</span> <span class="mi">3</span>
+
+    <span class="c1"># how to test it was called three times with specific arguments/keywords each time</span>
+    <span class="n">expected_calls</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="n">call</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>
+        <span class="n">call</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>
+        <span class="n">call</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+    <span class="p">]</span>
+    <span class="n">mock_MyClass</span><span class="o">.</span><span class="n">method_2</span><span class="o">.</span><span class="n">assert_has_calls</span><span class="p">(</span><span class="n">expected_calls</span><span class="p">,</span> <span class="n">any_order</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+    <span class="c1"># how to test it was called three times with any arguments/keywords</span>
+    <span class="c1"># Note: this would use self.assertEqual if inside a TestCase class</span>
+    <span class="k">assert</span> <span class="n">mock_MyClass</span><span class="o">.</span><span class="n">method_2</span><span class="o">.</span><span class="n">call_count</span> <span class="o">==</span> <span class="mi">3</span>
+
+    <span class="c1"># any method and return value generates a new mock that tracks calls</span>
+    <span class="n">thing</span><span class="o">.</span><span class="n">method_3</span><span class="p">()</span><span class="o">.</span><span class="n">sub_method</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># test this sub_method was called once with specific keywords</span>
+    <span class="n">mock_MyClass</span><span class="o">.</span><span class="n">method_3</span><span class="o">.</span><span class="n">return_value</span><span class="o">.</span><span class="n">sub_method</span><span class="o">.</span><span class="n">assert_called_once_with</span><span class="p">(</span><span class="n">a</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">b</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># define new return_values on the mock object directly rather than passing them</span>
+    <span class="c1"># into **config</span>
+    <span class="n">mock_MyClass</span><span class="o">.</span><span class="n">method_4</span><span class="o">.</span><span class="n">return_value</span> <span class="o">=</span> <span class="s1">&#39;new value&#39;</span>
+
+    <span class="k">assert</span> <span class="n">thing</span><span class="o">.</span><span class="n">method_4</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;new value&#39;</span>
+
+<span class="c1"># check the mock is no longer applied outside the with block</span>
+<span class="k">assert</span> <span class="n">thing</span> <span class="ow">is</span> <span class="ow">not</span> <span class="n">mock_MyClass</span>
+</pre></div>
+</div>
+<p>See https://docs.python.org/3/library/unittest.mock.html for more examples of mocks and their uses.</p>
+</section>
+<section id="common-pitfalls">
+<h2>Common pitfalls<a class="headerlink" href="#common-pitfalls" title="Permalink to this headline"></a></h2>
+<p>The most common pitfall I run into when writing tests is “over testing” when using mocks.  This means that I have written a test that is to strongly coupled with the code, and any adjustment to the code would break the test, even if the output is identical.</p>
+<p>Take another look at the integration test example above.  In a future refactor of the code the calls to <code class="docutils literal notranslate"><span class="pre">func_1</span></code> and <code class="docutils literal notranslate"><span class="pre">func_2</span></code> might be replaced by one new function called <code class="docutils literal notranslate"><span class="pre">func_3</span></code> that returns equivalent values in all cases.  The first test <code class="docutils literal notranslate"><span class="pre">test_run_all_value</span></code> will still pass, but the second test <code class="docutils literal notranslate"><span class="pre">test_run_all_calls</span></code> will have to be rewritten to account for the refactor.</p>
+<p>To help avoid this, when you have finished writing a test read it over and as yourself “what is the main goal of the code being tests and does this test only that?  Is a future refactor likely to break this test?”  Most of the time you don’t really care how many times a function was called, just that it was called.</p>
+</section>
+<section id="overview-of-python-testing-frameworks">
+<h2>Overview of python testing frameworks<a class="headerlink" href="#overview-of-python-testing-frameworks" title="Permalink to this headline"></a></h2>
+<section id="python-built-in-unittest-library">
+<h3>Python built in unittest library<a class="headerlink" href="#python-built-in-unittest-library" title="Permalink to this headline"></a></h3>
+<p>Python comes with a built in testing library called <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> that includes full object mocking capabilities.  Unittest organizes tests into classes (subclassed from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>) where each test is a method on the class that has a name starting with <code class="docutils literal notranslate"><span class="pre">test_</span></code>.  There are also special <code class="docutils literal notranslate"><span class="pre">setUp</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown</span></code> methods that, if defined, will turn before and after <em>each</em> test method.  This class also provides various assert functions such as <code class="docutils literal notranslate"><span class="pre">self.assertEqual</span></code>, <code class="docutils literal notranslate"><span class="pre">self.assertDictEqual</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.assertGreater</span></code> (see <a class="reference external" href="https://docs.python.org/3/library/unittest.html">API documentation for full list</a>) that provide more useful error messages when they fail than a plain <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement does.  All the examples in this workshop use <code class="docutils literal notranslate"><span class="pre">unittest</span></code>’s framework and syntax.</p>
+<p>Python will auto-discover any tests that are in your current directory by looking for any files that follow the pattern <code class="docutils literal notranslate"><span class="pre">test*.py</span></code> by default (this search pattern can be changed when the unittest command is run).  The test file must be importable from the top level directory of the project (i.e. <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in the folders containing any tests).  To run the tests use the command:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m unittest discover
+</pre></div>
+</div>
+<p>If this command does not find your tests you can specify various command line options to help it out, see <a class="reference external" href="https://docs.python.org/3/library/unittest.html#test-discovery">the discover documentation</a> for more information.</p>
+</section>
+<section id="id1">
+<h3>test coverage<a class="headerlink" href="#id1" title="Permalink to this headline"></a></h3>
+<p>To check test coverage you can use the <a class="reference external" href="https://coverage.readthedocs.io/en/latest/">coverage package</a>, once installed it will wrap around your chosen test runner and check how many lines of you package’s code were run by your tests.  After the tests are run you can generate a report to see how many lines were covered.  The basic usage is:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run --source data_transforms --omit *test* -m unittest discover
+coverage report --show-missing
+</pre></div>
+</div>
+<p>The options passed to <code class="docutils literal notranslate"><span class="pre">run</span></code> are:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-source</span> <span class="pre">data_transforms</span></code>: base folder for the package</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">--omit</span> <span class="pre">*test*</span></code>: patter of files not to include in coverage percent</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-m</span> <span class="pre">unittest</span> <span class="pre">discover</span></code>: the test runner command</p></li>
+</ul>
+<p>The option passed to <code class="docutils literal notranslate"><span class="pre">report</span></code> is:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">--show-missing</span></code>: for each file list the line number(s) not covered by a test</p></li>
+</ul>
+<p>These extra command line options can be included in your project’s <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file (already done in this workshop’s repo) to simplify these commands to:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run
+coverage report
+</pre></div>
+</div>
+<p>This leaves you with an easy to remember command for running your tests with all the project specific options placed in a single configuration file.</p>
+</section>
+<section id="other-testing-libraries">
+<h3>Other testing libraries<a class="headerlink" href="#other-testing-libraries" title="Permalink to this headline"></a></h3>
+<p>The other commonly used python testing libraries are <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a> and <a class="reference external" href="https://nose.readthedocs.io/en/latest/">nosetest</a> (note: <code class="docutils literal notranslate"><span class="pre">nosetest</span></code> is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in <code class="docutils literal notranslate"><span class="pre">unittest</span></code> syntax.  Both are also compatible with the <code class="docutils literal notranslate"><span class="pre">coverage</span></code> package.</p>
+<p>As <code class="docutils literal notranslate"><span class="pre">unittest</span></code> is the most universal of these libraries we will be using it for this workshop.</p>
+</section>
+</section>
+<section id="ci-continuous-integration">
+<h2>CI (continuous integration)<a class="headerlink" href="#ci-continuous-integration" title="Permalink to this headline"></a></h2>
+<p>If you want to test your code automatically every time new code is added you can set up CI to do this for you every time new code is committed to the repository.  These days this is easy to do on GitHub with GitHub Actions (GHA, GitLab has a similar system in place).  These are script you can write and place in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:</p>
+<ul class="simple">
+<li><p>run all test when new code is pushed to any branch</p></li>
+<li><p>ensure test coverage does not fall below a given amount when new code is pushed</p></li>
+<li><p>check new code follows you chosen style</p></li>
+<li><p>push your code to pypi when the version number is bumped</p></li>
+</ul>
+<p>This repository has two GHA set up one to check code style and the other to run tests and report coverage.  Although the testing code is currently only set up to run on python 3.9 it can easily be modified to test the code against many different versions of python.</p>
+<p>GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.</p>
+<section id="tox">
+<h3>tox<a class="headerlink" href="#tox" title="Permalink to this headline"></a></h3>
+<p>While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  <a class="reference external" href="https://tox.wiki/en/latest/">Tox</a> is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="GitHub_with_collaborators.html" class="btn btn-neutral float-left" title="Using GitHub with collaborators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="data_transforms" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Coleman Krawczyk.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
