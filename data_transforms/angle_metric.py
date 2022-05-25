@@ -15,7 +15,7 @@ def angle_distance(a, b):
     Returns
     -------
     d : float
-        The absolute value of the interior between a and b
+        The absolute value of the interior angle between a and b
         in degrees
     '''
     return abs(b - a)
