@@ -6,6 +6,13 @@ Weather you are working alone or working in a team, one of the most valuable thi
 
 When context is well recorded it becomes easier for other develops to be on-boarded into your codebase, structural changes to the code become easier to manage, leading to code that is easier to maintain in the long run.
 
+## Context transfer
+Pair programming
+Code review (will tie into GitHub)
+Code commenting
+Documentation
+
+
 ## Code (file) structure
 
 One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.
@@ -81,16 +88,24 @@ Let's dive into a few of these things in more detail
 - `LICENSE`: You should choose a license for your code. [Choose A License](https://choosealicense.com/) is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the [MIT license](https://choosealicense.com/licenses/mit/) and [Apache 2.0 license](https://choosealicense.com/licenses/apache-2.0/).
 - `setup.cfg`: This file tells python how to install your code, what dependencies to install, and various development configuration options.
 
-## Context transfer
-Pair programming
-Code review (will tie into GitHub)
-Code commenting
-Documentation
-
 ## Text editors
-Live linting
-Syntax highlighting
-Programming fonts (e.g. https://github.com/tonsky/FiraCode)
+
+Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend [VScode](https://code.visualstudio.com/) as a free quality text editor with all the features above.
+
+For python coding you will want to install the `Python` extension by Microsoft (you will be prompted to install it when you first open a `.py` file) and the `Jupyter` extension by Microsoft.  
+
+### Programming fonts
+
+In addition to a good text editor you will also want a good monospace font.  I can recommend [FiraCode](https://github.com/tonsky/FiraCode).  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing `>=` int a "less-than or equal" to sign).  As this can be a bit annoying while typing, you can also use the VScode `Disable Ligatures` extension to turn this feature off for the active line you are typing.  Once the font and extension are installed you will need to edit VScode's `settings.json` file with the options (all other font options can be set from the normal settings panel):
+
+```json
+{
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "500",
+    "disableLigatures.mode": "Line",
+}
+```
 
 ## Coding style and linting
 
