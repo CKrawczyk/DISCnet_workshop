@@ -7,13 +7,15 @@ Weather you are working alone or working in a team, one of the most valuable thi
 When context is well recorded it becomes easier for other develops to be on-boarded into your codebase, structural changes to the code become easier to manage, leading to code that is easier to maintain in the long run.
 
 ## Context transfer
-Pair programming
-Code review (will tie into GitHub)
-Code commenting
-Documentation
 
+Ways to boost context transfer:
 
-## Code (file) structure
+- Pair programming: Work with another developer in real time when writing your code.  Typically you have one person drive the keyboard focusing on code syntax and code legibility while the other drives the code structure focusing on how the code should be structured and the algorithms being used.  Every so often these roles should switch.
+- Git commit messages: Include the **why** for every change directly in the commit message
+- GitHub Pull Requests: Use this space for the larger reason behind any changes and/or features
+- [Architecture Decision Record](https://github.com/joelparkerhenderson/architecture-decision-record) (ADR): For larger code bases ADRs can be used to track changes to a code's architecture over time.  These records are kept in the repository next to the code and can be refereed to by and developer who wants to know the why the code is structured the way it is. 
+
+## Code and file structure
 
 One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.
 
@@ -262,6 +264,7 @@ Welcome to Data Transforms's documentation!
    :maxdepth: 2
    :caption: Workshop Notes:
 
+   Introduction
    getting_started
    good_coding_practices
    GitHub_with_collaborators
