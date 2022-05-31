@@ -6,7 +6,110 @@ Weather you are working alone or working in a team, one of the most valuable thi
 
 When context is well recorded it becomes easier for other develops to be on-boarded into your codebase, structural changes to the code become easier to manage, leading to code that is easier to maintain in the long run.
 
-## Coding style
+## Context transfer
+
+Ways to boost context transfer:
+
+- Pair programming: Work with another developer in real time when writing your code.  Typically you have one person drive the keyboard focusing on code syntax and code legibility while the other drives the code structure focusing on how the code should be structured and the algorithms being used.  Every so often these roles should switch.
+- Git commit messages: Include the **why** for every change directly in the commit message
+- GitHub Pull Requests: Use this space for the larger reason behind any changes and/or features
+- [Architecture Decision Record](https://github.com/joelparkerhenderson/architecture-decision-record) (ADR): For larger code bases ADRs can be used to track changes to a code's architecture over time.  These records are kept in the repository next to the code and can be refereed to by and developer who wants to know the why the code is structured the way it is. 
+
+## Code and file structure
+
+One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.
+
+### Organizing your code
+
+Step one in making your code more readable is to organize it into different files and folders.  Some rules that help with this:
+
+- Every file has one large function, one class, or collection of related small functions
+    - The file name should reflect what the code in the file does
+- Group the files by the general task they complete (e.g. a folder of plotting code and a folder for analysis)
+    - The folder name should reflect this general task
+
+It is OK if you don't have a full plan for what these file and folder structures will look like before you start, you can always re-organize your code after it is written.  The important thing is to have it be at least somewhat organized before code review.  Any question you have about this structure you can alway flag up for your reviewer to take a look at and help answer.
+
+### Code legibility
+
+It is difficult to review code if you don't know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message (more on that later), there are thing you can do directly in your code to help your reviewer:
+
+- Use descriptive variable names
+- Write documentation strings explaining every input and output
+- Write your code in the simplest way that works
+    - It should be obvious from the code written what is being done
+- If you need to do something in a "clever" way write a comment about it and record in a comment, commit message, and/or PR message why this is needed
+- Make sure the tone of your comments matches who you expect to be reading them
+    - Comments targeted at people learning python syntax for the first time should look different than comments targeted at people who have been using python for several years
+- Stick to a consistent coding style (more on this latter)
+- Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example take the following code change:
+
+```python
+a = [1, 2, 3, 4, 5, 6]
+```
+changes to 
+```python
+a = [1, 3, 3, 4, 6, 6]
+```
+
+There are two changes made to elements of the list, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code as:
+
+```python
+a = [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+]
+```
+
+That way each element change is shown as a different line in the code diff.  As an added bonus this can help shorten long lines of code.
+
+### Packaging code
+
+Packaging your code will make it easier for others (including yourself) to install and use your code.  In this section I will go over how to package python code.  This workshop's repository is already setup to be a python package and can be used as a reference:
+
+```
+DISCnet_workshop (git repository)
+├── data_transforms (python package base folder)
+│   ├── __init__.py (needed in every folder of the package, run on folder import)
+│   ├── angle_metric.py (code file)
+│   └── tests (folder to hold tests)
+│       ├── __init__.py
+│       └── test_angle_metric.py (test file)
+├── LICENSE (make sure you license your code)
+├── README.md (shown on the github page)
+├── setup.cfg (python package configuration)
+└── setup.py (needed for back compatibility for older versions of pip)
+```
+
+Let's dive into a few of these things in more detail
+- `__init__.py`: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.
+- `LICENSE`: You should choose a license for your code. [Choose A License](https://choosealicense.com/) is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the [MIT license](https://choosealicense.com/licenses/mit/) and [Apache 2.0 license](https://choosealicense.com/licenses/apache-2.0/).
+- `setup.cfg`: This file tells python how to install your code, what dependencies to install, and various development configuration options.
+
+## Text editors
+
+Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend [VScode](https://code.visualstudio.com/) as a free quality text editor with all the features above.
+
+For python coding you will want to install the `Python` extension by Microsoft (you will be prompted to install it when you first open a `.py` file) and the `Jupyter` extension by Microsoft.  
+
+### Programming fonts
+
+In addition to a good text editor you will also want a good monospace font.  I can recommend [FiraCode](https://github.com/tonsky/FiraCode).  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing `>=` int a "less-than or equal" to sign).  As this can be a bit annoying while typing, you can also use the VScode `Disable Ligatures` extension to turn this feature off for the active line you are typing.  Once the font and extension are installed you will need to edit VScode's `settings.json` file with the options (all other font options can be set from the normal settings panel):
+
+```json
+{
+    "editor.fontFamily": "Fira Code",
+    "editor.fontLigatures": true,
+    "editor.fontWeight": "500",
+    "disableLigatures.mode": "Line",
+}
+```
+
+## Coding style and linting
 
 What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding the style most developers use has it basis in [PEP 8](https://peps.python.org/pep-0008/).
 
@@ -18,24 +121,24 @@ Here are some examples of PEP 8 conventions:
 - Class names should normally use the CapWords convention
 - Function names should be lowercase, with words separated by underscores as necessary to improve readability
 
-As PEP 8 is so common across python there are packages you can install that will automatically check you style for you (and text editors that will do this as you type).  The most common package is [flake8](https://flake8.pycqa.org/en/latest/), once install you can run:
+As PEP 8 is so common across python there are packages you can install that will automatically check you style for you (and text editors that will do this as you type).  The two most common ones used are [pylint](https://pylint.pycqa.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (e.g. variables that are defined but not used).  Of the two `flake8` is a bit less opinionated making it a bit easier to get on with, because of this we will be using it for the workshop. Once `flake8` is install you can run it on the command line with:
 
 ```bash
 flake8
 ```
 
-in the top level folder with you code and it will check the style in every python file.  This process of checking the style of you code is called "linting."
+in the top level folder with your code and it will check the style in every python file.  This process of checking the style of you code is called "linting."
 
 ### Configuring your linter
 
-While PEP 8 is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don't agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code's `setup.cfg` file.  By doing it at the project level your choice of style rules will be saved **inside the project** for all developers to see.  That way everyone contributing code to the project knows what rules to follow (and what ones can be ignored).
+While `flake8` is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don't agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code's `setup.cfg` file.  By doing it at the project level your choice of style rules will be saved **inside the project** for all developers to see.  That way everyone contributing code to the project knows what rules to follow (and what ones can be ignored).
 
 In particular, withing `flake8` rules [W503](https://www.flake8rules.com/rules/W503.html) and [W504](https://www.flake8rules.com/rules/W504.html) are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the `flake8` configuration in the `setup.cfg` file to:
 
-- ignore the `.git` and `__pycache__` folders
+- ignore the project configuration folders (.git, docs, etc...)
 - Set the max line length to 120
 - Turn off rule `W503`
-- Turn off `BLK100` (flake-black)
+- Turn off `BLK100` (flake-black, black is an optional set of rules we are not going to be using)
 
 ## Documenting code
 
@@ -161,6 +264,7 @@ Welcome to Data Transforms's documentation!
    :maxdepth: 2
    :caption: Workshop Notes:
 
+   Introduction
    getting_started
    good_coding_practices
    GitHub_with_collaborators
@@ -197,17 +301,3 @@ Sometimes the side bar content will not update correctly when new pages are adde
 
 To simplify the auto finding and doc building steps I have created a `build_docs.sh` script in the base repository to run the commands above in order.
 
-## Code (file) structure
-Writing code in a way that makes it easier to review
-Packaging code
-
-## Text editors
-Live linting
-Syntax highlighting
-Programming fonts (e.g. https://github.com/tonsky/FiraCode)
-
-## Context transfer
-Pair programming
-Code review (will tie into GitHub)
-Code commenting
-Documentation

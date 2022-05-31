@@ -1,12 +1,5 @@
 # Getting Started
 
-The prerequisite for this workshop are:
-- A working knowledge of python
-- Python 3.10 installed on your local computer
-    - Some shell commands as presented assume a Unix-like system but could be generalized to windows commands without much issue
-- The ability to install new packages into your Python environment
-- A GitHub account
-
 ## Making a clean python environment
 
 When starting a new python project it is useful to create a new python environment to avoid any conflicting dependencies between projects.  Depending on how python was installed on your system this can be done a few different ways.
@@ -49,6 +42,15 @@ To activate the environment run:
 
 ```bash
 conda activate discnet_env
+```
+
+## Clone the code
+
+Use git to clone the code:
+
+```bash
+git clone https://github.com/CKrawczyk/DISCnet_workshop.git
+cd DISCnet_workshop
 ```
 
 ## Installing the workshop's python package
