@@ -49,7 +49,18 @@
 <li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Good coding practices</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#overview-what-problems-do-good-coding-practices-solve">Overview: What problems do good coding practices solve?</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#coding-style">Coding style</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#context-transfer">Context transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#code-and-file-structure">Code and file structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organizing-your-code">Organizing your code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-legibility">Code legibility</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#packaging-code">Packaging code</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#text-editors">Text editors</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#programming-fonts">Programming fonts</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#coding-style-and-linting">Coding style and linting</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#configuring-your-linter">Configuring your linter</a></li>
 </ul>
 </li>
@@ -59,9 +70,6 @@
 <li class="toctree-l3"><a class="reference internal" href="#sphinx-building-the-docs">Sphinx - building the docs</a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#code-file-structure">Code (file) structure</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#text-editors">Text editors</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#context-transfer">Context transfer</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="GitHub_with_collaborators.html">Using GitHub with collaborators</a></li>
@@ -103,8 +111,119 @@
 <p>Weather you are working alone or working in a team, one of the most valuable things you should keep in mind is <strong>context transfer</strong>.  It is not enough to just track the changes made to code, but to also track <strong>why</strong> those changes were made.  Many of the best practices covered within this document will be various flavors of recoding this kind of context in a way that is clear to other developers, or even to yourself when you look back at old code.</p>
 <p>When context is well recorded it becomes easier for other develops to be on-boarded into your codebase, structural changes to the code become easier to manage, leading to code that is easier to maintain in the long run.</p>
 </section>
-<section id="coding-style">
-<h2>Coding style<a class="headerlink" href="#coding-style" title="Permalink to this headline"></a></h2>
+<section id="context-transfer">
+<h2>Context transfer<a class="headerlink" href="#context-transfer" title="Permalink to this headline"></a></h2>
+<p>Ways to boost context transfer:</p>
+<ul class="simple">
+<li><p>Pair programming: Work with another developer in real time when writing your code.  Typically you have one person drive the keyboard focusing on code syntax and code legibility while the other drives the code structure focusing on how the code should be structured and the algorithms being used.  Every so often these roles should switch.</p></li>
+<li><p>Git commit messages: Include the <strong>why</strong> for every change directly in the commit message</p></li>
+<li><p>GitHub Pull Requests: Use this space for the larger reason behind any changes and/or features</p></li>
+<li><p><a class="reference external" href="https://github.com/joelparkerhenderson/architecture-decision-record">Architecture Decision Record</a> (ADR): For larger code bases ADRs can be used to track changes to a code’s architecture over time.  These records are kept in the repository next to the code and can be refereed to by and developer who wants to know the why the code is structured the way it is.</p></li>
+</ul>
+</section>
+<section id="code-and-file-structure">
+<h2>Code and file structure<a class="headerlink" href="#code-and-file-structure" title="Permalink to this headline"></a></h2>
+<p>One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.</p>
+<section id="organizing-your-code">
+<h3>Organizing your code<a class="headerlink" href="#organizing-your-code" title="Permalink to this headline"></a></h3>
+<p>Step one in making your code more readable is to organize it into different files and folders.  Some rules that help with this:</p>
+<ul class="simple">
+<li><p>Every file has one large function, one class, or collection of related small functions</p>
+<ul>
+<li><p>The file name should reflect what the code in the file does</p></li>
+</ul>
+</li>
+<li><p>Group the files by the general task they complete (e.g. a folder of plotting code and a folder for analysis)</p>
+<ul>
+<li><p>The folder name should reflect this general task</p></li>
+</ul>
+</li>
+</ul>
+<p>It is OK if you don’t have a full plan for what these file and folder structures will look like before you start, you can always re-organize your code after it is written.  The important thing is to have it be at least somewhat organized before code review.  Any question you have about this structure you can alway flag up for your reviewer to take a look at and help answer.</p>
+</section>
+<section id="code-legibility">
+<h3>Code legibility<a class="headerlink" href="#code-legibility" title="Permalink to this headline"></a></h3>
+<p>It is difficult to review code if you don’t know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message (more on that later), there are thing you can do directly in your code to help your reviewer:</p>
+<ul class="simple">
+<li><p>Use descriptive variable names</p></li>
+<li><p>Write documentation strings explaining every input and output</p></li>
+<li><p>Write your code in the simplest way that works</p>
+<ul>
+<li><p>It should be obvious from the code written what is being done</p></li>
+</ul>
+</li>
+<li><p>If you need to do something in a “clever” way write a comment about it and record in a comment, commit message, and/or PR message why this is needed</p></li>
+<li><p>Make sure the tone of your comments matches who you expect to be reading them</p>
+<ul>
+<li><p>Comments targeted at people learning python syntax for the first time should look different than comments targeted at people who have been using python for several years</p></li>
+</ul>
+</li>
+<li><p>Stick to a consistent coding style (more on this latter)</p></li>
+<li><p>Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example take the following code change:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>changes to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+</pre></div>
+</div>
+<p>There are two changes made to elements of the list, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code as:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="mi">1</span><span class="p">,</span>
+    <span class="mi">2</span><span class="p">,</span>
+    <span class="mi">3</span><span class="p">,</span>
+    <span class="mi">4</span><span class="p">,</span>
+    <span class="mi">5</span><span class="p">,</span>
+    <span class="mi">6</span>
+<span class="p">]</span>
+</pre></div>
+</div>
+<p>That way each element change is shown as a different line in the code diff.  As an added bonus this can help shorten long lines of code.</p>
+</section>
+<section id="packaging-code">
+<h3>Packaging code<a class="headerlink" href="#packaging-code" title="Permalink to this headline"></a></h3>
+<p>Packaging your code will make it easier for others (including yourself) to install and use your code.  In this section I will go over how to package python code.  This workshop’s repository is already setup to be a python package and can be used as a reference:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DISCnet_workshop (git repository)
+├── data_transforms (python package base folder)
+│   ├── __init__.py (needed in every folder of the package, run on folder import)
+│   ├── angle_metric.py (code file)
+│   └── tests (folder to hold tests)
+│       ├── __init__.py
+│       └── test_angle_metric.py (test file)
+├── LICENSE (make sure you license your code)
+├── README.md (shown on the github page)
+├── setup.cfg (python package configuration)
+└── setup.py (needed for back compatibility for older versions of pip)
+</pre></div>
+</div>
+<p>Let’s dive into a few of these things in more detail</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>: You should choose a license for your code. <a class="reference external" href="https://choosealicense.com/">Choose A License</a> is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the <a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT license</a> and <a class="reference external" href="https://choosealicense.com/licenses/apache-2.0/">Apache 2.0 license</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>: This file tells python how to install your code, what dependencies to install, and various development configuration options.</p></li>
+</ul>
+</section>
+</section>
+<section id="text-editors">
+<h2>Text editors<a class="headerlink" href="#text-editors" title="Permalink to this headline"></a></h2>
+<p>Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend <a class="reference external" href="https://code.visualstudio.com/">VScode</a> as a free quality text editor with all the features above.</p>
+<p>For python coding you will want to install the <code class="docutils literal notranslate"><span class="pre">Python</span></code> extension by Microsoft (you will be prompted to install it when you first open a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file) and the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> extension by Microsoft.</p>
+<section id="programming-fonts">
+<h3>Programming fonts<a class="headerlink" href="#programming-fonts" title="Permalink to this headline"></a></h3>
+<p>In addition to a good text editor you will also want a good monospace font.  I can recommend <a class="reference external" href="https://github.com/tonsky/FiraCode">FiraCode</a>.  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> int a “less-than or equal” to sign).  As this can be a bit annoying while typing, you can also use the VScode <code class="docutils literal notranslate"><span class="pre">Disable</span> <span class="pre">Ligatures</span></code> extension to turn this feature off for the active line you are typing.  Once the font and extension are installed you will need to edit VScode’s <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file with the options (all other font options can be set from the normal settings panel):</p>
+<div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;editor.fontFamily&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Fira Code&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;editor.fontLigatures&quot;</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;editor.fontWeight&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;500&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="w">    </span><span class="nt">&quot;disableLigatures.mode&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;Line&quot;</span><span class="p">,</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="coding-style-and-linting">
+<h2>Coding style and linting<a class="headerlink" href="#coding-style-and-linting" title="Permalink to this headline"></a></h2>
 <p>What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding the style most developers use has it basis in <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>.</p>
 <p>Here are some examples of PEP 8 conventions:</p>
 <ul class="simple">
@@ -114,20 +233,20 @@
 <li><p>Class names should normally use the CapWords convention</p></li>
 <li><p>Function names should be lowercase, with words separated by underscores as necessary to improve readability</p></li>
 </ul>
-<p>As PEP 8 is so common across python there are packages you can install that will automatically check you style for you (and text editors that will do this as you type).  The most common package is <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a>, once install you can run:</p>
+<p>As PEP 8 is so common across python there are packages you can install that will automatically check you style for you (and text editors that will do this as you type).  The two most common ones used are <a class="reference external" href="https://pylint.pycqa.org/en/latest/">pylint</a> and <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a>.  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (e.g. variables that are defined but not used).  Of the two <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a bit less opinionated making it a bit easier to get on with, because of this we will be using it for the workshop. Once <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is install you can run it on the command line with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8
 </pre></div>
 </div>
-<p>in the top level folder with you code and it will check the style in every python file.  This process of checking the style of you code is called “linting.”</p>
+<p>in the top level folder with your code and it will check the style in every python file.  This process of checking the style of you code is called “linting.”</p>
 <section id="configuring-your-linter">
 <h3>Configuring your linter<a class="headerlink" href="#configuring-your-linter" title="Permalink to this headline"></a></h3>
-<p>While PEP 8 is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don’t agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code’s <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file.  By doing it at the project level your choice of style rules will be saved <strong>inside the project</strong> for all developers to see.  That way everyone contributing code to the project knows what rules to follow (and what ones can be ignored).</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don’t agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code’s <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file.  By doing it at the project level your choice of style rules will be saved <strong>inside the project</strong> for all developers to see.  That way everyone contributing code to the project knows what rules to follow (and what ones can be ignored).</p>
 <p>In particular, withing <code class="docutils literal notranslate"><span class="pre">flake8</span></code> rules <a class="reference external" href="https://www.flake8rules.com/rules/W503.html">W503</a> and <a class="reference external" href="https://www.flake8rules.com/rules/W504.html">W504</a> are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> configuration in the <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file to:</p>
 <ul class="simple">
-<li><p>ignore the <code class="docutils literal notranslate"><span class="pre">.git</span></code> and <code class="docutils literal notranslate"><span class="pre">__pycache__</span></code> folders</p></li>
+<li><p>ignore the project configuration folders (.git, docs, etc…)</p></li>
 <li><p>Set the max line length to 120</p></li>
 <li><p>Turn off rule <code class="docutils literal notranslate"><span class="pre">W503</span></code></p></li>
-<li><p>Turn off <code class="docutils literal notranslate"><span class="pre">BLK100</span></code> (flake-black)</p></li>
+<li><p>Turn off <code class="docutils literal notranslate"><span class="pre">BLK100</span></code> (flake-black, black is an optional set of rules we are not going to be using)</p></li>
 </ul>
 </section>
 </section>
@@ -239,6 +358,7 @@ sphinx-quickstart
    <span class="nc">:maxdepth:</span> 2
    <span class="nc">:caption:</span> Workshop Notes:
 
+   Introduction
    getting_started
    good_coding_practices
    GitHub_with_collaborators
@@ -273,24 +393,6 @@ make html
 </div>
 <p>To simplify the auto finding and doc building steps I have created a <code class="docutils literal notranslate"><span class="pre">build_docs.sh</span></code> script in the base repository to run the commands above in order.</p>
 </section>
-</section>
-<section id="code-file-structure">
-<h2>Code (file) structure<a class="headerlink" href="#code-file-structure" title="Permalink to this headline"></a></h2>
-<p>Writing code in a way that makes it easier to review
-Packaging code</p>
-</section>
-<section id="text-editors">
-<h2>Text editors<a class="headerlink" href="#text-editors" title="Permalink to this headline"></a></h2>
-<p>Live linting
-Syntax highlighting
-Programming fonts (e.g. https://github.com/tonsky/FiraCode)</p>
-</section>
-<section id="context-transfer">
-<h2>Context transfer<a class="headerlink" href="#context-transfer" title="Permalink to this headline"></a></h2>
-<p>Pair programming
-Code review (will tie into GitHub)
-Code commenting
-Documentation</p>
 </section>
 </section>
 

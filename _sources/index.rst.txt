@@ -5,6 +5,7 @@ Welcome to Data Transforms's documentation!
    :maxdepth: 2
    :caption: Workshop Notes:
 
+   Introduction
    getting_started
    good_coding_practices
    GitHub_with_collaborators
