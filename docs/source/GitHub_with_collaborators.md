@@ -64,13 +64,64 @@ These notes are partially adapted from gov.uk's style guides found at:
 ## Making a good code review
 Code review
 
-## Good practices
-Keeping a clean main branch
-Tagging releases
-Keeping branches up to date (e.g. rebase) and short lived
-Writing good commit messages and PR messages
+## Git workflow
 
-## CI/CD (quick touch on what these are and where they live inside a Git repository)
-Setting up GitHub Actions to run tests and style checks
+There are many different ways to effectively use git within a collaboration, and many more ways to have it be a nightmare.  For this workshop we will use the workflow I am most familiar with and encourages writing maintainable code.  The workflow is as follows:
 
-## How the Zooniverse manages GitHub repositories (as an example of a system that works well)
+1. checkout the latest `main` branch
+```bash
+git checkout main
+git pull
+```
+2. make a new branch with a descriptive name
+    - for better organization of branch names you can prepend branch names with `feature/`, `bug/`, `hotfix/`
+```bash
+git checkout -b my-feature-branch
+```
+3. write your code and group logical units of changes into individual commits
+```bash
+git add my_new_file.py
+git commit
+```
+4. push the changes to a common remote repository and open a PR on GitHub
+```bash
+git push --set-upstream origin my-feature-branch
+```
+5. assign a reviewer for your PR (it is your job to ask someone to look at your code, don't expect the PR to "just be seen" by other developers)
+6. address any feedback left by the reviewer
+7. once approved **rebase** your changes onto the latest `main` branch to ensure there are no code conflicts
+```bash
+git checkout main
+git pull
+git checkout my-feature-branch
+git rebase main
+```
+or if you want to clean up your git history (e.g. merge two commit together, change your commit messages, etc...)
+```bash
+git rebase -i main
+```
+8. push the rebased code back to the remote
+```bash
+git push --force-with-lease origin my-feature-branch
+```
+9. merge to the `main` branch using the big green button
+10. delete the brach on the remote once the merge is finish
+11. pull the latest `main` (with your PR merged) locally
+```bash
+git check main
+git pull
+```
+12. (optional) delete your local copy of the merged branch
+```bash
+git branch -d my-feature-branch
+```
+
+What does this workflow achieve?
+- It ensures only reviewed code makes it into the `main` branch
+    - This implies the `main` branch is where you will always be able to find a working version of the code
+- It encourages short lived feature branches
+    - Smaller code changes are easier to review and less likely to conflict with other developers' code changes
+- As the code writer you are responsible for addressing merge conflicts
+- By using `rebase` rather than `merge` the git history is kept linear
+- Once given the OK by the reviewer the code writer makes the final decision on when to merge
+- Any merged branch can be safely deleted, there is no need to clutter up the remote with old branches (also you are less likely to have multiple developers pick the branch name for their work if there are fewer branches on the remote repo).
