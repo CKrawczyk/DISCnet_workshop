@@ -28,4 +28,4 @@ The attendees should understand how effectively use GitHub in a collaboration, w
 
 This course is aimed at students in Year 2 or higher of their PhD.  The course may also be suitable for students in earlier years, depending on their programming experience.
 
-Attendees will need a laptop computer with 1 GB of free disk space.  The code being used to the workshop along side the notes are all hosted on GitHub at https://github.com/CKrawczyk/DISCnet_workshop
+Attendees will need a laptop computer with 1 GB of free disk space.  The code being used to the workshop along side the notes are all hosted on GitHub at [https://github.com/CKrawczyk/DISCnet_workshop](https://github.com/CKrawczyk/DISCnet_workshop)
