@@ -55,6 +55,8 @@
 <li class="toctree-l3"><a class="reference internal" href="#organizing-your-code">Organizing your code</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#code-legibility">Code legibility</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#packaging-code">Packaging code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-dependency-versions">Setting dependency versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#versioning-your-package">Versioning your package</a></li>
 </ul>
 </li>
 <li class="toctree-l2"><a class="reference internal" href="#text-editors">Text editors</a><ul>
@@ -162,22 +164,22 @@
 <li><p>Stick to a consistent coding style (more on this latter)</p></li>
 <li><p>Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example take the following code change:</p></li>
 </ul>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}}</span>
 </pre></div>
 </div>
 <p>changes to</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">,</span> <span class="mi">6</span><span class="p">]</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}}</span>
 </pre></div>
 </div>
-<p>There are two changes made to elements of the list, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code as:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">[</span>
-    <span class="mi">1</span><span class="p">,</span>
-    <span class="mi">2</span><span class="p">,</span>
-    <span class="mi">3</span><span class="p">,</span>
-    <span class="mi">4</span><span class="p">,</span>
-    <span class="mi">5</span><span class="p">,</span>
-    <span class="mi">6</span>
-<span class="p">]</span>
+<p>There are two changes made to elements of the dictionary, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code so every element is on its own line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> 
+        <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">7</span>
+    <span class="p">}</span>
+<span class="p">}</span>
 </pre></div>
 </div>
 <p>That way each element change is shown as a different line in the code diff.  As an added bonus this can help shorten long lines of code.</p>
@@ -200,10 +202,41 @@
 </div>
 <p>Let’s dive into a few of these things in more detail</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.  The top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> typically also stores the package <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>: You should choose a license for your code. <a class="reference external" href="https://choosealicense.com/">Choose A License</a> is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the <a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT license</a> and <a class="reference external" href="https://choosealicense.com/licenses/apache-2.0/">Apache 2.0 license</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>: This file tells python how to install your code, what dependencies to install, and various development configuration options.</p></li>
 </ul>
+</section>
+<section id="setting-dependency-versions">
+<h3>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this headline"></a></h3>
+<p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> are pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file is typically used to pin down <strong>exact</strong> package versions when reproducibility is more important (e.g. all developers wanting to have the same versions installed or keeping a record of the package versions installed when a paper was published using the code).</p>
+<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>Most python packages use [semantic versioning](https://semver.org/).  This means the version numbers are set as MAJOR.MINOR.PATCH 
+- MAJOR version increments when incompatible API changes are made to the code
+- MINOR version increments when a new feature is added in a backward compatible manner
+- PATCH version increments when a backward compatible bug fix is made
+</pre></div>
+</div>
+<p>The rule of thumb I use when pinning down my packages ranges in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>:</p>
+<ul class="simple">
+<li><p>Set the lower bound as <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> the exact version currently installed in my environment (use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> to view the current versions of installed packages)</p></li>
+<li><p>Set the upper bound as <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> the next patch fix version of the package</p></li>
+<li><p>Activate <a class="reference external" href="https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/">dependabot</a> on GitHub to automatically make pull requests that update the upper bound when dependencies update (as we will see in the next section this will trigger our tests to run automatically and let us know if the update breaks the code)</p>
+<ul>
+<li><p>If a dependency update breaks the code (typically major version updates), update the code and set the lower bound to be the latest version of the dependency</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="versioning-your-package">
+<h3>Versioning your package<a class="headerlink" href="#versioning-your-package" title="Permalink to this headline"></a></h3>
+<p>It is a good idea to use single-source package versioning, this means the package version is defined in exactly one place inside the repository.  For python this is typically inside the top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file and stored with the variable name <code class="docutils literal notranslate"><span class="pre">__version__</span></code>.  The <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file can read this version by using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">metadata</span><span class="p">]</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">attr</span><span class="p">:</span> <span class="n">data_transforms</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">data_transforms</span></code> is the name of the python package we are writing in this workshop.</p>
+<p>When you are ready to release a new version of your code make a new PR that only bumps the version number using semantic versioning (see note above).  Once merged add a git tag to the merge commit.  You can also add additional notes about the release when making the tag, this a good place to include what things have changed in the new release.</p>
+<p>For larger projects it is worth keeping a separate <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file inside the repository or a changelog section in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that tracks all the changes introduced in each version bump to make this information easier to find.  There are tools available to help automate this process, these typically involve using special keywords when writing git commit messages to flag up text related to new features and/or breaking changes (e.g. <a class="reference external" href="https://github.com/KeNaCo/auto-changelog">auto-changelog</a>).</p>
 </section>
 </section>
 <section id="text-editors">
