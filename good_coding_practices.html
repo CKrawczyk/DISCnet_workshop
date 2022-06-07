@@ -210,11 +210,14 @@
 <section id="setting-dependency-versions">
 <h3>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this headline"></a></h3>
 <p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> are pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file is typically used to pin down <strong>exact</strong> package versions when reproducibility is more important (e.g. all developers wanting to have the same versions installed or keeping a record of the package versions installed when a paper was published using the code).</p>
-<div class="highlight-note notranslate"><div class="highlight"><pre><span></span>Most python packages use [semantic versioning](https://semver.org/).  This means the version numbers are set as MAJOR.MINOR.PATCH 
-- MAJOR version increments when incompatible API changes are made to the code
-- MINOR version increments when a new feature is added in a backward compatible manner
-- PATCH version increments when a backward compatible bug fix is made
-</pre></div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most python packages use <a class="reference external" href="https://semver.org/">semantic versioning</a>.  This means the version numbers are set as MAJOR.MINOR.PATCH</p>
+<ul class="simple">
+<li><p>MAJOR version increments when incompatible API changes are made to the code</p></li>
+<li><p>MINOR version increments when a new feature is added in a backward compatible manner</p></li>
+<li><p>PATCH version increments when a backward compatible bug fix is made</p></li>
+</ul>
 </div>
 <p>The rule of thumb I use when pinning down my packages ranges in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>:</p>
 <ul class="simple">
