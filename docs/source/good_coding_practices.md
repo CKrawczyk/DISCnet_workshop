@@ -94,7 +94,7 @@ Let's dive into a few of these things in more detail
 
 To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in `setup.cfg` are pinned as **ranges** to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional `requirements.txt` file is typically used to pin down **exact** package versions when reproducibility is more important (e.g. all developers wanting to have the same versions installed or keeping a record of the package versions installed when a paper was published using the code).
 
-```note
+```{note}
 Most python packages use [semantic versioning](https://semver.org/).  This means the version numbers are set as MAJOR.MINOR.PATCH 
 - MAJOR version increments when incompatible API changes are made to the code
 - MINOR version increments when a new feature is added in a backward compatible manner
