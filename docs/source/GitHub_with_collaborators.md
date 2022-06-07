@@ -10,6 +10,18 @@ Push to remote
 Commit
 Branch
 
+### GitHub vs GitLab vs Bitbucket
+
+While we are using GitHub for this workshop, it is not the only option for hosting remote git repositories.  The other major options are [GitLab](https://about.gitlab.com/) and [Bitbucket](https://bitbucket.org/product/).  For the most part all there platforms offer the same services but they sometimes use different terms.  Below is a table for converting between the terms used by each platform:
+
+| GitHub         | GitLab        | Bitbucket           |
+| :------------- | :------------ | :------------------ |
+| Pull Request   | Merge Request | Pull Request        |
+| Gist           | Snippet       | Snippet             |
+| Repository     | Project       | Repository          |
+| Organizations  | Groups        | Teams               |
+| GitHub Actions | GitLab CI     | Bitbucket Pipelines |
+
 ## Writing good commit messages
 
 These notes are partially adapted from gov.uk's style guides found at:
@@ -60,9 +72,38 @@ These notes are partially adapted from gov.uk's style guides found at:
 
 - [https://github.com/alphagov/styleguides/blob/master/pull-requests.md](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
 
+Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening as PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.
 
-## Making a good code review
-Code review
+## Writing good code reviews
+
+When working in a team it is important to review other people's code along side writing your own code.  While it might be tempting to just quickly look code changes on GitHub and leave a short message like "looks good to me" that is only really useful for very small changes to the code.  For larger changes a full review should be done.
+
+1. Pull down the changes locally
+```bash
+git checkout main
+git pull  # also fetches the names of all remote branches
+git checkout <name of branch on remote>
+```
+2. Read the PR to see what changes were made
+3. Test that those changes work as intended
+    - Do the unittest pass locally
+    - Use the code that was changed, if you don't know how ask for an example use case on the PR
+4. If the PR is fixing a bug:
+    - Reproduce the bug on `main`
+    - Switch to the PRs branch and ensure the bug is fixed
+5. Look over the code diff on GitHub and leave inline comments you have about any of the lines
+    - Questions about how code works
+    - Suggestions for make the code easier to read and/or more efficient
+6. Write your review (GitHub supports full markdown, don't be afraid to use section headings and lists in your review)
+    - Open with a summary of the changes made, this allows the person who opened the PR to see if you understood the changes correctly
+    - List the steps you took to test the code
+    - Record any observations you made during the testing process
+    - If appropriate list any consequences of the changes (e.g. is there other code that should be changed in a future PR as a result)
+    - Any actions the PRs author(s) should take before merging
+7. Either approve or block (pending changes) the PR
+8. If approved you are done, it is the responsibility of hte author(s) to merge the PR (something in your review might remind them of small they want to make before merging).
+
+Here is an example of well constructed PR and review taken from on of the Zooniverse's repositories [https://github.com/zooniverse/front-end-monorepo/pull/2313](https://github.com/zooniverse/front-end-monorepo/pull/2313).
 
 ## Git workflow
 
