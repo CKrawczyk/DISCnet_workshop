@@ -6,6 +6,7 @@ Welcome to Data Transforms's documentation!
    :caption: Workshop Notes:
 
    Introduction
+   the_task
    getting_started
    good_coding_practices
    GitHub_with_collaborators
