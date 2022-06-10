@@ -139,7 +139,7 @@ What does this workflow achieve?
 - Once given the OK by the reviewer the code writer makes the final decision on when to merge
 - Any merged branch can be safely deleted, there is no need to clutter up the remote with old branches (also you are less likely to have multiple developers pick the branch name for their work if there are fewer branches on the remote repo).
 
-## Writing good commit messages
+## Writing better commit messages
 
 These notes are partially adapted from gov.uk's style guides found at:
 
@@ -183,7 +183,7 @@ GitHub will automatically close the mentioned issue once the PR is
 merged into the repo's **default** branch.
 ```
 
-## Writing good PRs
+## Writing better PRs
 
 These notes are partially adapted from gov.uk's style guides found at:
 
@@ -191,7 +191,7 @@ These notes are partially adapted from gov.uk's style guides found at:
 
 Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening as PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.
 
-## Writing good code reviews
+## Writing better code reviews
 
 When working in a team it is important to review other people's code along side writing your own code.  While it might be tempting to just quickly look code changes on GitHub and leave a short message like "looks good to me" that is only really useful for very small changes to the code.  For larger changes a full review should be done.
 

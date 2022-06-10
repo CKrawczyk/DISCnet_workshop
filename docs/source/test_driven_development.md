@@ -228,7 +228,7 @@ This leaves you with an easy to remember command for running your tests with all
 
 ### Other testing libraries
 
-The other commonly used python testing libraries are [pytest](https://docs.pytest.org/en/latest/) and [nosetest](https://nose.readthedocs.io/en/latest/) (note: `nosetest` is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in `unittest` syntax.  Both are also compatible with the `coverage` package.
+The other commonly used python testing libraries are [pytest](https://docs.pytest.org/en/latest/) and [nosetest](https://nose.readthedocs.io/en/latest/) (note: `nosetest` is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in `unittest` syntax and are compatible with the `coverage` package.
 
 As `unittest` is the most universal of these libraries we will be using it for this workshop.
 
