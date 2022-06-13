@@ -222,3 +222,33 @@ git checkout <name of branch on remote>
 
 Here is an example of well constructed PR and review taken from on of the Zooniverse's repositories [https://github.com/zooniverse/front-end-monorepo/pull/2313](https://github.com/zooniverse/front-end-monorepo/pull/2313).
 
+## CI (continuous integration)
+
+If you want to test your code automatically every time new code is added you can set up CI to do this for you every time new code is committed to the repository or a PR is made.  These days this is easy to do on GitHub with GitHub Actions (GHA).  These are script you can write and place in the `.github/workflows` folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:
+
+- run all test when new code is pushed to any branch
+- ensure test coverage does not fall below a given amount when new code is pushed
+- check new code follows you chosen style
+
+This repository has several GHA set up that fall under CI:
+
+- Check coding style with `flake8` on any PR
+- Run unit test and report coverage on any PR
+- Check if any dependencies in `main` have new versions and open a PR if they do
+
+GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.
+
+### tox
+
+While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  [Tox](https://tox.wiki/en/latest/) is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.
+
+## CD (continuous delivery/deployment)
+
+A related concept to CI is CD.  This takes the concept of CI and goes one step further by automatically taking changes to the `main` (or any other branch) and hosting them for use automatically.  These are also handled with GHA.  Typical examples are:
+
+- re-deploying a website on a merge to `main`
+- publish your code to [PyPi](https://pypi.org/) when the version number is bumped
+
+This repository has one GHA set up that falls under CD:
+
+- Build and host the package documentation on merge to `main`

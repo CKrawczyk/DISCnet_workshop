@@ -10,6 +10,8 @@ Welcome to Data Transforms's documentation!
    getting_started
    good_coding_practices
    github_with_collaborators
+   packaging_python_code
+   writing_documentation
    test_driven_development
 
 .. toctree::
