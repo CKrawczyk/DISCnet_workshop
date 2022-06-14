@@ -1,5 +1,5 @@
-Welcome to Data Transforms's documentation!
-===========================================
+DISCnet Workshop: Writing Code as a Team
+=========================================
 
 .. toctree::
    :maxdepth: 2
