@@ -46,13 +46,15 @@ Here are some examples of PEP 8 conventions:
 - Class names should normally use the CapWords convention
 - Function names should be lowercase, with words separated by underscores as necessary to improve readability
 
-As PEP 8 is so common across python there are packages you can install that will automatically check you style for you (and text editors that will do this as you type).  The two most common ones used are [pylint](https://pylint.pycqa.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (e.g. variables that are defined but not used).  Of the two `flake8` is a bit less opinionated making it a bit easier to get on with, because of this we will be using it for the workshop. Once `flake8` is install you can run it on the command line with:
+While you could read over PEP 8 and try to memorize it, the most effective way to lean (and stick to) PEP 8 standards is to use a linter for you code.  This is a package that will automatically check your code style, and if you are using a good text editor you can do these checks as you type your code.  The two most common linters used for python are [pylint](https://pylint.pycqa.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (e.g. variables that are defined but not used).  Of the two `flake8` is a bit less opinionated making it a bit easier to get on with when first sticking to a style, because of this we will be using it for the workshop. Once `flake8` is install you can run it on the command line with:
 
 ```bash
 flake8
 ```
 
-in the top level folder with your code and it will check the style in every python file.  This process of checking the style of you code is called "linting."
+in the top level folder with your code and it will check the style in every python file.
+
+To set up VScode to use `flake8` open the settings and search for `python linting` and enable `flake8`, disable `pylint`, and enable "lint on save" (linting as you type is a bit buggy in VScode).
 
 ### Configuring your linter
 
