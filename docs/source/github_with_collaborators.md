@@ -8,7 +8,7 @@ In this workshop we will be using Git as our version control software, and GitHu
 
 ## Basic concepts
 
-While many of you might already be familiar with the basic concepts behind Git, let's make sure we are all on the same page and introduce some of the basic concepts:
+While many of you might already be familiar with Git, let's make sure we are all on the same page and introduce some of the basic concepts:
 
 - Repository: the name given to a folder that has Git version control set up
 ```bash
@@ -81,53 +81,48 @@ While we are using GitHub for this workshop, it is not the only option for hosti
 
 There are many different ways to effectively use git within a collaboration, and many more ways to have it be a nightmare.  For this workshop we will use the workflow I am most familiar with and encourages writing maintainable code.  The workflow is as follows:
 
-- checkout the latest `main` branch
+1. checkout the latest `main` branch
+2. make a new branch with a descriptive name
+    - for better organization of branch names you can prepend branch names with `feature/`, `bug/`, `hotfix/`
+3. write your code grouping logical units of changes into individual commits
+4. push the changes to the common remote repository and open a PR on GitHub
+5. assign a reviewer for your PR (it is your job to ask someone to look at your code, don't expect the PR to "just be seen" by other developers)
+6. address any feedback left by the reviewer
+7. once approved **rebase** your changes onto the latest `main` branch to ensure there are no code conflicts
+or if you want to clean up your git history (e.g. merge two commit together, change your commit messages, etc...) rebase in interactive mode (`git rebase -i main`)
+8. push the rebased code back to the remote
+9. merge to the `main` branch using the big green button
+10. delete the brach on the remote once the merge is finish
+11. pull the latest `main` (with your PR merged) locally
+12. (optional) delete your local copy of the merged branch
+
 ```bash
+# get latest code on main branch
 git checkout main
 git pull
-```
-- make a new branch with a descriptive name
-    - for better organization of branch names you can prepend branch names with `feature/`, `bug/`, `hotfix/`
-```bash
+
+# make new working branch
 git checkout -b my-feature-branch
-```
-- write your code and group logical units of changes into individual commits
-```bash
 git add my_new_file.py
 git commit
-```
-- push the changes to a common remote repository and open a PR on GitHub
-```bash
 git push --set-upstream origin my-feature-branch
-```
-- assign a reviewer for your PR (it is your job to ask someone to look at your code, don't expect the PR to "just be seen" by other developers)
-- address any feedback left by the reviewer
-- once approved **rebase** your changes onto the latest `main` branch to ensure there are no code conflicts
-```bash
+# make PR on GitHub
+
+# get latest changes to main and rebase
 git checkout main
 git pull
 git checkout my-feature-branch
 git rebase main
-```
-or if you want to clean up your git history (e.g. merge two commit together, change your commit messages, etc...)
-```bash
-git rebase -i main
-```
-- push the rebased code back to the remote
-```bash
 git push --force-with-lease origin my-feature-branch
-```
-- merge to the `main` branch using the big green button
-- delete the brach on the remote once the merge is finish
-- pull the latest `main` (with your PR merged) locally
-```bash
+
+# after merge on GitHub update your main branch
 git checkout main
 git pull
-```
-- (optional) delete your local copy of the merged branch
-```bash
+
+# clean up
 git branch -d my-feature-branch
 ```
+
 
 What does this workflow achieve?
 - It ensures only reviewed code makes it into the `main` branch
@@ -137,7 +132,7 @@ What does this workflow achieve?
 - As the code writer you are responsible for addressing merge conflicts
 - By using `rebase` rather than `merge` the git history is kept linear
 - Once given the OK by the reviewer the code writer makes the final decision on when to merge
-- Any merged branch can be safely deleted, there is no need to clutter up the remote with old branches (also you are less likely to have multiple developers pick the branch name for their work if there are fewer branches on the remote repo).
+- Any merged branch can be safely deleted, there is no need to clutter up the remote with old branches (also you are less likely to have multiple developers pick the same branch name for their work if there are fewer branches on the remote repo).
 
 ## Writing better commit messages
 
@@ -145,7 +140,7 @@ These notes are partially adapted from gov.uk's style guides found at:
 
 - [https://github.com/alphagov/styleguides/blob/master/git.md](https://github.com/alphagov/styleguides/blob/master/git.md)
 
-As mentioned in the previous section, context transfer is the main goal for writing easy to maintain software.  Writing good commit messages is one way to do this.  An example of a good commit message
+As mentioned in the previous section, context transfer is the main goal for writing easy to maintain software.  Writing good commit messages is one way to do this.  Here is an example of a good commit message:
 
 ```
 Write better commit messages
@@ -157,14 +152,14 @@ talk about the **why** of the code change and any consequences the
 changes might have.
 
 Depending on the group you are working in, you might be required to hard
-wrap your longer content at 72 characters to make the messages more
-readable when shown on the terminal with `git log`.
+wrap your longer context at 72 characters to make the messages more
+readable when shown on the terminal with the `git log` command.
 
 When making a new PR on GitHub for a branch that only has one commit the
 first line of the commit will be used as the default title of the PR and
 the longer message used as the PR's default text.  If you are hard
 wrapping lines your PR's text will look odd in the browser's text input
-box.
+box.  You may need to reformat it before opening the PR.
 
 If you are fixing an issue reported on GitHub include the issue number
 in the message as:
@@ -218,15 +213,16 @@ git checkout <name of branch on remote>
     - If appropriate list any consequences of the changes (e.g. is there other code that should be changed in a future PR as a result)
     - Any actions the PRs author(s) should take before merging
 7. Either approve or block (pending changes) the PR
-8. If approved you are done, it is the responsibility of hte author(s) to merge the PR (something in your review might remind them of small they want to make before merging).
+8. If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes asked for are finished.
 
 Here is an example of well constructed PR and review taken from on of the Zooniverse's repositories [https://github.com/zooniverse/front-end-monorepo/pull/2313](https://github.com/zooniverse/front-end-monorepo/pull/2313).
 
 ## CI (continuous integration)
 
-If you want to test your code automatically every time new code is added you can set up CI to do this for you every time new code is committed to the repository or a PR is made.  These days this is easy to do on GitHub with GitHub Actions (GHA).  These are script you can write and place in the `.github/workflows` folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:
+If you want to test your code automatically every time new code is committed you can set up CI.  These days this is easy to do on GitHub with GitHub Actions (GHA).  These are script you can write and place in the `.github/workflows` folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:
 
-- run all test when new code is pushed to any branch
+- run all tests when new code is pushed to any branch
+- run all tests against several version of python
 - ensure test coverage does not fall below a given amount when new code is pushed
 - check new code follows you chosen style
 
@@ -234,7 +230,7 @@ This repository has several GHA set up that fall under CI:
 
 - Check coding style with `flake8` on any PR
 - Run unit test and report coverage on any PR
-- Check if any dependencies in `main` have new versions and open a PR if they do
+- Check if any dependencies in `main` have new versions and open a PR that updates them if they do
 
 GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.
 
@@ -251,4 +247,4 @@ A related concept to CI is CD.  This takes the concept of CI and goes one step f
 
 This repository has one GHA set up that falls under CD:
 
-- Build and host the package documentation on merge to `main`
+- Build and host the package documentation on a merge to `main`
