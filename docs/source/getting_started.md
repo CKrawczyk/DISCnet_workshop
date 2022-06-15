@@ -58,7 +58,8 @@ cd DISCnet_workshop
 Throughout this workshop you will be helping to write a python package called `data_transforms`.  To install it into your new environment (once the env is activated) run:
 
 ```bash
-pip install -e .[dev]
+pip install flit
+flit install -s
 ```
 
 The option `-e` installs the code in "edit" mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be "install" without needing to run the `pip` command again.  `.[dev]` indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.
