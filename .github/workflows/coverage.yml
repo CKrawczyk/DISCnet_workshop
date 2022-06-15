@@ -21,7 +21,7 @@ jobs:
         key: ${{ env.pythonLocation }}-${{ hashFiles('setup.cfg') }}
     - name: Install local package
       run: |
-        pip install -U pip
+        pip install -U pip setuptoos
         pip install -U .[dev]
     - name: Run tests with coverage
       run: coverage run
