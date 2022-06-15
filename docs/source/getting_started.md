@@ -58,6 +58,7 @@ cd DISCnet_workshop
 Throughout this workshop you will be helping to write a python package called `data_transforms`.  To install it into your new environment (once the env is activated) run:
 
 ```bash
+pip install -U pip
 pip install -e .[dev]
 ```
 
