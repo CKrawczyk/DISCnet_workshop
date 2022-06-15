@@ -228,23 +228,6 @@ This leaves you with an easy to remember command for running your tests with all
 
 ### Other testing libraries
 
-The other commonly used python testing libraries are [pytest](https://docs.pytest.org/en/latest/) and [nosetest](https://nose.readthedocs.io/en/latest/) (note: `nosetest` is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in `unittest` syntax.  Both are also compatible with the `coverage` package.
+The other commonly used python testing libraries are [pytest](https://docs.pytest.org/en/latest/) and [nosetest](https://nose.readthedocs.io/en/latest/) (note: `nosetest` is no longer being actively developed and should not be considered for new projects).  The each have a different syntax for writing test, but both of their test runners are able to find and run any tests written with the built in `unittest` syntax and are compatible with the `coverage` package.
 
 As `unittest` is the most universal of these libraries we will be using it for this workshop.
-
-## CI (continuous integration)
-
-If you want to test your code automatically every time new code is added you can set up CI to do this for you every time new code is committed to the repository.  These days this is easy to do on GitHub with GitHub Actions (GHA, GitLab has a similar system in place).  These are script you can write and place in the `.github/workflows` folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:
-
-- run all test when new code is pushed to any branch
-- ensure test coverage does not fall below a given amount when new code is pushed
-- check new code follows you chosen style
-- push your code to pypi when the version number is bumped
-
-This repository has two GHA set up one to check code style and the other to run tests and report coverage.  Although the testing code is currently only set up to run on python 3.9 it can easily be modified to test the code against many different versions of python.
-
-GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.
-
-### tox
-
-While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  [Tox](https://tox.wiki/en/latest/) is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.

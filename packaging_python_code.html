@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Packaging Python code &mdash; Data Transforms 0.1.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
+      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script>let toggleHintShow = 'Click to show';</script>
+        <script>let toggleHintHide = 'Click to hide';</script>
+        <script>let toggleOpenOnPrint = 'true';</script>
+        <script src="_static/togglebutton.js"></script>
+        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Documenting Python code" href="writing_documentation.html" />
+    <link rel="prev" title="Using GitHub with collaborators" href="github_with_collaborators.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Data Transforms
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Setting the Stage</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Collaborative Coding</a></li>
+<li class="toctree-l1"><a class="reference internal" href="the_task.html">The task</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Workshop Notes:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Getting Started</a></li>
+<li class="toctree-l1"><a class="reference internal" href="good_coding_practices.html">Good coding practices</a></li>
+<li class="toctree-l1"><a class="reference internal" href="github_with_collaborators.html">Using GitHub with collaborators</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Packaging Python code</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#code-and-file-structure">Code and file structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#organizing-your-code">Organizing your code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#code-legibility">Code legibility</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#the-package-structure">The package structure</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#setting-dependency-versions">Setting dependency versions</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#versioning-your-package">Versioning your package</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="writing_documentation.html">Documenting Python code</a></li>
+<li class="toctree-l1"><a class="reference internal" href="test_driven_development.html">Test driven development</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Documentation:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">data_transforms</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Data Transforms</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Packaging Python code</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/packaging_python_code.md.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="packaging-python-code">
+<h1>Packaging Python code<a class="headerlink" href="#packaging-python-code" title="Permalink to this headline"></a></h1>
+<section id="code-and-file-structure">
+<h2>Code and file structure<a class="headerlink" href="#code-and-file-structure" title="Permalink to this headline"></a></h2>
+<p>One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.</p>
+<section id="organizing-your-code">
+<h3>Organizing your code<a class="headerlink" href="#organizing-your-code" title="Permalink to this headline"></a></h3>
+<p>Step one in making your code more readable is to organize it into different files and folders.  Some rules that help with this:</p>
+<ul class="simple">
+<li><p>Every file has one large function, one class, or collection of related small functions</p>
+<ul>
+<li><p>The file name should reflect what the code in the file does</p></li>
+</ul>
+</li>
+<li><p>Group the files by the general task they complete (e.g. a folder of plotting code and a folder for analysis)</p>
+<ul>
+<li><p>The folder name should reflect this general task</p></li>
+</ul>
+</li>
+</ul>
+<p>It is OK if you don’t have a full plan for what these file and folder structures will look like before you start, you can always re-organize your code after it is written.  The important thing is to have it be at least somewhat organized before code review.  Any question you have about this structure you can alway flag up for your reviewer to take a look at and help answer.</p>
+</section>
+<section id="code-legibility">
+<h3>Code legibility<a class="headerlink" href="#code-legibility" title="Permalink to this headline"></a></h3>
+<p>It is difficult to review code if you don’t know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message (more on that later), there are thing you can do directly in your code to help your reviewer:</p>
+<ul class="simple">
+<li><p>Use descriptive variable names</p></li>
+<li><p>Write documentation strings explaining every input and output</p></li>
+<li><p>Write your code in the simplest way that works</p>
+<ul>
+<li><p>It should be obvious from the code written what is being done</p></li>
+</ul>
+</li>
+<li><p>If you need to do something in a “clever” way write a comment about it and record in a comment, commit message, and/or PR message why this is needed</p></li>
+<li><p>Make sure the tone of your comments matches who you expect to be reading them</p>
+<ul>
+<li><p>Comments targeted at people learning python syntax for the first time should look different than comments targeted at people who have been using python for several years</p></li>
+</ul>
+</li>
+<li><p>Stick to a consistent coding style (more on this latter)</p></li>
+<li><p>Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example take the following code change:</p></li>
+</ul>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>changes to</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}}</span>
+</pre></div>
+</div>
+<p>There are two changes made to elements of the dictionary, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code so every element is on its own line:</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+    <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>
+    <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> 
+        <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">7</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>That way each element change is shown as a different line in the code diff.  As an added bonus this can help shorten long lines of code.</p>
+</section>
+</section>
+<section id="the-package-structure">
+<h2>The package structure<a class="headerlink" href="#the-package-structure" title="Permalink to this headline"></a></h2>
+<p>Packaging your code will make it easier for others (including yourself) to install and use your code.  In this section I will go over how to package python code.  This workshop’s repository is already setup to be a python package and can be used as a reference:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DISCnet_workshop (git repository)
+├── data_transforms (python package base folder)
+│   ├── __init__.py (needed in every folder of the package, run on folder import)
+│   ├── angle_metric.py (code file)
+│   └── tests (folder to hold tests)
+│       ├── __init__.py
+│       └── test_angle_metric.py (test file)
+├── LICENSE (make sure you license your code)
+├── README.md (shown on the github page)
+├── setup.cfg (python package configuration)
+└── setup.py (needed for back compatibility for older versions of pip)
+</pre></div>
+</div>
+<p>Let’s dive into a few of these things in more detail</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.  The top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> typically also stores the package <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>: You should choose a license for your code. <a class="reference external" href="https://choosealicense.com/">Choose A License</a> is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the <a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT license</a> and <a class="reference external" href="https://choosealicense.com/licenses/apache-2.0/">Apache 2.0 license</a>.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>: This file tells python how to install your code, what dependencies to install, and various development configuration options.</p></li>
+</ul>
+<section id="setting-dependency-versions">
+<h3>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this headline"></a></h3>
+<p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> are pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> file is typically used to pin down <strong>exact</strong> package versions when reproducibility is more important (e.g. all developers wanting to have the same versions installed or keeping a record of the package versions installed when a paper was published using the code).</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Most python packages use <a class="reference external" href="https://semver.org/">semantic versioning</a>.  This means the version numbers are set as MAJOR.MINOR.PATCH</p>
+<ul class="simple">
+<li><p>MAJOR version increments when incompatible API changes are made to the code</p></li>
+<li><p>MINOR version increments when a new feature is added in a backward compatible manner</p></li>
+<li><p>PATCH version increments when a backward compatible bug fix is made</p></li>
+</ul>
+</div>
+<p>The rule of thumb I use when pinning down my packages ranges in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>:</p>
+<ul class="simple">
+<li><p>Set the lower bound as <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> the exact version currently installed in my environment (use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> to view the current versions of installed packages)</p></li>
+<li><p>Set the upper bound as <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> the next patch fix version of the package</p></li>
+<li><p>Activate <a class="reference external" href="https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/">dependabot</a> on GitHub to automatically make pull requests that update the upper bound when dependencies update (as we will see in the next section this will trigger our tests to run automatically and let us know if the update breaks the code)</p>
+<ul>
+<li><p>If a dependency update breaks the code (typically major version updates), update the code and set the lower bound to be the latest version of the dependency</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="versioning-your-package">
+<h3>Versioning your package<a class="headerlink" href="#versioning-your-package" title="Permalink to this headline"></a></h3>
+<p>It is a good idea to use single-source package versioning, this means the package version is defined in exactly one place inside the repository.  For python this is typically inside the top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file and stored with the variable name <code class="docutils literal notranslate"><span class="pre">__version__</span></code>.  The <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file can read this version by using:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">[</span><span class="n">metadata</span><span class="p">]</span>
+<span class="n">version</span> <span class="o">=</span> <span class="n">attr</span><span class="p">:</span> <span class="n">data_transforms</span><span class="o">.</span><span class="n">__version__</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">data_transforms</span></code> is the name of the python package we are writing in this workshop.</p>
+<p>When you are ready to release a new version of your code make a new PR that only bumps the version number using semantic versioning (see note above).  Once merged add a git tag to the merge commit.  You can also add additional notes about the release when making the tag, this a good place to include what things have changed in the new release.</p>
+<p>For larger projects it is worth keeping a separate <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file inside the repository or a changelog section in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that tracks all the changes introduced in each version bump to make this information easier to find.  There are tools available to help automate this process, these typically involve using special keywords when writing git commit messages to flag up text related to new features and/or breaking changes (e.g. <a class="reference external" href="https://github.com/KeNaCo/auto-changelog">auto-changelog</a>).</p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="github_with_collaborators.html" class="btn btn-neutral float-left" title="Using GitHub with collaborators" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="writing_documentation.html" class="btn btn-neutral float-right" title="Documenting Python code" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Coleman Krawczyk.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

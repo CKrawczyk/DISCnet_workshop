@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Python Module Index &mdash; Data Transforms 0.1.0 documentation</title>
+  <title>The task &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
@@ -24,9 +25,8 @@
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
- 
-
-
+    <link rel="next" title="Getting Started" href="getting_started.html" />
+    <link rel="prev" title="Introduction to Collaborative Coding" href="introduction.html" /> 
 </head>
 
 <body class="wy-body-for-nav"> 
@@ -45,9 +45,14 @@
 </div>
         </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <p class="caption" role="heading"><span class="caption-text">Setting the Stage</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction to Collaborative Coding</a></li>
-<li class="toctree-l1"><a class="reference internal" href="the_task.html">The task</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">The task</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-data">The data</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-data-analysis-plan">The data analysis plan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-code-structure">The code structure</a></li>
+</ul>
+</li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Workshop Notes:</span></p>
 <ul>
@@ -77,8 +82,9 @@
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Python Module Index</li>
+      <li>The task</li>
       <li class="wy-breadcrumbs-aside">
+            <a href="_sources/the_task.md.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -86,34 +92,44 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-
-   <h1>Python Module Index</h1>
-
-   <div class="modindex-jumpbox">
-   <a href="#cap-d"><strong>d</strong></a>
-   </div>
-
-   <table class="indextable modindextable">
-     <tr class="pcap"><td></td><td>&#160;</td><td></td></tr>
-     <tr class="cap" id="cap-d"><td></td><td>
-       <strong>d</strong></td><td></td></tr>
-     <tr>
-       <td><img src="_static/minus.png" class="toggler"
-              id="toggle-1" style="display: none" alt="-" /></td>
-       <td>
-       <a href="data_transforms.html#module-data_transforms"><code class="xref">data_transforms</code></a></td><td>
-       <em></em></td></tr>
-     <tr class="cg-1">
-       <td></td>
-       <td>&#160;&#160;&#160;
-       <a href="data_transforms.html#module-data_transforms.angle_metric"><code class="xref">data_transforms.angle_metric</code></a></td><td>
-       <em></em></td></tr>
-   </table>
+  <section id="the-task">
+<h1>The task<a class="headerlink" href="#the-task" title="Permalink to this headline"></a></h1>
+<p>In this workshop we will all be helping to write a single python package.  This package will be used to process the results of a <a class="reference external" href="https://www.zooniverse.org/projects/cmk24/testing/classify">test Zooniverse project</a>.  In this Zooniverse project volunteers are asked to answer some questions, count, and label features on stock images of cats.</p>
+<section id="the-data">
+<h2>The data<a class="headerlink" href="#the-data" title="Permalink to this headline"></a></h2>
+<p>The data comes as a <a class="reference external" href="https://help.zooniverse.org/next-steps/data-exports/#classification-export">Zooniverse classification export</a>, a CSV file containing one row for every classification made on the project.  An example of this data file can be found in the <code class="docutils literal notranslate"><span class="pre">example_data</span></code> folder of the repository.  The link above contains an explanation of what data is contained within the data export, we will mostly be working with the <code class="docutils literal notranslate"><span class="pre">annotations</span></code> column.</p>
+<p>The project’s workflow has:</p>
+<ul class="simple">
+<li><p>A question task (task label<code class="docutils literal notranslate"><span class="pre">T0</span></code>)</p></li>
+<li><p>A text task (task label<code class="docutils literal notranslate"><span class="pre">T1</span></code>)</p></li>
+<li><p>A point drawing task (task label<code class="docutils literal notranslate"><span class="pre">T2</span></code>)</p></li>
+<li><p>A circle drawing task (task label<code class="docutils literal notranslate"><span class="pre">T3</span></code>)</p></li>
+<li><p>A rectangle drawing task (task label<code class="docutils literal notranslate"><span class="pre">T4</span></code>)</p></li>
+</ul>
+<p>The example data provided is enough for understanding the data format and writing the code specifications.  To generate the full data set we will all spend some time classifying on this project and generate a data export in the afternoon.</p>
+</section>
+<section id="the-data-analysis-plan">
+<h2>The data analysis plan<a class="headerlink" href="#the-data-analysis-plan" title="Permalink to this headline"></a></h2>
+<p>For the data analysis we want to do two things:</p>
+<ol class="arabic simple">
+<li><p><strong>Extract</strong> the relevant data for each task into a <strong>flat</strong> CSV file (one file per task type)</p></li>
+<li><p><strong>Reduce</strong> all extracts from the same subject to find a consensus answer for each task</p></li>
+</ol>
+<p>This workshop is more focused on the “how to write code” more than the results of the data analysis.  Don’t worry about getting the analysis “correct” or even finishing both tasks above, instead focus on the process of writing code in a team.</p>
+</section>
+<section id="the-code-structure">
+<h2>The code structure<a class="headerlink" href="#the-code-structure" title="Permalink to this headline"></a></h2>
+<p>We will use this space to plan out our code structure.</p>
+</section>
+</section>
 
 
            </div>
           </div>
-          <footer>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="introduction.html" class="btn btn-neutral float-left" title="Introduction to Collaborative Coding" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
 
   <hr/>
 
