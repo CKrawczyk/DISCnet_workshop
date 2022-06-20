@@ -1,4 +1,4 @@
-# Getting Started
+# Getting started
 
 ## Making a clean python environment
 
@@ -58,7 +58,7 @@ cd DISCnet_workshop
 Throughout this workshop you will be helping to write a python package called `data_transforms`.  To install it into your new environment (once the env is activated) run:
 
 ```bash
-pip install -U pip
+pip install -U pip flit
 pip install -e .[dev]
 ```
 

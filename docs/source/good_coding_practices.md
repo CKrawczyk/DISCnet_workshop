@@ -60,7 +60,7 @@ To set up VScode to use `flake8` open the settings and search for `python lintin
 
 While `flake8` is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don't agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code's `setup.cfg` file.  By doing it at the project level your choice of style rules will be saved **inside the project** for all developers to see.  That way everyone contributing code to the project knows what rules to follow (and what ones can be ignored).
 
-In particular, withing `flake8` rules [W503](https://www.flake8rules.com/rules/W503.html) and [W504](https://www.flake8rules.com/rules/W504.html) are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the `flake8` configuration in the `setup.cfg` file to:
+In particular, withing `flake8` rules [W503](https://www.flake8rules.com/rules/W503.html) and [W504](https://www.flake8rules.com/rules/W504.html) are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the `flake8` configuration in the `.flake8` file to:
 
 - ignore the project configuration folders (.git, docs, etc...)
 - Set the max line length to 120
