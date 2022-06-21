@@ -57,9 +57,12 @@
 <li class="toctree-l1"><a class="reference internal" href="code_structure.html">Code and file structure</a></li>
 <li class="toctree-l1"><a class="reference internal" href="packaging_python_code.html">Packaging Python code</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Documenting Python code</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="#sphinx-config">Sphinx - config</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sphinx-apidoc">Sphinx - apidoc</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#sphinx-building-the-docs">Sphinx - building the docs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx">Sphinx</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#config">Config</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#api-documentation-with-apidoc">API documentation with <code class="docutils literal notranslate"><span class="pre">apidoc</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#building-the-docs">Building the docs</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="test_driven_development.html">Test driven development</a></li>
@@ -95,7 +98,7 @@
              
   <section id="documenting-python-code">
 <h1>Documenting Python code<a class="headerlink" href="#documenting-python-code" title="Permalink to this headline"></a></h1>
-<p>When someone unfamiliar with your code first wants to use it the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
+<p>When someone unfamiliar with your code first wants to use your code, the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
 <p>To help ensure that the source code and the documentation don’t get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a “triple quote string”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
     <span class="sd">&#39;&#39;&#39;Return the sum of the two inputs&#39;&#39;&#39;</span>
@@ -121,11 +124,13 @@
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
 </div>
-<section id="sphinx-config">
-<h2>Sphinx - config<a class="headerlink" href="#sphinx-config" title="Permalink to this headline"></a></h2>
-<p>In addition to the API documentation from the docstrings you can also provide tutorials on how to use you code (python notebooks work great for this kind of documentation).</p>
-<p>Once you have written your docs you need a way to collect all of it into a single place, typically a web site.  The more common way to do this in python is to use the <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> package.  The setup for Sphinx can be a bit involved, but once set up it “just works.”</p>
-<p>To setup Sphinx on this project I used the following commands:</p>
+<p>In addition to the API documentation from the docstrings you should also provide tutorials on how to use you code (python notebooks work great for this kind of documentation).  You can also provide additional information in markdown format (like these notes you are reading now).</p>
+<section id="sphinx">
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this headline"></a></h2>
+<p>Once you have written your docs you need a way to collect all of it into a single place, typically a web site.  The most common way to do this in python is to use the <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> package.  The setup for Sphinx can be a bit involved, but once set up it “just works.”</p>
+<section id="config">
+<h3>Config<a class="headerlink" href="#config" title="Permalink to this headline"></a></h3>
+<p>Sphinx has already been set up on this project, but while I was doing it I took notes about every step.  To setup Sphinx on this project I used the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sphinx, myst-nb, sphinx_rtd_theme
 
 <span class="nb">cd</span> DISCnet_workshop
@@ -144,11 +149,11 @@ sphinx-quickstart
 </ul>
 <p>The final part the setup is adjusting the <code class="docutils literal notranslate"><span class="pre">docs/source/conf.py</span></code> file to tell it where our source package lives:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
-<span class="kn">import</span> <span class="nn">sphinx_rtd_theme</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
+<p>Tell Sphinx what extensions to use:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>  <span class="c1"># auto find doc strings in source code</span>
     <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>  <span class="c1"># numpy style docstrings</span>
@@ -171,40 +176,53 @@ sphinx-quickstart
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>Change the theme:</p>
+<p>And change the theme:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
 </pre></div>
 </div>
 </section>
-<section id="sphinx-apidoc">
-<h2>Sphinx - apidoc<a class="headerlink" href="#sphinx-apidoc" title="Permalink to this headline"></a></h2>
-<p>For sphinx to be able to read the docstrings from your source code it first needs be told what source files to look in.  This can either be done by adding your source folders by hand to <code class="docutils literal notranslate"><span class="pre">docs/soruce/index.rst</span></code> or by using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> command to build these <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files for you.  We will be using this automated approach for this workshop:</p>
+<section id="api-documentation-with-apidoc">
+<h3>API documentation with <code class="docutils literal notranslate"><span class="pre">apidoc</span></code><a class="headerlink" href="#api-documentation-with-apidoc" title="Permalink to this headline"></a></h3>
+<p>For Sphinx to be able to read the docstrings from your source code it first needs be told what source files to look in.  This can either be done by adding your source folders by hand to <code class="docutils literal notranslate"><span class="pre">docs/soruce/index.rst</span></code> or by using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> command to build these <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files for you.  We will be using this automated approach for this workshop:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc -MEf -o ./docs/source ./data_transforms ./data_transforms/tests
 </pre></div>
 </div>
 <p>What is this command doing:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-M</span></code>: put module documentation before submodule documentation</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-E</span></code>: don’t create headings for the module/package packages (e.g. when the docstrings already contain them)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-E</span></code>: don’t create headings for the modules or packages (e.g. when the docstrings already contain them)</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-f</span></code>: overwrite existing files</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-o</span> <span class="pre">./docs/source</span></code>: the output directory</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">./data_transforms</span></code>: the package directory</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">./data_transforms/tests</span></code>: directories to exclude</p></li>
 </ul>
-<p>While I think the templates used by this command are not the best in the world, they can provide a good starting place for learning what these files should look like.</p>
+<p>This command will create two files: <code class="docutils literal notranslate"><span class="pre">data_transforms.rst</span></code> and <code class="docutils literal notranslate"><span class="pre">modules.rst</span></code>. While I think the templates used for these files are not the best in the world, they can provide a good starting place for learning what these files should look like.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are also options for customizing these templates, but that is outside the scope of this workshop.</p>
+</div>
 <p>As we will be running this command every time the docs are built (to check for new code files) the resulting <code class="docutils literal notranslate"><span class="pre">rst</span></code> files have been added to the <code class="docutils literal notranslate"><span class="pre">.gitignore</span></code> file.</p>
 <p>Lastly we need to update the <code class="docutils literal notranslate"><span class="pre">index.rst</span></code> file to include the files create with this command (and these class notes while we are at it):</p>
-<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">Welcome to Data Transforms&#39;s documentation!</span>
-<span class="gh">===========================================</span>
+<div class="highlight-rst notranslate"><div class="highlight"><pre><span></span><span class="gh">DISCnet Workshop: Writing Code as a Team</span>
+<span class="gh">=========================================</span>
+
+<span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
+   <span class="nc">:maxdepth:</span> 2
+   <span class="nc">:caption:</span> Setting the Stage
+
+   introduction
+   the_task
 
 <span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
    <span class="nc">:maxdepth:</span> 2
    <span class="nc">:caption:</span> Workshop Notes:
 
-   Introduction
    getting_started
    good_coding_practices
-   GitHub_with_collaborators
+   github_with_collaborators
+   code_structure
+   packaging_python_code
+   writing_documentation
    test_driven_development
 
 <span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
@@ -222,8 +240,8 @@ sphinx-quickstart
 </pre></div>
 </div>
 </section>
-<section id="sphinx-building-the-docs">
-<h2>Sphinx - building the docs<a class="headerlink" href="#sphinx-building-the-docs" title="Permalink to this headline"></a></h2>
+<section id="building-the-docs">
+<h3>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this headline"></a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">rst</span></code> files inplace, we can build the docs with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
 make html
@@ -234,7 +252,15 @@ make html
 <p class="admonition-title">Note</p>
 <p>Sometimes the side bar content will not update correctly when new pages are added, to fix this run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> before <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to remove cached data.</p>
 </div>
-<p>To simplify the auto finding and doc building steps I have created a <code class="docutils literal notranslate"><span class="pre">build_docs.sh</span></code> script in the base repository to run the commands above in order.</p>
+<p>To simplify the auto finding and doc building steps I have created a <code class="docutils literal notranslate"><span class="pre">build_docs.sh</span></code> script in the base repository to run all the commands above in order:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
+sphinx-apidoc -MEf -o ./source ../data_transforms ../data_transforms/tests
+make clean
+make html
+<span class="nb">cd</span> ..
+</pre></div>
+</div>
+</section>
 </section>
 </section>
 
