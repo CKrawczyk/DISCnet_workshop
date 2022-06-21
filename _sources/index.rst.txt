@@ -15,6 +15,7 @@ DISCnet Workshop: Writing Code as a Team
    getting_started
    good_coding_practices
    github_with_collaborators
+   code_structure
    packaging_python_code
    writing_documentation
    test_driven_development
