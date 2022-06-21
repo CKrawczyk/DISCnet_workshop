@@ -11,7 +11,6 @@
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
 import os
-import sphinx_rtd_theme    # noqa: F401
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
 
