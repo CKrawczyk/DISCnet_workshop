@@ -1,7 +1,4 @@
 # Using GitHub with collaborators 
-
-## Overview: What problem is Git and GitHub designed to solve?
-
 At some point in your research you will likely have a massive hard drive crash, or realize you introduced a bug in your code and want to revert it back to its working state (perhaps from several weeks before). Or you may end up working on a bit of code with other people. In any of these cases version control saves the day.
 
 In this workshop we will be using Git as our version control software, and GitHub as our remote repository service for working with collaborators.
