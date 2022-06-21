@@ -1,5 +1,4 @@
 # Documenting Python code
-
 When someone unfamiliar with your code first wants to use it the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.
 
 To help ensure that the source code and the documentation don't get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a "triple quote string":
@@ -93,7 +92,6 @@ html_theme = 'sphinx_rtd_theme'
 ```
 
 ## Sphinx - apidoc
-
 For sphinx to be able to read the docstrings from your source code it first needs be told what source files to look in.  This can either be done by adding your source folders by hand to `docs/soruce/index.rst` or by using the `sphinx-apidoc` command to build these `.rst` files for you.  We will be using this automated approach for this workshop:
 
 ```bash
@@ -143,7 +141,6 @@ Indices and tables
 ```
 
 ## Sphinx - building the docs
-
 With the `rst` files inplace, we can build the docs with:
 
 ```bash
