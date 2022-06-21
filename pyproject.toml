@@ -28,6 +28,13 @@ dev = [
 Documentation = "https://ckrawczyk.github.io/DISCnet_workshop/"
 Source = "https://github.com/CKrawczyk/DISCnet_workshop"
 
+[tool.flit.sdist]
+exclude = [
+    "docs/",
+    "example_data/",
+    "build_docs.sh"
+]
+
 [tool.coverage.run]
 omit = ["*test*"]
 source = ["data_transforms"]
