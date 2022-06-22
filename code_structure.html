@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Code and file structure &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -114,32 +114,32 @@
 </section>
 <section id="code-legibility">
 <h2>Code legibility<a class="headerlink" href="#code-legibility" title="Permalink to this headline"></a></h2>
-<p>It is difficult to review code if you don’t know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message (more on that later), there are thing you can do directly in your code to help your reviewer:</p>
+<p>It is difficult to review code if you don’t know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message, there are thing you can do directly in your code to help your reviewer:</p>
 <ul class="simple">
 <li><p>Use descriptive variable names</p></li>
-<li><p>Write documentation strings explaining every input and output</p></li>
+<li><p>Write documentation strings explaining every input and output (more on this later)</p></li>
 <li><p>Write your code in the simplest way that works</p>
 <ul>
 <li><p>It should be obvious from the code written what is being done</p></li>
 </ul>
 </li>
-<li><p>If you need to do something in a “clever” way write a comment about it and record in a comment, commit message, and/or PR message why this is needed</p></li>
+<li><p>If you need to do something in a “clever” way write a comment about it, put the <strong>why</strong> in the commit message, and put the <strong>why</strong> in the PR message</p></li>
 <li><p>Make sure the tone of your comments matches who you expect to be reading them</p>
 <ul>
 <li><p>Comments targeted at people learning python syntax for the first time should look different than comments targeted at people who have been using python for several years</p></li>
 </ul>
 </li>
-<li><p>Stick to a consistent coding style (more on this latter)</p></li>
-<li><p>Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example take the following code change:</p></li>
+<li><p>Stick to a consistent coding style</p></li>
+<li><p>Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example if the following code changed from:</p></li>
 </ul>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">2</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">6</span><span class="p">}}</span>
 </pre></div>
 </div>
-<p>changes to</p>
+<p>to:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span> <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span> <span class="s1">&#39;d&#39;</span><span class="p">:</span> <span class="p">{</span><span class="s1">&#39;e&#39;</span><span class="p">:</span> <span class="mi">5</span><span class="p">,</span> <span class="s1">&#39;f&#39;</span><span class="p">:</span> <span class="mi">7</span><span class="p">}}</span>
 </pre></div>
 </div>
-<p>There are two changes made to elements of the dictionary, as written these will show up as one line of code changed.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code so every element is on its own line:</p>
+<p>There are two changes made to elements of the dictionary, as written these will show up as one line of code changed in the Git diff.  If the line is quite long (or the reviewer is only looking at the code quickly) they might only see the first change.  To make it more obvious that multiple elements change you can format the code so every element is on its own line:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">a</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s1">&#39;b&#39;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
     <span class="s1">&#39;c&#39;</span><span class="p">:</span> <span class="mi">3</span><span class="p">,</span>

@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Packaging Python code &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -99,8 +99,8 @@
              
   <section id="packaging-python-code">
 <h1>Packaging Python code<a class="headerlink" href="#packaging-python-code" title="Permalink to this headline"></a></h1>
-<p>This section of notes are adapted from <a class="reference external" href="https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md">https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md</a></p>
-<p>A python package is the process of collecting your code in a way that can be installed on a different person’s computer and work in the same way it did on yours.  This process is made up of several parts:</p>
+<p>This section of notes is partially adapted from <a class="reference external" href="https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md">https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md</a></p>
+<p>A python package is the process of collecting your code in a way that can be installed on a different person’s computer.  This process is made up of several parts:</p>
 <ul class="simple">
 <li><p>The source code</p></li>
 <li><p>A configuration file with the package’s metadata (a <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file)</p></li>
@@ -109,18 +109,18 @@
 <section id="the-build-system">
 <h2>The build system<a class="headerlink" href="#the-build-system" title="Permalink to this headline"></a></h2>
 <p>To build your package you will need to pick a build system.  There are no build systems that come with python by default.  In the past <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> was the defacto standard, but in recent years more have become available.  For this workshop we will be using <a class="reference external" href="https://flit.pypa.io/en/latest/">flit</a> as it is lightweight and compliant with the latest python standards.</p>
-<p>A build system typically comes with a command line interface (CLI) that can automate common tasks such as making a new python environment with you code, bumping your code’s version number, building the <code class="docutils literal notranslate"><span class="pre">sdist</span></code> and <code class="docutils literal notranslate"><span class="pre">wheel</span></code>s, or uploading the builds to PyPI.</p>
+<p>A build system typically comes with a command line interface (CLI) that can automate common tasks such as making a new python environment with you code installed, bumping your code’s version number, building the <code class="docutils literal notranslate"><span class="pre">sdist</span></code> and <code class="docutils literal notranslate"><span class="pre">wheel</span></code>s, or uploading the builds to PyPI.</p>
 <p>Common build systems are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://flit.pypa.io/en/latest/">flit</a>: just a build system, nothing more</p></li>
 <li><p><a class="reference external" href="https://hatch.pypa.io/latest/">hatch</a>: build system and environment management</p></li>
 <li><p><a class="reference external" href="https://pdm.fming.dev/latest/">pdm</a>: build system, dependency management, dependency locking, and environment management (note: the environments are handled in the background so you don’t have to do it by hand)</p></li>
-<li><p><a class="reference external" href="https://python-poetry.org/docs">poetry</a>: build system, dependency management, dependency locking, and environment management (note: not PEP 621 compliant, but it is on their long-term <a class="reference external" href="https://github.com/python-poetry/roadmap/issues/3">feature road map</a>)</p></li>
+<li><p><a class="reference external" href="https://python-poetry.org/docs">poetry</a>: build system, dependency management, dependency locking, and environment management (note: not <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> compliant, but it is on their long-term <a class="reference external" href="https://github.com/python-poetry/roadmap/issues/3">feature road map</a>)</p></li>
 </ul>
 <p>Each of these build systems have different workflows when managing your python package, it can be useful to try some of them out and see what one fits your project best.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python’s packaging landscape is currently (Summer 2022) in flux.  You will find many out of date tutorials around making a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and/or <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> instead of/in addition to the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.  As of <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> that was approved in 2021, the method outlined in these notes is the “approved python” way of making a package going forward.  As of <code class="docutils literal notranslate"><span class="pre">pip</span></code> version 22.1.2 this new way of packaging is fully supported.</p>
+<p>Python’s packaging landscape is currently (Summer 2022) in flux.  You will find many out of date tutorials around making a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and/or <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> instead of/in addition to the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.  As of <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> (approved in 2021), the method outlined in these notes is the “approved python” way of making a package going forward.  As of <code class="docutils literal notranslate"><span class="pre">pip</span></code> version 22.1.2 this new way of packaging is fully supported.</p>
 </div>
 </section>
 <section id="the-source-code-structure">
@@ -156,11 +156,11 @@
 <li><p>PATCH version increments when a backward compatible bug fix is made</p></li>
 </ul>
 </div>
-<p>The rule of thumb I use when pinning down my packages ranges in <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code>:</p>
+<p>The rule of thumb I use when pinning down my packages ranges:</p>
 <ul class="simple">
 <li><p>Set the lower bound as <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> the exact version currently installed in my environment (use <code class="docutils literal notranslate"><span class="pre">conda</span> <span class="pre">list</span></code> or <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">freeze</span></code> to view the current versions of installed packages)</p></li>
 <li><p>Set the upper bound as <code class="docutils literal notranslate"><span class="pre">&lt;</span></code> the next patch fix version of the package</p></li>
-<li><p>Activate <a class="reference external" href="https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/">dependabot</a> on GitHub to automatically make pull requests that update the upper bound when dependencies update (as we will see in the next section this will trigger our tests to run automatically and let us know if the update breaks the code)</p>
+<li><p>Activate <a class="reference external" href="https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/">dependabot</a> on GitHub to automatically make pull requests that update the upper bound when dependencies update (this will trigger our CI to run our tests automatically and let us know if the update breaks the code)</p>
 <ul>
 <li><p>If a dependency update breaks the code (typically major version updates), update the code and set the lower bound to be the latest version of the dependency</p></li>
 </ul>
@@ -168,7 +168,7 @@
 </ul>
 <div class="admonition warning">
 <p class="admonition-title">Warning</p>
-<p>Related to the current changing landscape of Python packaging the current packaging method is <a class="reference external" href="https://github.com/dependabot/dependabot-core/issues/3290">not yet supported</a> by <code class="docutils literal notranslate"><span class="pre">dependabot</span></code>.  Hopefully it will be updated soon.  For now I have left the <code class="docutils literal notranslate"><span class="pre">dependabot</span></code> setup on this repository to show what it will look like once it is working again.  Dependabot currently works when dependencies are defined in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, the old <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, or using <code class="docutils literal notranslate"><span class="pre">poetry</span></code>s version of a <code class="docutils literal notranslate"><span class="pre">pyporject.toml</span></code> file (the format is not standard).</p>
+<p>Related to the current changing landscape of Python packaging the packaging method in this workshop is <a class="reference external" href="https://github.com/dependabot/dependabot-core/issues/3290">not yet supported</a> by <code class="docutils literal notranslate"><span class="pre">dependabot</span></code>.  Hopefully it will be updated soon.  For now I have left the <code class="docutils literal notranslate"><span class="pre">dependabot</span></code> setup on this repository to show what it will look like once it is working again.  Dependabot currently works when dependencies are defined in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, the old <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, or using <code class="docutils literal notranslate"><span class="pre">poetry</span></code>s version of a <code class="docutils literal notranslate"><span class="pre">pyporject.toml</span></code> file.</p>
 </div>
 </section>
 <section id="installing-your-package-locally">
@@ -194,9 +194,9 @@
 <p>This will create two files in the <code class="docutils literal notranslate"><span class="pre">dist</span></code> subdirectory:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">data_transforms-0.1.0.tar.gz</span></code>: this is the <code class="docutils literal notranslate"><span class="pre">sdist</span></code> file, a normal zip folder with the source code inside</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">data_transforms-0.1.0-py3-none-any.whl</span></code>: this is the <code class="docutils literal notranslate"><span class="pre">wheel</span></code> file, also a zip folder with the pre-compiled code inside (if you code is pure python it will be basically identical to the <code class="docutils literal notranslate"><span class="pre">sdist</span></code> in contents)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">data_transforms-0.1.0-py3-none-any.whl</span></code>: this is the <code class="docutils literal notranslate"><span class="pre">wheel</span></code> file, also a zip folder with the pre-compiled code inside (if you code is pure python it will be basically identical to the <code class="docutils literal notranslate"><span class="pre">sdist</span></code>s contents)</p></li>
 </ul>
-<p>The code version number automatically used in the build names, this prevents older code version from being overwritten when the version is updated.</p>
+<p>The code version number is automatically used in the build names, this prevents older code version from being overwritten when the version is updated.</p>
 </section>
 <section id="build-upload">
 <h2>Build upload<a class="headerlink" href="#build-upload" title="Permalink to this headline"></a></h2>

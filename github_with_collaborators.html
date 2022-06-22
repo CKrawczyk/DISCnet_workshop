@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using GitHub with collaborators &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -105,47 +105,70 @@
              
   <section id="using-github-with-collaborators">
 <h1>Using GitHub with collaborators<a class="headerlink" href="#using-github-with-collaborators" title="Permalink to this headline"></a></h1>
-<p>At some point in your research you will likely have a massive hard drive crash, or realize you introduced a bug in your code and want to revert it back to its working state (perhaps from several weeks before). Or you may end up working on a bit of code with other people. In any of these cases version control saves the day.</p>
+<p>At some point in you will likely have a massive hard drive crash, or realize you introduced a bug in your code and want to revert it back to its working state (perhaps from several weeks before). Or you may end up working on a bit of code with other people. In any of these cases version control saves the day.</p>
 <p>In this workshop we will be using Git as our version control software, and GitHub as our remote repository service for working with collaborators.</p>
 <section id="basic-concepts">
 <h2>Basic concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this headline"></a></h2>
 <p>While many of you might already be familiar with Git, let’s make sure we are all on the same page and introduce some of the basic concepts:</p>
-<ul class="simple">
-<li><p>Repository: the name given to a folder that has Git version control set up</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Name</p></th>
+<th class="head"><p>Description</p></th>
+<th class="head"><p>Command</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Repository</p></td>
+<td><p>A folder that has Git version control set up</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Local repository: The copy of a Git repository that is on your development computer</p></li>
-<li><p>Remote repository: The copy of a Git repository that is on the internet</p></li>
-<li><p>Pull from remote: The process of “pulling” the changes on the remote to you local</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
+</td>
+</tr>
+<tr class="row-odd"><td><p>Local repository</p></td>
+<td><p>A Git repository that is on your development computer</p></td>
+<td></td>
+</tr>
+<tr class="row-even"><td><p>Remote repository</p></td>
+<td><p>A Git repository that is on the internet</p></td>
+<td></td>
+</tr>
+<tr class="row-odd"><td><p>Pull from remote</p></td>
+<td><p>“Pulling” the changes on the remote to you local</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Push to remote: The process of “pushing” local change to the remote</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push
+</td>
+</tr>
+<tr class="row-even"><td><p>Push to remote</p></td>
+<td><p>“Pushing” local change to the remote</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Staging changes: The process of adding files to be in the next commit</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add &lt;file name&gt;
+</td>
+</tr>
+<tr class="row-odd"><td><p>Staging changes</p></td>
+<td><p>Adding files to be in the next commit</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add &lt;file name&gt;
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Commit: The process of creating a checkpoint you can return back to</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git commit
+</td>
+</tr>
+<tr class="row-even"><td><p>Commit</p></td>
+<td><p>Creating a checkpoint you can return back to</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>get commit
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Branch: The process of creating a working space that allows changes to be made without effecting other branches</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a new branch</span>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Branch</p></td>
+<td><p>A working space that does not effect other branches</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a new branch</span>
 git checkout -b &lt;new branch name&gt;
 <span class="c1"># move to an existing branch</span>
 git checkout &lt;branch name&gt;
@@ -153,20 +176,26 @@ git checkout &lt;branch name&gt;
 git branch
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Merge: The process of merging two branches together</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main
+</td>
+</tr>
+<tr class="row-even"><td><p>Merge</p></td>
+<td><p>Merging two branches together</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main
 git merge &lt;branch name&gt;
 </pre></div>
 </div>
-<ul class="simple">
-<li><p>Tag: The process of tagging a commit to make it easier to find in the future</p></li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git tag &lt;tag name&gt;
+</td>
+</tr>
+<tr class="row-odd"><td><p>Tag</p></td>
+<td><p>Naming a commit to make it easier to find in the future</p></td>
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git tag &lt;tag name&gt;
 </pre></div>
 </div>
-<p>To make things easier you should configure Git:</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p>To make things easier you should configure Git with your name, email, and default text editor:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;&lt;your name&gt;&quot;</span>
 git config --global user.email &lt;your email&gt;
 git config --global core.editor &lt;your text editor <span class="o">(</span>defaults to vim<span class="o">)</span>&gt;
@@ -174,7 +203,10 @@ git config --global core.editor &lt;your text editor <span class="o">(</span>def
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>If you want to use vscode as the default editor you can do that with: <code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">config</span> <span class="pre">--global</span> <span class="pre">core.editor</span> <span class="pre">&quot;code</span> <span class="pre">-n</span> <span class="pre">--wait&quot;</span></code></p>
+<p>If you want to use vscode as the default editor you can do that with:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor <span class="s2">&quot;code -n --wait&quot;</span>
+</pre></div>
+</div>
 </div>
 <p>Full Git documentation can be found in <a class="reference external" href="https://git-scm.com/book/en">The Git Book</a>, this include a good section about the motivation behind Git and the problems it was designed to solve.</p>
 <section id="github-vs-gitlab-vs-bitbucket">
@@ -214,9 +246,9 @@ git config --global core.editor &lt;your text editor <span class="o">(</span>def
 </section>
 <section id="git-workflow">
 <h2>Git workflow<a class="headerlink" href="#git-workflow" title="Permalink to this headline"></a></h2>
-<p>There are many different ways to effectively use git within a collaboration, and many more ways to have it be a nightmare.  For this workshop we will use the workflow I am most familiar with and encourages writing maintainable code.  The workflow is as follows:</p>
+<p>There are many different ways to effectively use git within a collaboration, and many more ways to have it be a nightmare.  For this workshop we will be using the workflow I use when working with the Zooniverse.  The workflow is as follows:</p>
 <ol class="arabic simple">
-<li><p>checkout the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> branch</p></li>
+<li><p>checkout the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> branch and pull down the latest changes</p></li>
 <li><p>make a new branch with a descriptive name</p>
 <ul class="simple">
 <li><p>for better organization of branch names you can prepend branch names with <code class="docutils literal notranslate"><span class="pre">feature/</span></code>, <code class="docutils literal notranslate"><span class="pre">bug/</span></code>, <code class="docutils literal notranslate"><span class="pre">hotfix/</span></code></p></li>
@@ -264,7 +296,7 @@ git branch -d my-feature-branch
 <ul class="simple">
 <li><p>It ensures only reviewed code makes it into the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch</p>
 <ul>
-<li><p>This implies the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch is where you will always be able to find a working version of the code</p></li>
+<li><p>This implies the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch will always have working code</p></li>
 </ul>
 </li>
 <li><p>It encourages short lived feature branches</p>
@@ -273,14 +305,18 @@ git branch -d my-feature-branch
 </ul>
 </li>
 <li><p>As the code writer you are responsible for addressing merge conflicts</p></li>
-<li><p>By using <code class="docutils literal notranslate"><span class="pre">rebase</span></code> rather than <code class="docutils literal notranslate"><span class="pre">merge</span></code> the git history is kept linear</p></li>
+<li><p>By using <code class="docutils literal notranslate"><span class="pre">rebase</span></code> rather than <code class="docutils literal notranslate"><span class="pre">merge</span></code> the git history is kept linear</p>
+<ul>
+<li><p>This makes it easier to find when a particular change happened and any context that was left in commit messages</p></li>
+</ul>
+</li>
 <li><p>Once given the OK by the reviewer the code writer makes the final decision on when to merge</p></li>
 <li><p>Any merged branch can be safely deleted, there is no need to clutter up the remote with old branches (also you are less likely to have multiple developers pick the same branch name for their work if there are fewer branches on the remote repo).</p></li>
 </ul>
 </section>
 <section id="writing-better-commit-messages">
 <h2>Writing better commit messages<a class="headerlink" href="#writing-better-commit-messages" title="Permalink to this headline"></a></h2>
-<p>These notes are partially adapted from gov.uk’s style guides found at:</p>
+<p>This section of notes is partially adapted from gov.uk’s style guides found at:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alphagov/styleguides/blob/master/git.md">https://github.com/alphagov/styleguides/blob/master/git.md</a></p></li>
 </ul>
@@ -300,8 +336,8 @@ readable when shown on the terminal with the `git log` command.
 When making a new PR on GitHub for a branch that only has one commit the
 first line of the commit will be used as the default title of the PR and
 the longer message used as the PR&#39;s default text.  If you are hard
-wrapping lines your PR&#39;s text will look odd in the browser&#39;s text input
-box.  You may need to reformat it before opening the PR.
+wrapping lines your PR&#39;s text will also be hard wrapped in the browser&#39;s
+text input box.  You may need to reformat it before opening the PR.
 
 If you are fixing an issue reported on GitHub include the issue number
 in the message as:
@@ -323,15 +359,15 @@ merged into the repo&#39;s **default** branch.
 </section>
 <section id="writing-better-prs">
 <h2>Writing better PRs<a class="headerlink" href="#writing-better-prs" title="Permalink to this headline"></a></h2>
-<p>These notes are partially adapted from gov.uk’s style guides found at:</p>
+<p>This section of notes is partially adapted from gov.uk’s style guides found at:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alphagov/styleguides/blob/master/pull-requests.md">https://github.com/alphagov/styleguides/blob/master/pull-requests.md</a></p></li>
 </ul>
-<p>Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening as PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.</p>
+<p>Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.</p>
 </section>
 <section id="writing-better-code-reviews">
 <h2>Writing better code reviews<a class="headerlink" href="#writing-better-code-reviews" title="Permalink to this headline"></a></h2>
-<p>When working in a team it is important to review other people’s code along side writing your own code.  While it might be tempting to just quickly look code changes on GitHub and leave a short message like “looks good to me” that is only really useful for very small changes to the code.  For larger changes a full review should be done.</p>
+<p>When working in a team it is important to review other people’s code along side writing your own code.  While it might be tempting to just quickly look code changes on GitHub and leave a short message like “looks good to me” that is only useful for very small changes to the code.  For larger changes a full review should be done.</p>
 <ol class="arabic simple">
 <li><p>Pull down the changes locally</p></li>
 </ol>
@@ -372,16 +408,16 @@ git checkout &lt;name of branch on remote&gt;
 <li><p>Either approve or block (pending changes) the PR</p></li>
 <li><p>If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes asked for are finished.</p></li>
 </ol>
-<p>Here is an example of well constructed PR and review taken from on of the Zooniverse’s repositories <a class="reference external" href="https://github.com/zooniverse/front-end-monorepo/pull/2313">https://github.com/zooniverse/front-end-monorepo/pull/2313</a>.</p>
+<p>Here is an example of well constructed PR and review taken from one of the Zooniverse’s repositories <a class="reference external" href="https://github.com/zooniverse/front-end-monorepo/pull/2313">https://github.com/zooniverse/front-end-monorepo/pull/2313</a>.</p>
 </section>
 <section id="ci-continuous-integration">
 <h2>CI (continuous integration)<a class="headerlink" href="#ci-continuous-integration" title="Permalink to this headline"></a></h2>
-<p>If you want to test your code automatically every time new code is committed you can set up CI.  These days this is easy to do on GitHub with GitHub Actions (GHA).  These are script you can write and place in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:</p>
+<p>If you want to test your code automatically every time new code is committed you can set up CI.  These days this is easy to do on GitHub using GitHub Actions (GHA).  These are script you can write and place in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:</p>
 <ul class="simple">
 <li><p>run all tests when new code is pushed to any branch</p></li>
 <li><p>run all tests against several version of python</p></li>
 <li><p>ensure test coverage does not fall below a given amount when new code is pushed</p></li>
-<li><p>check new code follows you chosen style</p></li>
+<li><p>check new code follows your chosen style</p></li>
 </ul>
 <p>This repository has several GHA set up that fall under CI:</p>
 <ul class="simple">
@@ -392,19 +428,23 @@ git checkout &lt;name of branch on remote&gt;
 <p>GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.</p>
 <section id="tox">
 <h3>tox<a class="headerlink" href="#tox" title="Permalink to this headline"></a></h3>
-<p>While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change locally across different python versions.  <a class="reference external" href="https://tox.wiki/en/latest/">Tox</a> is a way to automatically setup and run your tests across different python environments all on your local computer.  Tox can also be run directly in a GHA if you already have it set up for a project.</p>
+<p>While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change across different python versions.  <a class="reference external" href="https://tox.wiki/en/latest/">Tox</a> is a way to automatically setup and run your tests across different python environments (each with different python versions) all on your local computer.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Tox can be used in combination with GHA.  In these cases the GHA is set up to run the <code class="docutils literal notranslate"><span class="pre">tox</span></code> command rather than install you local python package directly and run the tests.</p>
+</div>
 </section>
 </section>
 <section id="cd-continuous-delivery-deployment">
 <h2>CD (continuous delivery/deployment)<a class="headerlink" href="#cd-continuous-delivery-deployment" title="Permalink to this headline"></a></h2>
-<p>A related concept to CI is CD.  This takes the concept of CI and goes one step further by automatically taking changes to the <code class="docutils literal notranslate"><span class="pre">main</span></code> (or any other branch) and hosting them for use automatically.  These are also handled with GHA.  Typical examples are:</p>
+<p>A related concept to CI is CD.  This takes the concept of CI and goes one step further by automatically taking changes to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch (or any other branch) and hosting them for immediate use.  These are also handled with GHA.  Typical examples are:</p>
 <ul class="simple">
 <li><p>re-deploying a website on a merge to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
 <li><p>publish your code to <a class="reference external" href="https://pypi.org/">PyPi</a> when the version number is bumped</p></li>
 </ul>
 <p>This repository has one GHA set up that falls under CD:</p>
 <ul class="simple">
-<li><p>Build and host the package documentation on a merge to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
+<li><p>Build and host the package documentation on GitHub Pages after a merge to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
 </ul>
 </section>
 </section>

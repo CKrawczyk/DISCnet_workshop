@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Getting started &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
       <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
       <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -57,7 +57,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#using-conda">Using <code class="docutils literal notranslate"><span class="pre">conda</span></code></a></li>
 </ul>
 </li>
-<li class="toctree-l2"><a class="reference internal" href="#clone-the-code">Clone the code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clone-the-repository">Clone the repository</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#installing-the-workshop-s-python-package">Installing the workshop’s python package</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#running-tests">Running tests</a></li>
 </ul>
@@ -102,19 +102,19 @@
 <h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
 <section id="making-a-clean-python-environment">
 <h2>Making a clean python environment<a class="headerlink" href="#making-a-clean-python-environment" title="Permalink to this headline"></a></h2>
-<p>When starting a new python project it is useful to create a new python environment to avoid any conflicting dependencies between projects.  Depending on how python was installed on your system this can be done a few different ways.</p>
+<p>When starting a new python project it is useful to create a new python environment to avoid any conflicting dependencies between projects.  Depending on how python was installed on your system this can be done in a few different ways.</p>
 <section id="using-venv">
 <h3>Using <code class="docutils literal notranslate"><span class="pre">venv</span></code><a class="headerlink" href="#using-venv" title="Permalink to this headline"></a></h3>
 <p>Python comes with its own environment manager called <code class="docutils literal notranslate"><span class="pre">venv</span></code>.  To make a new environment named <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.10 -m venv discnet_env
 </pre></div>
 </div>
-<p>This will make a new folder called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> where you run the command that contains the environment.</p>
+<p>This will make a new folder called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> in the directory where you run the command.  This directory contains the python environment.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This will make an environment using the same version of python used to run the command.  By using <code class="docutils literal notranslate"><span class="pre">python3.10</span></code> we ensure it will be a python 3.10 environment.</p>
 </div>
-<p>To activate the environment run:</p>
+<p>To activate the environment run (from the same directory as the previous command):</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> discnet_env/bin/activate
 </pre></div>
 </div>
@@ -125,7 +125,7 @@
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name discnet_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
 </pre></div>
 </div>
-<p>This will make a new folder called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> inside your conda install’s <code class="docutils literal notranslate"><span class="pre">envs</span></code> folder (typically in your home folder).</p>
+<p>This will make a new directory called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> inside your conda install’s <code class="docutils literal notranslate"><span class="pre">envs</span></code> folder (typically in your home folder). This directory contains the python environment.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Unlike <code class="docutils literal notranslate"><span class="pre">venv</span></code> you can specify any version of python when making an environment even if that version is not currently installed on your system.</p>
@@ -136,9 +136,9 @@
 </div>
 </section>
 </section>
-<section id="clone-the-code">
-<h2>Clone the code<a class="headerlink" href="#clone-the-code" title="Permalink to this headline"></a></h2>
-<p>Use git to clone the code:</p>
+<section id="clone-the-repository">
+<h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline"></a></h2>
+<p>Use git to clone the repository for this workshop:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/CKrawczyk/DISCnet_workshop.git
 <span class="nb">cd</span> DISCnet_workshop
 </pre></div>
@@ -147,11 +147,14 @@
 <section id="installing-the-workshop-s-python-package">
 <h2>Installing the workshop’s python package<a class="headerlink" href="#installing-the-workshop-s-python-package" title="Permalink to this headline"></a></h2>
 <p>Throughout this workshop you will be helping to write a python package called <code class="docutils literal notranslate"><span class="pre">data_transforms</span></code>.  To install it into your new environment (once the env is activated) run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -U pip flit
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure `pip` is up to date and install the `flit` build tool</span>
+pip install -U pip flit
+
+<span class="c1"># install the development version of the `data_transforms` package</span>
 pip install -e .<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
-<p>The option <code class="docutils literal notranslate"><span class="pre">-e</span></code> installs the code in “edit” mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be “install” without needing to run the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command again.  <code class="docutils literal notranslate"><span class="pre">.[dev]</span></code> indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.</p>
+<p>The option <code class="docutils literal notranslate"><span class="pre">-e</span></code> installs the code in “edit” mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be “install” without needing to run the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command again.  <code class="docutils literal notranslate"><span class="pre">.[dev]</span></code> indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.  We will cover these topics in more detail in the “packaging python code” section of the workshop.</p>
 </section>
 <section id="running-tests">
 <h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this headline"></a></h2>
