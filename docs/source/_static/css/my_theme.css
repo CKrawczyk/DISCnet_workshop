@@ -1,5 +1,9 @@
 @import url("theme.css");
 
 .wy-nav-content {
-    max-width: 950px;
+    max-width: 990px;
+}
+
+.rst-content table.docutils td {
+    vertical-align: top;
 }

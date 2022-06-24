@@ -6,6 +6,7 @@ DISCnet Workshop: Writing Code as a Team
    :caption: Setting the Stage
 
    introduction
+   schedule
    the_task
 
 .. toctree::
