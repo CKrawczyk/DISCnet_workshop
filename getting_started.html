@@ -7,8 +7,7 @@
   <title>Getting started &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,12 +15,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -88,8 +84,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Getting started</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Getting started</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/getting_started.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -100,12 +96,12 @@
            <div itemprop="articleBody">
              
   <section id="getting-started">
-<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this headline"></a></h1>
+<h1>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading"></a></h1>
 <section id="making-a-clean-python-environment">
-<h2>Making a clean python environment<a class="headerlink" href="#making-a-clean-python-environment" title="Permalink to this headline"></a></h2>
+<h2>Making a clean python environment<a class="headerlink" href="#making-a-clean-python-environment" title="Permalink to this heading"></a></h2>
 <p>When starting a new python project it is useful to create a new python environment to avoid any conflicting dependencies between projects.  Depending on how python was installed on your system this can be done in a few different ways.</p>
 <section id="using-venv">
-<h3>Using <code class="docutils literal notranslate"><span class="pre">venv</span></code><a class="headerlink" href="#using-venv" title="Permalink to this headline"></a></h3>
+<h3>Using <code class="docutils literal notranslate"><span class="pre">venv</span></code><a class="headerlink" href="#using-venv" title="Permalink to this heading"></a></h3>
 <p>Python comes with its own environment manager called <code class="docutils literal notranslate"><span class="pre">venv</span></code>.  To make a new environment named <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.10 -m venv discnet_env
 </pre></div>
@@ -121,7 +117,7 @@
 </div>
 </section>
 <section id="using-conda">
-<h3>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#using-conda" title="Permalink to this headline"></a></h3>
+<h3>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#using-conda" title="Permalink to this heading"></a></h3>
 <p>If you installed python using <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> you should use it as your environment manager.  To make a new environment named <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name discnet_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
 </pre></div>
@@ -138,7 +134,7 @@
 </section>
 </section>
 <section id="clone-the-repository">
-<h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this headline"></a></h2>
+<h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h2>
 <p>Use git to clone the repository for this workshop:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/CKrawczyk/DISCnet_workshop.git
 <span class="nb">cd</span> DISCnet_workshop
@@ -146,7 +142,7 @@
 </div>
 </section>
 <section id="installing-the-workshop-s-python-package">
-<h2>Installing the workshop’s python package<a class="headerlink" href="#installing-the-workshop-s-python-package" title="Permalink to this headline"></a></h2>
+<h2>Installing the workshop’s python package<a class="headerlink" href="#installing-the-workshop-s-python-package" title="Permalink to this heading"></a></h2>
 <p>Throughout this workshop you will be helping to write a python package called <code class="docutils literal notranslate"><span class="pre">data_transforms</span></code>.  To install it into your new environment (once the env is activated) run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure `pip` is up to date and install the `flit` build tool</span>
 pip install -U pip flit
@@ -158,7 +154,7 @@ pip install -e .<span class="o">[</span>dev<span class="o">]</span>
 <p>The option <code class="docutils literal notranslate"><span class="pre">-e</span></code> installs the code in “edit” mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be “install” without needing to run the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command again.  <code class="docutils literal notranslate"><span class="pre">.[dev]</span></code> indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.  We will cover these topics in more detail in the “packaging python code” section of the workshop.</p>
 </section>
 <section id="running-tests">
-<h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this headline"></a></h2>
+<h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this heading"></a></h2>
 <p>The notes on test driven development will go into this in more detail, but for completeness you can run this codes tests with the command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run
 </pre></div>

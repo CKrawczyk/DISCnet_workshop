@@ -7,8 +7,7 @@
   <title>Good coding practices &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,12 +15,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -89,8 +85,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Good coding practices</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Good coding practices</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/good_coding_practices.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -101,11 +97,11 @@
            <div itemprop="articleBody">
              
   <section id="good-coding-practices">
-<h1>Good coding practices<a class="headerlink" href="#good-coding-practices" title="Permalink to this headline"></a></h1>
+<h1>Good coding practices<a class="headerlink" href="#good-coding-practices" title="Permalink to this heading"></a></h1>
 <p>Whether you are working alone or working in a team, one of the most valuable things you should keep in mind is <strong>context transfer</strong>.  It is not enough to just track the changes made to code, but to also track <strong>why</strong> those changes were made.  Many of the best practices covered within this workshop will be various flavors of recoding this kind of context in a way that is clear to other developers, or even to yourself when you look back at old code.</p>
 <p>When context is well recorded it becomes easier for other develops to be on-boarded into your codebase, structural changes to the code become easier to manage, and leads to code that is easier to maintain in the long run.</p>
 <section id="context-transfer">
-<h2>Context transfer<a class="headerlink" href="#context-transfer" title="Permalink to this headline"></a></h2>
+<h2>Context transfer<a class="headerlink" href="#context-transfer" title="Permalink to this heading"></a></h2>
 <p>Ways to boost context transfer:</p>
 <ul class="simple">
 <li><p>Pair programming: Work with another developer in real time when writing your code.  Typically you have one person drive the keyboard focusing on code syntax and code legibility while the other drives the code structure focusing on how the code should be structured and the algorithms being used.  Every so often these roles should switch.</p></li>
@@ -115,7 +111,7 @@
 </ul>
 </section>
 <section id="text-editors">
-<h2>Text editors<a class="headerlink" href="#text-editors" title="Permalink to this headline"></a></h2>
+<h2>Text editors<a class="headerlink" href="#text-editors" title="Permalink to this heading"></a></h2>
 <p>Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend <a class="reference external" href="https://code.visualstudio.com/">VScode</a> as a free text editor with all the features above.</p>
 <p>For python coding in VScode you will want to install the <code class="docutils literal notranslate"><span class="pre">Python</span></code> extension by Microsoft (you will be prompted to install it when you first open a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file) and the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> extension by Microsoft.  Other useful extensions are the <code class="docutils literal notranslate"><span class="pre">Excel</span> <span class="pre">Viewer</span></code> extension for easier viewing CSV files, <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">in</span> <span class="pre">browser</span></code> for and option to open HTML files in your browser, <code class="docutils literal notranslate"><span class="pre">MyST-Markdown</span></code> for rendering markdown files, and <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">Spell</span> <span class="pre">Checker</span></code> for basic spell checking.</p>
 <div class="admonition note">
@@ -123,7 +119,7 @@
 <p>The most important part for a text editor is you are comfortable using it.  Feel free to try out different ones to fine what works best for you.</p>
 </div>
 <section id="programming-fonts">
-<h3>Programming fonts<a class="headerlink" href="#programming-fonts" title="Permalink to this headline"></a></h3>
+<h3>Programming fonts<a class="headerlink" href="#programming-fonts" title="Permalink to this heading"></a></h3>
 <p>In addition to a good text editor you will also want a good monospace font.  I can recommend <a class="reference external" href="https://github.com/tonsky/FiraCode">FiraCode</a>.  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> int a “less-than or equal” to sign).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -141,7 +137,7 @@
 </section>
 </section>
 <section id="coding-style-and-linting">
-<h2>Coding style and linting<a class="headerlink" href="#coding-style-and-linting" title="Permalink to this headline"></a></h2>
+<h2>Coding style and linting<a class="headerlink" href="#coding-style-and-linting" title="Permalink to this heading"></a></h2>
 <p>What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding the style most developers use has it basis in <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>.</p>
 <blockquote>
 <div><p>A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.</p>
@@ -167,7 +163,7 @@
 <p>To set up VScode to use <code class="docutils literal notranslate"><span class="pre">flake8</span></code> open the settings, search for <code class="docutils literal notranslate"><span class="pre">python</span> <span class="pre">linting</span></code>, enable <code class="docutils literal notranslate"><span class="pre">flake8</span></code>, disable <code class="docutils literal notranslate"><span class="pre">pylint</span></code>, and enable “lint on save” (linting as you type is a bit buggy for python in VScode).</p>
 </div>
 <section id="configuring-your-linter">
-<h3>Configuring your linter<a class="headerlink" href="#configuring-your-linter" title="Permalink to this headline"></a></h3>
+<h3>Configuring your linter<a class="headerlink" href="#configuring-your-linter" title="Permalink to this heading"></a></h3>
 <p>While <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don’t agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code’s <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file.  By doing it at the project level your choice of style rules will be saved <strong>inside the project</strong> for all developers to see and use.</p>
 <p>In particular, the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> rules <a class="reference external" href="https://www.flake8rules.com/rules/W503.html">W503</a> and <a class="reference external" href="https://www.flake8rules.com/rules/W504.html">W504</a> are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> configuration in the <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> file so it will:</p>
 <ul class="simple">

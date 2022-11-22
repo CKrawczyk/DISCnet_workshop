@@ -7,8 +7,7 @@
   <title>Code and file structure &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,12 +15,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -82,8 +78,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Code and file structure</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Code and file structure</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/code_structure.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -94,10 +90,10 @@
            <div itemprop="articleBody">
              
   <section id="code-and-file-structure">
-<h1>Code and file structure<a class="headerlink" href="#code-and-file-structure" title="Permalink to this headline"></a></h1>
+<h1>Code and file structure<a class="headerlink" href="#code-and-file-structure" title="Permalink to this heading"></a></h1>
 <p>One of the key things to keep in mind when writing code in a team is that other people will be reading and reviewing you code.  To that end it is always worth the time make the process of reading your code as easy as possible.</p>
 <section id="organizing-your-code">
-<h2>Organizing your code<a class="headerlink" href="#organizing-your-code" title="Permalink to this headline"></a></h2>
+<h2>Organizing your code<a class="headerlink" href="#organizing-your-code" title="Permalink to this heading"></a></h2>
 <p>Step one in making your code more readable is to organize it into different files and folders.  Some rules that help with this:</p>
 <ul class="simple">
 <li><p>Every file has one large function, one class, or collection of related small functions</p>
@@ -114,7 +110,7 @@
 <p>It is OK if you don’t have a full plan for what these file and folder structures will look like before you start, you can always re-organize your code after it is written.  The important thing is to have it be at least somewhat organized before code review.  Any question you have about this structure you can alway flag up for your reviewer to take a look at and help answer.</p>
 </section>
 <section id="code-legibility">
-<h2>Code legibility<a class="headerlink" href="#code-legibility" title="Permalink to this headline"></a></h2>
+<h2>Code legibility<a class="headerlink" href="#code-legibility" title="Permalink to this heading"></a></h2>
 <p>It is difficult to review code if you don’t know what task the code it trying to solve.  Aside from supplying the context for your code in your PR message and/or commit message, there are thing you can do directly in your code to help your reviewer:</p>
 <ul class="simple">
 <li><p>Use descriptive variable names</p></li>

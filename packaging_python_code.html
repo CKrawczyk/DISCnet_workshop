@@ -7,8 +7,7 @@
   <title>Packaging Python code &mdash; Data Transforms 0.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.css" type="text/css" />
-      <link rel="stylesheet" href="_static/togglebutton.css" type="text/css" />
+      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
@@ -16,12 +15,9 @@
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script>let toggleHintShow = 'Click to show';</script>
-        <script>let toggleHintHide = 'Click to hide';</script>
-        <script>let toggleOpenOnPrint = 'true';</script>
-        <script src="_static/togglebutton.js"></script>
-        <script>var togglebuttonSelector = '.toggle, .admonition.dropdown, .tag_hide_input div.cell_input, .tag_hide-input div.cell_input, .tag_hide_output div.cell_output, .tag_hide-output div.cell_output, .tag_hide_cell.cell, .tag_hide-cell.cell';</script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -87,8 +83,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>Packaging Python code</li>
+      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li class="breadcrumb-item active">Packaging Python code</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/packaging_python_code.md.txt" rel="nofollow"> View page source</a>
       </li>
@@ -99,7 +95,7 @@
            <div itemprop="articleBody">
              
   <section id="packaging-python-code">
-<h1>Packaging Python code<a class="headerlink" href="#packaging-python-code" title="Permalink to this headline"></a></h1>
+<h1>Packaging Python code<a class="headerlink" href="#packaging-python-code" title="Permalink to this heading"></a></h1>
 <p>This section of notes is partially adapted from <a class="reference external" href="https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md">https://github.com/cameron-simpson/css/blob/pypi/doc/pypa-the-missing-outline.md</a></p>
 <p>A python package is the process of collecting your code in a way that can be installed on a different person’s computer.  This process is made up of several parts:</p>
 <ul class="simple">
@@ -108,7 +104,7 @@
 <li><p>Build artifacts that are uploaded to a package distribution service such as <a class="reference external" href="https://pypi.org/">PyPI</a>.  These are typically a source distribution (sdist) and a built distribution (wheel).</p></li>
 </ul>
 <section id="the-build-system">
-<h2>The build system<a class="headerlink" href="#the-build-system" title="Permalink to this headline"></a></h2>
+<h2>The build system<a class="headerlink" href="#the-build-system" title="Permalink to this heading"></a></h2>
 <p>To build your package you will need to pick a build system.  There are no build systems that come with python by default.  In the past <code class="docutils literal notranslate"><span class="pre">setuptools</span></code> was the defacto standard, but in recent years more have become available.  For this workshop we will be using <a class="reference external" href="https://flit.pypa.io/en/latest/">flit</a> as it is lightweight and compliant with the latest python standards.</p>
 <p>A build system typically comes with a command line interface (CLI) that can automate common tasks such as making a new python environment with you code installed, bumping your code’s version number, building the <code class="docutils literal notranslate"><span class="pre">sdist</span></code> and <code class="docutils literal notranslate"><span class="pre">wheel</span></code>s, or uploading the builds to PyPI.</p>
 <p>Common build systems are:</p>
@@ -125,7 +121,7 @@
 </div>
 </section>
 <section id="the-source-code-structure">
-<h2>The source code structure<a class="headerlink" href="#the-source-code-structure" title="Permalink to this headline"></a></h2>
+<h2>The source code structure<a class="headerlink" href="#the-source-code-structure" title="Permalink to this heading"></a></h2>
 <p>This workshop’s repository is already setup to be a python package let’s take a closer look at the structure.  The minimum files for this workshop’s code are:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>DISCnet_workshop (git repository)
 ├── data_transforms (python package base folder)
@@ -146,7 +142,7 @@
 </ul>
 </section>
 <section id="setting-dependency-versions">
-<h2>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this headline"></a></h2>
+<h2>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this heading"></a></h2>
 <p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> are pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> or the lock file created by your build tool) is used to pin down <strong>exact</strong> package versions when reproducibility is important (e.g. all developers wanting to have the same versions of all dependencies installed or keeping a record of the package versions installed when a paper was published using the code).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -173,7 +169,7 @@
 </div>
 </section>
 <section id="installing-your-package-locally">
-<h2>Installing your package locally<a class="headerlink" href="#installing-your-package-locally" title="Permalink to this headline"></a></h2>
+<h2>Installing your package locally<a class="headerlink" href="#installing-your-package-locally" title="Permalink to this heading"></a></h2>
 <p>When you install a python package it will typically involve copying the python files to your <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory.  Running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.[dev]</span></code> in the top level directory (same folder as the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file) will do just this.  If you are actively developing your code and want to test out your latest changes you would need to reinstall the code with every change, this can become tedious.</p>
 <p>To help developers, <code class="docutils literal notranslate"><span class="pre">pip</span></code> also has the ability to install a package in “edit” mode, this creates a symbolic link in <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> that points to your source code, that way change can be seen without needing to reinstall the code.</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install -e .<span class="o">[</span>dev<span class="o">]</span>
@@ -181,13 +177,13 @@
 </div>
 </section>
 <section id="versioning-your-package">
-<h2>Versioning your package<a class="headerlink" href="#versioning-your-package" title="Permalink to this headline"></a></h2>
+<h2>Versioning your package<a class="headerlink" href="#versioning-your-package" title="Permalink to this heading"></a></h2>
 <p>It is a good idea to use single-source package versioning, this means the package version is defined in exactly one place inside the repository.  For python this is typically inside the top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> file and stored with the variable name <code class="docutils literal notranslate"><span class="pre">__version__</span></code>.  <code class="docutils literal notranslate"><span class="pre">flit</span></code> will automatically pull the version number from this place and use it in the <code class="docutils literal notranslate"><span class="pre">pyporject.toml</span></code> file (this is why “version” is listed in the <code class="docutils literal notranslate"><span class="pre">dynamic</span></code> section)</p>
 <p>When you are ready to release a new version of your code make a new PR that only bumps the version number using semantic versioning (see note above).  Once merged add a git tag to the merge commit.  You can also add additional notes about the release when making the tag, this a good place to include what things have changed in the new release.</p>
 <p>For larger projects it is worth keeping a separate <code class="docutils literal notranslate"><span class="pre">CHANGELOG.md</span></code> file inside the repository or a changelog section in the <code class="docutils literal notranslate"><span class="pre">README.md</span></code> that tracks all the changes introduced in each version bump to make this information easier to find.  There are tools available to help automate this process, these typically involve using special keywords when writing git commit messages to flag up text related to new features and/or breaking changes (e.g. <a class="reference external" href="https://github.com/KeNaCo/auto-changelog">auto-changelog</a>).</p>
 </section>
 <section id="build-artifacts">
-<h2>Build artifacts<a class="headerlink" href="#build-artifacts" title="Permalink to this headline"></a></h2>
+<h2>Build artifacts<a class="headerlink" href="#build-artifacts" title="Permalink to this heading"></a></h2>
 <p>If/when you are ready to upload your files to <code class="docutils literal notranslate"><span class="pre">PyPI</span></code> you first need to crete the files that will be uploaded.  These can be done with our chosen build tool:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flit build
 </pre></div>
@@ -200,7 +196,7 @@
 <p>The code version number is automatically used in the build names, this prevents older code version from being overwritten when the version is updated.</p>
 </section>
 <section id="build-upload">
-<h2>Build upload<a class="headerlink" href="#build-upload" title="Permalink to this headline"></a></h2>
+<h2>Build upload<a class="headerlink" href="#build-upload" title="Permalink to this heading"></a></h2>
 <p>To publish your package to <a class="reference external" href="https://pypi.org/">PyPI</a> you will first need to create an account.  Once created you can use your build tool or <a class="reference external" href="https://twine.readthedocs.io/en/stable/">twine</a> to upload your build artifacts.  For uploading with <code class="docutils literal notranslate"><span class="pre">flit</span></code> see their docs <a class="reference external" href="https://flit.pypa.io/en/latest/upload.html">https://flit.pypa.io/en/latest/upload.html</a>.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
