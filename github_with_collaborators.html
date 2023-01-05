@@ -122,7 +122,7 @@
 <tbody>
 <tr class="row-even"><td><p>Repository</p></td>
 <td><p>A folder that has Git version control set up</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git init
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>init
 </pre></div>
 </div>
 </td>
@@ -137,28 +137,28 @@
 </tr>
 <tr class="row-odd"><td><p>Pull from remote</p></td>
 <td><p>“Pulling” the changes on the remote to you local</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git pull
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>Push to remote</p></td>
 <td><p>“Pushing” local change to the remote</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git push
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>Staging changes</p></td>
 <td><p>Adding files to be in the next commit</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git add &lt;file name&gt;
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>&lt;file<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>Commit</p></td>
 <td><p>Creating a checkpoint you can return back to</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>get commit
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>get<span class="w"> </span>commit
 </pre></div>
 </div>
 </td>
@@ -166,26 +166,26 @@
 <tr class="row-odd"><td><p>Branch</p></td>
 <td><p>A working space that does not effect other branches</p></td>
 <td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make a new branch</span>
-git checkout -b &lt;new branch name&gt;
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>&lt;new<span class="w"> </span>branch<span class="w"> </span>name&gt;
 <span class="c1"># move to an existing branch</span>
-git checkout &lt;branch name&gt;
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;branch<span class="w"> </span>name&gt;
 <span class="c1"># list all (local) branches</span>
-git branch
+git<span class="w"> </span>branch
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>Merge</p></td>
 <td><p>Merging two branches together</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main
-git merge &lt;branch name&gt;
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>merge<span class="w"> </span>&lt;branch<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>Tag</p></td>
 <td><p>Naming a commit to make it easier to find in the future</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git tag &lt;tag name&gt;
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>&lt;tag<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 </td>
@@ -193,15 +193,15 @@ git merge &lt;branch name&gt;
 </tbody>
 </table>
 <p>To make things easier you should configure Git with your name, email, and default text editor:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global user.name <span class="s2">&quot;&lt;your name&gt;&quot;</span>
-git config --global user.email &lt;your email&gt;
-git config --global core.editor &lt;your text editor <span class="o">(</span>defaults to vim<span class="o">)</span>&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.name<span class="w"> </span><span class="s2">&quot;&lt;your name&gt;&quot;</span>
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>user.email<span class="w"> </span>&lt;your<span class="w"> </span>email&gt;
+git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span>&lt;your<span class="w"> </span>text<span class="w"> </span>editor<span class="w"> </span><span class="o">(</span>defaults<span class="w"> </span>to<span class="w"> </span>vim<span class="o">)</span>&gt;
 </pre></div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>If you want to use vscode as the default editor you can do that with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git config --global core.editor <span class="s2">&quot;code -n --wait&quot;</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"> </span>core.editor<span class="w"> </span><span class="s2">&quot;code -n --wait&quot;</span>
 </pre></div>
 </div>
 </div>
@@ -264,29 +264,29 @@ or if you want to clean up your git history (e.g. merge two commit together, cha
 <li><p>(optional) delete your local copy of the merged branch</p></li>
 </ol>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get latest code on main branch</span>
-git checkout main
-git pull
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull
 
 <span class="c1"># make new working branch</span>
-git checkout -b my-feature-branch
-git add my_new_file.py
-git commit
-git push --set-upstream origin my-feature-branch
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>add<span class="w"> </span>my_new_file.py
+git<span class="w"> </span>commit
+git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>my-feature-branch
 <span class="c1"># make PR on GitHub</span>
 
 <span class="c1"># get latest changes to main and rebase</span>
-git checkout main
-git pull
-git checkout my-feature-branch
-git rebase main
-git push --force-with-lease origin my-feature-branch
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull
+git<span class="w"> </span>checkout<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>rebase<span class="w"> </span>main
+git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>my-feature-branch
 
 <span class="c1"># after merge on GitHub update your main branch</span>
-git checkout main
-git pull
+git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull
 
 <span class="c1"># clean up</span>
-git branch -d my-feature-branch
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>my-feature-branch
 </pre></div>
 </div>
 <p>What does this workflow achieve?</p>
@@ -368,9 +368,9 @@ merged into the repo&#39;s **default** branch.
 <ol class="arabic simple">
 <li><p>Pull down the changes locally</p></li>
 </ol>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git checkout main
-git pull  <span class="c1"># also fetches the names of all remote branches</span>
-git checkout &lt;name of branch on remote&gt;
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+git<span class="w"> </span>pull<span class="w">  </span><span class="c1"># also fetches the names of all remote branches</span>
+git<span class="w"> </span>checkout<span class="w"> </span>&lt;name<span class="w"> </span>of<span class="w"> </span>branch<span class="w"> </span>on<span class="w"> </span>remote&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">

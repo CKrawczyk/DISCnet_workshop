@@ -112,7 +112,7 @@
 <h2>Python’s built in unittest library<a class="headerlink" href="#python-s-built-in-unittest-library" title="Permalink to this heading"></a></h2>
 <p>Python comes with a built in testing library called <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> that includes full object mocking capabilities.  Unittest organizes tests into classes (subclassed from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>) where each test is a method on the class that has a name starting with <code class="docutils literal notranslate"><span class="pre">test_</span></code>.  There are also special <code class="docutils literal notranslate"><span class="pre">setUp</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown</span></code> methods that, if defined, will run before and after <em>each</em> test method.  This class also provides various assert functions such as <code class="docutils literal notranslate"><span class="pre">self.assertEqual</span></code>, <code class="docutils literal notranslate"><span class="pre">self.assertDictEqual</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.assertGreater</span></code> (see <a class="reference external" href="https://docs.python.org/3/library/unittest.html">API documentation for full list</a>) that provide more useful error messages when they fail than a plain <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement does.  All the examples in this workshop use <code class="docutils literal notranslate"><span class="pre">unittest</span></code>’s framework and syntax.</p>
 <p>Python will auto-discover any tests that are in your current directory by looking for any files that follow the pattern <code class="docutils literal notranslate"><span class="pre">test*.py</span></code> by default (this search pattern can be changed when the unittest command is run).  The test file must be importable from the top level directory of the project (i.e. <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> in the folders containing any tests).  To run the tests use the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python -m unittest discover
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover
 </pre></div>
 </div>
 <p>If this command does not find your tests you can specify various command line options to help it out, see <a class="reference external" href="https://docs.python.org/3/library/unittest.html#test-discovery">the discover documentation</a> for more information.</p>
@@ -155,13 +155,13 @@
 
 <span class="k">class</span> <span class="nc">TestFunc</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_func_default_N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Test func with default N value&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test func with default N value&#39;&#39;&#39;</span>
         <span class="n">expected</span> <span class="o">=</span> <span class="mi">3</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
     
     <span class="k">def</span> <span class="nf">test_func_with_N</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Test func with N keyword set&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test func with N keyword set&#39;&#39;&#39;</span>
         <span class="n">expected</span> <span class="o">=</span> <span class="mi">4</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">func</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">assertEqual</span><span class="p">(</span><span class="n">result</span><span class="p">,</span> <span class="n">expected</span><span class="p">)</span>
@@ -192,7 +192,7 @@
 
 <span class="k">class</span> <span class="nc">TestRunAll</span><span class="p">(</span><span class="n">unittest</span><span class="o">.</span><span class="n">TestCase</span><span class="p">):</span>
     <span class="k">def</span> <span class="nf">test_run_all_value</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Test run_all give expected value&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test run_all give expected value&#39;&#39;&#39;</span>
         <span class="c1"># a traditional unit test to check an known input gives a known output</span>
         <span class="n">expected</span> <span class="o">=</span> <span class="mi">6</span>
         <span class="n">result</span> <span class="o">=</span> <span class="n">run_all</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
@@ -201,7 +201,7 @@
     <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;package.file.func_2&#39;</span><span class="p">)</span>
     <span class="nd">@patch</span><span class="p">(</span><span class="s1">&#39;package.file.func_1&#39;</span><span class="p">)</span>
     <span class="k">def</span> <span class="nf">test_run_all_calls</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">mock_func_1</span><span class="p">,</span> <span class="n">mock_func_2</span><span class="p">):</span>
-        <span class="sd">&#39;&#39;&#39;Test run_all calls the inner functions with the expected values&#39;&#39;&#39;</span>
+<span class="w">        </span><span class="sd">&#39;&#39;&#39;Test run_all calls the inner functions with the expected values&#39;&#39;&#39;</span>
         <span class="c1"># an integration test to check data is being pass around as expected</span>
         
         <span class="c1"># we can input any value, the `result` will not change because of the mocks</span>
@@ -234,8 +234,8 @@
 <h2>Test coverage<a class="headerlink" href="#test-coverage" title="Permalink to this heading"></a></h2>
 <p>Test coverage is a way of tracking what lines of your code were run when each of your tests ran.  When writing tests for a function you goal should be to have as much coverage as possible.  This typically means making sure you have at least one test for every branch in your code (i.e. one test for each <code class="docutils literal notranslate"><span class="pre">if</span></code> branch in the code).  Sometimes when writing your tests you will realize that there are branches in your code that can never be reached and can be safely removed from the code.</p>
 <p>To check test coverage you can use the <a class="reference external" href="https://coverage.readthedocs.io/en/latest/">coverage package</a>, once installed it will wrap around your chosen test runner and check how many lines of you package’s code were run by your tests.  After the tests are run you can generate a report to see how many lines were covered.  The basic usage is:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run --source data_transforms --omit *test* -m unittest discover
-coverage report --show-missing
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run<span class="w"> </span>--source<span class="w"> </span>data_transforms<span class="w"> </span>--omit<span class="w"> </span>*test*<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover
+coverage<span class="w"> </span>report<span class="w"> </span>--show-missing
 </pre></div>
 </div>
 <p>The options passed to <code class="docutils literal notranslate"><span class="pre">run</span></code> are:</p>
@@ -249,8 +249,8 @@ coverage report --show-missing
 <li><p><code class="docutils literal notranslate"><span class="pre">--show-missing</span></code>: for each file list the line number(s) not covered by a test</p></li>
 </ul>
 <p>These extra command line options can be included in your project’s <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file (already done in this workshop’s repo) to simplify these commands to:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run
-coverage report
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run
+coverage<span class="w"> </span>report
 </pre></div>
 </div>
 <p>This leaves you with an easy to remember command for running your tests with all the project specific options placed in a single configuration file.</p>

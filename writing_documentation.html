@@ -98,13 +98,13 @@
 <p>When someone unfamiliar with your code first wants to use your code, the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
 <p>To help ensure that the source code and the documentation don’t get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a “triple quote string”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Return the sum of the two inputs&#39;&#39;&#39;</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Return the sum of the two inputs&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
 </div>
 <p>Or a more explicit docstring (using <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#style-guide">numpy’s style guide</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
-    <span class="sd">&#39;&#39;&#39;Return the sum of the two inputs</span>
+<span class="w">    </span><span class="sd">&#39;&#39;&#39;Return the sum of the two inputs</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
@@ -128,11 +128,11 @@
 <section id="config">
 <h3>Config<a class="headerlink" href="#config" title="Permalink to this heading"></a></h3>
 <p>Sphinx has already been set up on this project, but while I was doing it I took notes about every step.  To setup Sphinx on this project I used the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip install sphinx, myst-nb, sphinx_rtd_theme
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx,<span class="w"> </span>myst-nb,<span class="w"> </span>sphinx_rtd_theme
 
-<span class="nb">cd</span> DISCnet_workshop
-mkdir docs
-<span class="nb">cd</span> docs
+<span class="nb">cd</span><span class="w"> </span>DISCnet_workshop
+mkdir<span class="w"> </span>docs
+<span class="nb">cd</span><span class="w"> </span>docs
 sphinx-quickstart
 </pre></div>
 </div>
@@ -181,7 +181,7 @@ sphinx-quickstart
 <section id="api-documentation-with-apidoc">
 <h3>API documentation with <code class="docutils literal notranslate"><span class="pre">apidoc</span></code><a class="headerlink" href="#api-documentation-with-apidoc" title="Permalink to this heading"></a></h3>
 <p>For Sphinx to be able to read the docstrings from your source code it first needs be told what source files to look in.  This can either be done by adding your source folders by hand to <code class="docutils literal notranslate"><span class="pre">docs/soruce/index.rst</span></code> or by using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> command to build these <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files for you.  We will be using this automated approach for this workshop:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc -MEf -o ./docs/source ./data_transforms ./data_transforms/tests
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>-MEf<span class="w"> </span>-o<span class="w"> </span>./docs/source<span class="w"> </span>./data_transforms<span class="w"> </span>./data_transforms/tests
 </pre></div>
 </div>
 <p>What is this command doing:</p>
@@ -240,8 +240,8 @@ sphinx-quickstart
 <section id="building-the-docs">
 <h3>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this heading"></a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">rst</span></code> files inplace, we can build the docs with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
-make html
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+make<span class="w"> </span>html
 </pre></div>
 </div>
 <p>This will create the static HTML files in the <code class="docutils literal notranslate"><span class="pre">docs/build/html</span></code> folder.  You can open <code class="docutils literal notranslate"><span class="pre">docs/build/html/index.html</span></code> in your favorite browser and see the results.</p>
@@ -250,11 +250,11 @@ make html
 <p>Sometimes the side bar content will not update correctly when new pages are added, to fix this run <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">clean</span></code> before <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">html</span></code> to remove cached data.</p>
 </div>
 <p>To simplify the auto finding and doc building steps I have created a <code class="docutils literal notranslate"><span class="pre">build_docs.sh</span></code> script in the base repository to run all the commands above in order:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span> docs
-sphinx-apidoc -MEf -o ./source ../data_transforms ../data_transforms/tests
-make clean
-make html
-<span class="nb">cd</span> ..
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
+sphinx-apidoc<span class="w"> </span>-MEf<span class="w"> </span>-o<span class="w"> </span>./source<span class="w"> </span>../data_transforms<span class="w"> </span>../data_transforms/tests
+make<span class="w"> </span>clean
+make<span class="w"> </span>html
+<span class="nb">cd</span><span class="w"> </span>..
 </pre></div>
 </div>
 </section>

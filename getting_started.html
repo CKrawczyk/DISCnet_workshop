@@ -103,7 +103,7 @@
 <section id="using-venv">
 <h3>Using <code class="docutils literal notranslate"><span class="pre">venv</span></code><a class="headerlink" href="#using-venv" title="Permalink to this heading"></a></h3>
 <p>Python comes with its own environment manager called <code class="docutils literal notranslate"><span class="pre">venv</span></code>.  To make a new environment named <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.10 -m venv discnet_env
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python3.10<span class="w"> </span>-m<span class="w"> </span>venv<span class="w"> </span>discnet_env
 </pre></div>
 </div>
 <p>This will make a new folder called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> in the directory where you run the command.  This directory contains the python environment.</p>
@@ -112,14 +112,14 @@
 <p>This will make an environment using the same version of python used to run the command.  By using <code class="docutils literal notranslate"><span class="pre">python3.10</span></code> we ensure it will be a python 3.10 environment.</p>
 </div>
 <p>To activate the environment run (from the same directory as the previous command):</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span> discnet_env/bin/activate
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">source</span><span class="w"> </span>discnet_env/bin/activate
 </pre></div>
 </div>
 </section>
 <section id="using-conda">
 <h3>Using <code class="docutils literal notranslate"><span class="pre">conda</span></code><a class="headerlink" href="#using-conda" title="Permalink to this heading"></a></h3>
 <p>If you installed python using <a class="reference external" href="https://docs.conda.io/en/latest/">conda</a> you should use it as your environment manager.  To make a new environment named <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda create --name discnet_env <span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>create<span class="w"> </span>--name<span class="w"> </span>discnet_env<span class="w"> </span><span class="nv">python</span><span class="o">=</span><span class="m">3</span>.10
 </pre></div>
 </div>
 <p>This will make a new directory called <code class="docutils literal notranslate"><span class="pre">discnet_env</span></code> inside your conda install’s <code class="docutils literal notranslate"><span class="pre">envs</span></code> folder (typically in your home folder). This directory contains the python environment.</p>
@@ -128,7 +128,7 @@
 <p>Unlike <code class="docutils literal notranslate"><span class="pre">venv</span></code> you can specify any version of python when making an environment even if that version is not currently installed on your system.</p>
 </div>
 <p>To activate the environment run:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda activate discnet_env
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>conda<span class="w"> </span>activate<span class="w"> </span>discnet_env
 </pre></div>
 </div>
 </section>
@@ -136,8 +136,8 @@
 <section id="clone-the-repository">
 <h2>Clone the repository<a class="headerlink" href="#clone-the-repository" title="Permalink to this heading"></a></h2>
 <p>Use git to clone the repository for this workshop:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/CKrawczyk/DISCnet_workshop.git
-<span class="nb">cd</span> DISCnet_workshop
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>clone<span class="w"> </span>https://github.com/CKrawczyk/DISCnet_workshop.git
+<span class="nb">cd</span><span class="w"> </span>DISCnet_workshop
 </pre></div>
 </div>
 </section>
@@ -145,10 +145,10 @@
 <h2>Installing the workshop’s python package<a class="headerlink" href="#installing-the-workshop-s-python-package" title="Permalink to this heading"></a></h2>
 <p>Throughout this workshop you will be helping to write a python package called <code class="docutils literal notranslate"><span class="pre">data_transforms</span></code>.  To install it into your new environment (once the env is activated) run:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># make sure `pip` is up to date and install the `flit` build tool</span>
-pip install -U pip flit
+pip<span class="w"> </span>install<span class="w"> </span>-U<span class="w"> </span>pip<span class="w"> </span>flit
 
 <span class="c1"># install the development version of the `data_transforms` package</span>
-pip install -e .<span class="o">[</span>dev<span class="o">]</span>
+pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>
 <p>The option <code class="docutils literal notranslate"><span class="pre">-e</span></code> installs the code in “edit” mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be “install” without needing to run the <code class="docutils literal notranslate"><span class="pre">pip</span></code> command again.  <code class="docutils literal notranslate"><span class="pre">.[dev]</span></code> indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.  We will cover these topics in more detail in the “packaging python code” section of the workshop.</p>
@@ -156,11 +156,11 @@ pip install -e .<span class="o">[</span>dev<span class="o">]</span>
 <section id="running-tests">
 <h2>Running tests<a class="headerlink" href="#running-tests" title="Permalink to this heading"></a></h2>
 <p>The notes on test driven development will go into this in more detail, but for completeness you can run this codes tests with the command:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage run
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run
 </pre></div>
 </div>
 <p>and view the test coverage report with:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage report
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>report
 </pre></div>
 </div>
 </section>
