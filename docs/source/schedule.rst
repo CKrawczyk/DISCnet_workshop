@@ -4,7 +4,7 @@ Schedule
 The parts of the schedule marked in **bold** are lectures, the parts marked in *italics* are practical exercises.
 
 +-----------+-----------------------------------+-----------------------------------+
-| Time      | July 26                           | July 27                           |
+| Time      | Day 1                             | Day 2                             |
 +===========+===================================+===================================+
 | **9:00**  |                                   | Donuts                            |
 +-----------+                                   |                                   |
