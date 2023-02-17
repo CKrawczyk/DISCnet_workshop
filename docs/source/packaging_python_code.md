@@ -45,7 +45,7 @@ DISCnet_workshop (git repository)
 - `pyproject.toml`: This file tells python how to install your code, what dependencies to install, and various development configuration options.  You can use `flit init` to help build this file or just write it by hand.
 
 ## Setting dependency versions
-To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in `pyproject.toml` are pinned as **ranges** to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either `requirements.txt` or the lock file created by your build tool) is used to pin down **exact** package versions when reproducibility is important (e.g. all developers wanting to have the same versions of all dependencies installed or keeping a record of the package versions installed when a paper was published using the code).
+To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in `pyproject.toml` are unpinned or pinned as **ranges** to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either `requirements.txt` or the lock file created by your build tool) is used to pin down **exact** package versions when reproducibility is important (e.g. all the developers wanting to have the same versions of dependencies installed, keeping a record of the package versions installed when a paper was published using the code, or ensuring web apps deploy with the same versions the tests ran with).
 
 ```{note}
 Most python packages use [semantic versioning](https://semver.org/).  This means the version numbers are set as MAJOR.MINOR.PATCH 
@@ -59,10 +59,6 @@ The rule of thumb I use when pinning down my packages ranges:
 - Set the upper bound as `<` the next patch fix version of the package
 - Activate [dependabot](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/) on GitHub to automatically make pull requests that update the upper bound when dependencies update (this will trigger our CI to run our tests automatically and let us know if the update breaks the code)
     - If a dependency update breaks the code (typically major version updates), update the code and set the lower bound to be the latest version of the dependency
-
-```{warning}
-Related to the current changing landscape of Python packaging the packaging method in this workshop is [not yet supported](https://github.com/dependabot/dependabot-core/issues/3290) by `dependabot`.  Hopefully it will be updated soon.  For now I have left the `dependabot` setup on this repository to show what it will look like once it is working again.  Dependabot currently works when dependencies are defined in `requirements.txt`, the old `setup.py`, or using `poetry`s version of a `pyporject.toml` file.
-```
 
 ## Installing your package locally
 When you install a python package it will typically involve copying the python files to your `site-packages` directory.  Running `pip install .[dev]` in the top level directory (same folder as the `pyproject.toml` file) will do just this.  If you are actively developing your code and want to test out your latest changes you would need to reinstall the code with every change, this can become tedious.
