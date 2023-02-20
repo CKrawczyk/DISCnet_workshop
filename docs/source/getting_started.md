@@ -60,7 +60,7 @@ pip install -U pip flit
 pip install -e .[dev]
 ```
 
-The option `-e` installs the code in "edit" mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be "install" without needing to run the `pip` command again.  `.[dev]` indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.  We will cover these topics in more detail in the "packaging python code" section of the workshop.
+The option `-e` installs the code in "edit" mode, this means the package directory is sym-linked into your python path.  Any changes you make to the code will automatically be "installed" without needing to run the `pip` command again.  `.[dev]` indicates you want to install the python package located in the current folder and to also install the optional development dependencies for the package.  We will cover these topics in more detail in the "packaging python code" section of the workshop.
 
 ## Running tests
 The notes on test driven development will go into this in more detail, but for completeness you can run this codes tests with the command:
