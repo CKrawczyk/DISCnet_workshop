@@ -16,15 +16,15 @@ Ways to boost context transfer:
 
 Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend [VScode](https://code.visualstudio.com/) as a free text editor with all the features above.
 
-For python coding in VScode you will want to install the `Python` extension by Microsoft (you will be prompted to install it when you first open a `.py` file) and the `Jupyter` extension by Microsoft.  Other useful extensions are the `Excel Viewer` extension for easier viewing CSV files, `open in browser` for and option to open HTML files in your browser, `MyST-Markdown` for rendering markdown files, and `Code Spell Checker` for basic spell checking.
+For python coding in VScode you will want to install the `Python` extension by Microsoft (you will be prompted to install it when you first open a `.py` file) and the `Jupyter` extension by Microsoft.  Other useful extensions are the `Excel Viewer` extension for easier viewing of CSV files, `open in browser` for and option to open HTML files in your browser, `MyST-Markdown` for rendering markdown files, and `Code Spell Checker` for basic spell checking.
 
 ```{note}
-The most important part for a text editor is you are comfortable using it.  Feel free to try out different ones to fine what works best for you.
+The most important part for a text editor is that you are comfortable using it.  Feel free to try out different ones to find what works best for you.
 ```
 
 ### Programming fonts
 
-In addition to a good text editor you will also want a good monospace font.  I can recommend [FiraCode](https://github.com/tonsky/FiraCode).  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing `>=` int a "less-than or equal" to sign).
+In addition to a good text editor you will also want a good monospace font.  I can recommend [FiraCode](https://github.com/tonsky/FiraCode).  This font has ligatures (special characters used to "connect" specific letters that appear next to each other) that help when reading code (e.g. turing `>=` int a "less-than or equal" to sign).
 
 ````{note}
 Use this font in VScode you will want to install the `Disable Ligatures` extension to allow the ligatures to be turned off on the line you are currently typing and set the following options in VScode's `settings.json` file:
@@ -43,7 +43,7 @@ All other font options (such as font size) can be set from the normal settings p
 
 ## Coding style and linting
 
-What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding the style most developers use has it basis in [PEP 8](https://peps.python.org/pep-0008/).
+What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding [PEP 8](https://peps.python.org/pep-0008/) is used as the *base* for most styles.
 
 >A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.
 
@@ -59,7 +59,7 @@ Here are some examples of PEP 8 conventions:
 
 While you could read over PEP 8 and try to memorize it, the most effective way to lean (and stick to) PEP 8 standards is to use a linter for you code.  A linter is a package that will automatically check your code style through a command line function.  Some text editors support live linting to check your code style as you type your code (similar to a spell checker).
 
-The two most common linters used for python are [pylint](https://pylint.pycqa.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (i.e. checking for things like unused `import`s).  Of the two `flake8` is a bit less opinionated making it a bit easier to get on with when first learning to stick to a style, because of this we will be using it for the workshop. Once `flake8` is install you can run it on the command line with:
+The two most common linters used for python are [pylint](https://pylint.pycqa.org/en/latest/) and [flake8](https://flake8.pycqa.org/en/latest/).  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (i.e. checking for things like unused `import`s).  Of the two `flake8` is a less opinionated making it a bit easier to get on with when first learning to stick to a style, because of this we will be using it for the workshop. Once `flake8` is install you can run it on the command line with:
 
 ```bash
 flake8
@@ -71,14 +71,14 @@ To set up VScode to use `flake8` open the settings, search for `python linting`,
 
 ### Configuring your linter
 
-While `flake8` is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don't agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code's `setup.cfg` file.  By doing it at the project level your choice of style rules will be saved **inside the project** for all developers to see and use.
+While `flake8` is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don't agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code's `.flake8` file.  By doing it at the project level your choice of style rules will be saved **inside the project** for all developers to see and use.
 
 In particular, the `flake8` rules [W503](https://www.flake8rules.com/rules/W503.html) and [W504](https://www.flake8rules.com/rules/W504.html) are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the `flake8` configuration in the `.flake8` file so it will:
 
 - ignore the project configuration folders (.git, docs, etc...)
 - Set the max line length to 120
 - Turn off rule `W503`
-- Turn off `BLK100` (flake-black, black is an optional set of rules we are not going to be using)
+- Turn off `BLK100` (flake-black is an optional set of rules we are not going to be using)
 
 ```{note}
 [Black](https://black.readthedocs.io/en/stable/) is a code auto-formatter.  It will take the code you have written, and where possible, make it follow a consistent style.  By construction it **is not** configurable and **is** very opinionated.  If you like the [style it produces](https://black.readthedocs.io/en/stable/the_black_code_style/current_style.html) feel free to use it.
