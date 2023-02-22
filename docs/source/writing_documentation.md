@@ -1,5 +1,5 @@
 # Documenting Python code
-When someone unfamiliar with your code first wants to use your code, the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.
+When someone new is using your code for hte first time they will likely want to read your documentation to see how the code works.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.
 
 To help ensure that the source code and the documentation don't get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a "triple quote string":
 
@@ -9,7 +9,7 @@ def sum_two_numbers(a, b):
     return a + b
 ```
 
-Or a more explicit docstring (using [numpy's style guide](https://numpydoc.readthedocs.io/en/latest/format.html#style-guide)):
+Or a more explicit docstring (using [numpy's documentation style guide](https://numpydoc.readthedocs.io/en/latest/format.html#style-guide)):
 
 ```python
 def sum_two_numbers(a, b):
@@ -30,7 +30,7 @@ def sum_two_numbers(a, b):
     return a + b
 ```
 
-In addition to the API documentation from the docstrings you should also provide tutorials on how to use you code (python notebooks work great for this kind of documentation).  You can also provide additional information in markdown format (like these notes you are reading now).
+In addition to the API documentation from the docstrings you should also provide tutorials on how to use your code.  Python notebooks work great for this kind of documentation.  You can also provide additional information in markdown files (like these notes you are reading now).
 
 ## Sphinx
 Once you have written your docs you need a way to collect all of it into a single place, typically a web site.  The most common way to do this in python is to use the [Sphinx](https://www.sphinx-doc.org/en/master/index.html) package.  The setup for Sphinx can be a bit involved, but once set up it "just works."
@@ -39,29 +39,34 @@ Once you have written your docs you need a way to collect all of it into a singl
 Sphinx has already been set up on this project, but while I was doing it I took notes about every step.  To setup Sphinx on this project I used the following commands:
 
 ```bash
+# install sphinx and a few add-ons into the env
 pip install sphinx, myst-nb, sphinx_rtd_theme
 
+# navigate into the repository
 cd DISCnet_workshop
+# make a new folder to hold the documentation
 mkdir docs
 cd docs
+# set up sphinx
 sphinx-quickstart
 ```
 
-with the following options:
+I used the following quickstart options:
 - Separate source and build directories (y/n) [n]: y
 - Project name: Data Transforms
 - Author name(s): Coleman Krawczyk
 - Project release []: 0.1.0
 - Project language [en]: en
 
-The final part the setup is adjusting the `docs/source/conf.py` file to tell it where our source package lives:
+The final part the setup is adjusting the `docs/source/conf.py` file to:
+1. tell it where our source package lives:
 ```python
 import os
 import sys
 sys.path.insert(0, os.path.abspath('../..'))
 ```
 
-Tell Sphinx what extensions to use:
+2. Tell Sphinx what extensions to use:
 ```python
 extensions = [
     'sphinx.ext.autodoc',  # auto find doc strings in source code
@@ -85,7 +90,7 @@ exclude_patterns = [
 ]
 ```
 
-And change the theme:
+3. And change the theme:
 ```python
 html_theme = 'sphinx_rtd_theme'
 ```
@@ -124,6 +129,7 @@ DISCnet Workshop: Writing Code as a Team
    :caption: Setting the Stage
 
    introduction
+   schedule
    the_task
 
 .. toctree::
@@ -175,3 +181,8 @@ make clean
 make html
 cd ..
 ```
+
+## Tutorial Driven Development
+It is quite common in fast moving projects for the documentation and tutorials to become out of date with the code.  To try and combat this it can be helpful to adapt to a tutorial driven workflow.  In this kind of workflow you sit down and write the full tutorial **first** and only once it is finished do you updated the code to match the new tutorial.  This ensure that the tutorial always matches the current code and helps you keep in mind how the code is intended to be used.
+
+This method works best when you can involve some of the people who will be using your code in the process of making the tutorials.  You can get rapid feedback about the user experience and use that to better inform you about the best way to structure the code.  These tutorials can also inform you of various test cases you can create for your code and works well with test driven development as well (more on this in the next section).

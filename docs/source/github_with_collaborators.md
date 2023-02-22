@@ -25,17 +25,17 @@ While many of you might already be familiar with Git, let's make sure we are all
   - A Git repository that is on the internet
   -
 * - Pull from remote
-  - "Pulling" the changes on the remote to you local
+  - "Pulling" the changes from the remote to you local repository
   - ```bash
     git pull
     ```
 * - Push to remote
-  - "Pushing" local change to the remote
+  - "Pushing" changes from the local to the remote repository
   - ```bash
     git push
     ```
 * - Staging changes
-  - Adding files to be in the next commit
+  - Adding files to be included in the next commit
   - ```bash
     git add <file name>
     ```
@@ -57,11 +57,12 @@ While many of you might already be familiar with Git, let's make sure we are all
 * - Merge
   - Merging two branches together
   - ```bash
+    # merge <branch name> into the main branch
     git checkout main
     git merge <branch name>
     ```
 * - Tag
-  - Naming a commit to make it easier to find in the future
+  - Naming a commit to make it easier to find in the future (typically new code release versions are tagged)
   - ```bash
     git tag <tag name>
     ```
@@ -108,38 +109,43 @@ There are many different ways to effectively use git within a collaboration, and
 5. assign a reviewer for your PR (it is your job to ask someone to look at your code, don't expect the PR to "just be seen" by other developers)
 6. address any feedback left by the reviewer
 7. once approved **rebase** your changes onto the latest `main` branch to ensure there are no code conflicts
-or if you want to clean up your git history (e.g. merge two commit together, change your commit messages, etc...) rebase in interactive mode (`git rebase -i main`)
+or if you want to clean up your git history rebase in interactive mode (`git rebase -i main`)
 8. push the rebased code back to the remote
 9. merge to the `main` branch using the big green button
 10. delete the brach on the remote once the merge is finish
 11. pull the latest `main` (with your PR merged) locally
 12. (optional) delete your local copy of the merged branch
 
+```{note}
+After the rebase when you go to push to the back to the remote (step 8) you will need to use `--force-with-lease` switch.  This is needed if any of the git history is re-written during the rebase.  This switch is a slightly safer version of `--force` where it will only let you continue if you are not overwriting the work of a different developer on the same branch.  This can prevent you from accidentally deleting someone else's work.
+```
+
+And these steps in code:
 ```bash
 # get latest code on main branch
 git checkout main
 git pull
 
 # make new working branch
-git checkout -b my-feature-branch
+git checkout -b feature/my-feature-branch
 git add my_new_file.py
 git commit
-git push --set-upstream origin my-feature-branch
+git push --set-upstream origin feature/my-feature-branch
 # make PR on GitHub
 
 # get latest changes to main and rebase
 git checkout main
 git pull
-git checkout my-feature-branch
+git checkout feature/my-feature-branch
 git rebase main
-git push --force-with-lease origin my-feature-branch
+git push --force-with-lease origin feature/my-feature-branch
 
 # after merge on GitHub update your main branch
 git checkout main
 git pull
 
 # clean up
-git branch -d my-feature-branch
+git branch -d feature/my-feature-branch
 ```
 
 
@@ -204,7 +210,7 @@ This section of notes is partially adapted from gov.uk's style guides found at:
 
 - [https://github.com/alphagov/styleguides/blob/master/pull-requests.md](https://github.com/alphagov/styleguides/blob/master/pull-requests.md)
 
-Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.
+Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things the reviewer should be aware of when testing your code.  If the PR is in reference to an open issue on the repo this should be mentioned as well.
 
 ## Writing better code reviews
 
@@ -215,6 +221,8 @@ When working in a team it is important to review other people's code along side 
 git checkout main
 git pull  # also fetches the names of all remote branches
 git checkout <name of branch on remote>
+# or in newer versions of git
+git switch <name of branch on remote>
 ```
 2. Read the PR to see what changes were made
 3. Test that those changes work as intended
@@ -223,7 +231,7 @@ git checkout <name of branch on remote>
 4. If the PR is fixing a bug:
     - Reproduce the bug on `main`
     - Switch to the PRs branch and ensure the bug is fixed
-5. Look over the code diff on GitHub and leave inline comments you have about any of the lines
+5. Look over the code diff on GitHub and leave inline comments
     - Questions about how code works
     - Suggestions for make the code easier to read and/or more efficient
 6. Write your review (GitHub supports full markdown, don't be afraid to use section headings and lists in your review)
@@ -233,7 +241,7 @@ git checkout <name of branch on remote>
     - If appropriate list any consequences of the changes (e.g. is there other code that should be changed in a future PR as a result)
     - Any actions the PRs author(s) should take before merging
 7. Either approve or block (pending changes) the PR
-8. If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes asked for are finished.
+8. If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes you asked for are finished.
 
 Here is an example of well constructed PR and review taken from one of the Zooniverse's repositories [https://github.com/zooniverse/front-end-monorepo/pull/2313](https://github.com/zooniverse/front-end-monorepo/pull/2313).
 
