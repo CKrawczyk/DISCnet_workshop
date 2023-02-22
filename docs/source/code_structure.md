@@ -25,7 +25,7 @@ It is difficult to review code if you don't know what task the code it trying to
 - Make sure the tone of your comments matches who you expect to be reading them
     - Comments targeted at people learning python syntax for the first time should look different than comments targeted at people who have been using python for several years
 - Stick to a consistent coding style
-- Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how you changes will look in that format.  As and example if the following code changed from:
+- Keep in mind your reviewer will be mostly looking at code diffs, so put some thought how your changes will look in that format.  As and example if the following code changed from:
 
 ```python
 a = {'b': 2, 'c': 3, 'd': {'e': 5, 'f': 6}}
