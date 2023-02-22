@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Good coding practices &mdash; Data Transforms 0.1.0 documentation</title>
@@ -30,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Data Transforms
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Data Transforms
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,7 +89,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Good coding practices</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/good_coding_practices.md.txt" rel="nofollow"> View page source</a>
@@ -113,14 +117,14 @@
 <section id="text-editors">
 <h2>Text editors<a class="headerlink" href="#text-editors" title="Permalink to this heading"></a></h2>
 <p>Although there are numerous IDEs (e.g. IDLE, Spyder) for python, for most everyday use you will likely be writing python code in a text editor and running your programs via the command line.  In this case it is important to have a good text editor that supports syntax highlighting, live linting (syntax and style checking), and is easy to configure the way you want.  I can highly recommend <a class="reference external" href="https://code.visualstudio.com/">VScode</a> as a free text editor with all the features above.</p>
-<p>For python coding in VScode you will want to install the <code class="docutils literal notranslate"><span class="pre">Python</span></code> extension by Microsoft (you will be prompted to install it when you first open a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file) and the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> extension by Microsoft.  Other useful extensions are the <code class="docutils literal notranslate"><span class="pre">Excel</span> <span class="pre">Viewer</span></code> extension for easier viewing CSV files, <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">in</span> <span class="pre">browser</span></code> for and option to open HTML files in your browser, <code class="docutils literal notranslate"><span class="pre">MyST-Markdown</span></code> for rendering markdown files, and <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">Spell</span> <span class="pre">Checker</span></code> for basic spell checking.</p>
+<p>For python coding in VScode you will want to install the <code class="docutils literal notranslate"><span class="pre">Python</span></code> extension by Microsoft (you will be prompted to install it when you first open a <code class="docutils literal notranslate"><span class="pre">.py</span></code> file) and the <code class="docutils literal notranslate"><span class="pre">Jupyter</span></code> extension by Microsoft.  Other useful extensions are the <code class="docutils literal notranslate"><span class="pre">Excel</span> <span class="pre">Viewer</span></code> extension for easier viewing of CSV files, <code class="docutils literal notranslate"><span class="pre">open</span> <span class="pre">in</span> <span class="pre">browser</span></code> for and option to open HTML files in your browser, <code class="docutils literal notranslate"><span class="pre">MyST-Markdown</span></code> for rendering markdown files, and <code class="docutils literal notranslate"><span class="pre">Code</span> <span class="pre">Spell</span> <span class="pre">Checker</span></code> for basic spell checking.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>The most important part for a text editor is you are comfortable using it.  Feel free to try out different ones to fine what works best for you.</p>
+<p>The most important part for a text editor is that you are comfortable using it.  Feel free to try out different ones to find what works best for you.</p>
 </div>
 <section id="programming-fonts">
 <h3>Programming fonts<a class="headerlink" href="#programming-fonts" title="Permalink to this heading"></a></h3>
-<p>In addition to a good text editor you will also want a good monospace font.  I can recommend <a class="reference external" href="https://github.com/tonsky/FiraCode">FiraCode</a>.  This font has ligatures (special characters used represent specific letters that appear next to each other) that help when reading code (e.g. turing <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> int a “less-than or equal” to sign).</p>
+<p>In addition to a good text editor you will also want a good monospace font.  I can recommend <a class="reference external" href="https://github.com/tonsky/FiraCode">FiraCode</a>.  This font has ligatures (special characters used to “connect” specific letters that appear next to each other) that help when reading code (e.g. turing <code class="docutils literal notranslate"><span class="pre">&gt;=</span></code> int a “less-than or equal” to sign).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Use this font in VScode you will want to install the <code class="docutils literal notranslate"><span class="pre">Disable</span> <span class="pre">Ligatures</span></code> extension to allow the ligatures to be turned off on the line you are currently typing and set the following options in VScode’s <code class="docutils literal notranslate"><span class="pre">settings.json</span></code> file:</p>
@@ -138,7 +142,7 @@
 </section>
 <section id="coding-style-and-linting">
 <h2>Coding style and linting<a class="headerlink" href="#coding-style-and-linting" title="Permalink to this heading"></a></h2>
-<p>What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding the style most developers use has it basis in <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a>.</p>
+<p>What is a coding style?  Beyond the syntax of a coding language, a coding style is a set of conventions that can be followed to make it easier for other developers (including your future self) to read you code and to understand the intention behind your code.  For python coding <a class="reference external" href="https://peps.python.org/pep-0008/">PEP 8</a> is used as the <em>base</em> for most styles.</p>
 <blockquote>
 <div><p>A style guide is about consistency. Consistency with this style guide is important. Consistency within a project is more important. Consistency within one module or function is the most important.</p>
 </div></blockquote>
@@ -154,7 +158,7 @@
 <li><p>Function names should be <code class="docutils literal notranslate"><span class="pre">lowercase</span></code>, with words separated by underscores as necessary to improve readability</p></li>
 </ul>
 <p>While you could read over PEP 8 and try to memorize it, the most effective way to lean (and stick to) PEP 8 standards is to use a linter for you code.  A linter is a package that will automatically check your code style through a command line function.  Some text editors support live linting to check your code style as you type your code (similar to a spell checker).</p>
-<p>The two most common linters used for python are <a class="reference external" href="https://pylint.pycqa.org/en/latest/">pylint</a> and <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a>.  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (i.e. checking for things like unused <code class="docutils literal notranslate"><span class="pre">import</span></code>s).  Of the two <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a bit less opinionated making it a bit easier to get on with when first learning to stick to a style, because of this we will be using it for the workshop. Once <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is install you can run it on the command line with:</p>
+<p>The two most common linters used for python are <a class="reference external" href="https://pylint.pycqa.org/en/latest/">pylint</a> and <a class="reference external" href="https://flake8.pycqa.org/en/latest/">flake8</a>.  While both cover the standard PEP 8 rules, they each have a different set of additional style rules that are checked (i.e. checking for things like unused <code class="docutils literal notranslate"><span class="pre">import</span></code>s).  Of the two <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a less opinionated making it a bit easier to get on with when first learning to stick to a style, because of this we will be using it for the workshop. Once <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is install you can run it on the command line with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>flake8
 </pre></div>
 </div>
@@ -164,13 +168,13 @@
 </div>
 <section id="configuring-your-linter">
 <h3>Configuring your linter<a class="headerlink" href="#configuring-your-linter" title="Permalink to this heading"></a></h3>
-<p>While <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don’t agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code’s <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> file.  By doing it at the project level your choice of style rules will be saved <strong>inside the project</strong> for all developers to see and use.</p>
+<p>While <code class="docutils literal notranslate"><span class="pre">flake8</span></code> is a great starting point, it is just that, a starting point.  PEP 8 should be used as a guideline for your projects style and if there are any rules you don’t agree with you are free to turn them off.  While this can be configured globally on your local computer, I would recommend doing at the project level inside your code’s <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> file.  By doing it at the project level your choice of style rules will be saved <strong>inside the project</strong> for all developers to see and use.</p>
 <p>In particular, the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> rules <a class="reference external" href="https://www.flake8rules.com/rules/W503.html">W503</a> and <a class="reference external" href="https://www.flake8rules.com/rules/W504.html">W504</a> are the exact opposite of each other, so one of them must be ignored.  Within this project I have already set up the <code class="docutils literal notranslate"><span class="pre">flake8</span></code> configuration in the <code class="docutils literal notranslate"><span class="pre">.flake8</span></code> file so it will:</p>
 <ul class="simple">
 <li><p>ignore the project configuration folders (.git, docs, etc…)</p></li>
 <li><p>Set the max line length to 120</p></li>
 <li><p>Turn off rule <code class="docutils literal notranslate"><span class="pre">W503</span></code></p></li>
-<li><p>Turn off <code class="docutils literal notranslate"><span class="pre">BLK100</span></code> (flake-black, black is an optional set of rules we are not going to be using)</p></li>
+<li><p>Turn off <code class="docutils literal notranslate"><span class="pre">BLK100</span></code> (flake-black is an optional set of rules we are not going to be using)</p></li>
 </ul>
 <div class="admonition note">
 <p class="admonition-title">Note</p>

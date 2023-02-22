@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Packaging Python code &mdash; Data Transforms 0.1.0 documentation</title>
@@ -30,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Data Transforms
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Data Transforms
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -83,7 +87,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Packaging Python code</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/packaging_python_code.md.txt" rel="nofollow"> View page source</a>
@@ -111,13 +115,17 @@
 <ul class="simple">
 <li><p><a class="reference external" href="https://flit.pypa.io/en/latest/">flit</a>: just a build system, nothing more</p></li>
 <li><p><a class="reference external" href="https://hatch.pypa.io/latest/">hatch</a>: build system and environment management</p></li>
-<li><p><a class="reference external" href="https://pdm.fming.dev/latest/">pdm</a>: build system, dependency management, dependency locking, and environment management (note: the environments are handled in the background so you don’t have to do it by hand)</p></li>
+<li><p><a class="reference external" href="https://pdm.fming.dev/latest/">pdm</a>: build system, dependency management, dependency locking, and environment management</p></li>
 <li><p><a class="reference external" href="https://python-poetry.org/docs">poetry</a>: build system, dependency management, dependency locking, and environment management (note: not <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> compliant, but it is on their long-term <a class="reference external" href="https://github.com/python-poetry/roadmap/issues/3">feature road map</a>)</p></li>
 </ul>
 <p>Each of these build systems have different workflows when managing your python package, it can be useful to try some of them out and see what one fits your project best.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
-<p>Python’s packaging landscape is currently (Summer 2022) in flux.  You will find many out of date tutorials around making a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and/or <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> instead of/in addition to the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.  As of <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> (approved in 2021), the method outlined in these notes is the “approved python” way of making a package going forward.  As of <code class="docutils literal notranslate"><span class="pre">pip</span></code> version 22.1.2 this new way of packaging is fully supported.</p>
+<p>Python’s packaging landscape is currently (Winter 2023) in flux.  You will find many out of date tutorials around making a <code class="docutils literal notranslate"><span class="pre">setup.py</span></code> and/or <code class="docutils literal notranslate"><span class="pre">setup.cfg</span></code> instead of/in addition to the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>.  As of <a class="reference external" href="https://peps.python.org/pep-0621/">PEP 621</a> (approved in 2021), the method outlined in these notes is the “approved python” way of making a package going forward.  As of <code class="docutils literal notranslate"><span class="pre">pip</span></code> version 22.1.2 this new way of packaging is fully supported.</p>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>What about Conda?  Technically Conda is a <em>system</em> package manager that includes a python package manager inside, this makes is easier to declare dependencies from other programming languages such as C and Fortran.  Because of this Conda only provides built packages against specific system architectures (no source distributions).  It split of from standard python before Python wheels were defined and as a result has a very different way of defining a python package’s metadata.  We will not be covering this topic in this workshop and will rather stick with the current python standard.</p>
 </div>
 </section>
 <section id="the-source-code-structure">
@@ -131,19 +139,20 @@
 │       ├── __init__.py
 │       └── test_angle_metric.py (test file)
 ├── LICENSE (make sure you license your code)
-├── README.md (shown on the github page)
-└── pyproject.toml (contains package metadata and dependencies)
+├── README.md (shown on the github landing page)
+├── pyproject.toml (contains package metadata and dependencies)
+└── docs (folder with documentation files)
 </pre></div>
 </div>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.  The top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> typically also stores the package <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">__init__.py</span></code>: A python package treats every folder as a class with this file as the initialization function, useful for creating a top level namespace for all the functions contained in the folder.  The top level <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> typically stores the package’s <code class="docutils literal notranslate"><span class="pre">__version__</span></code> variable.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">LICENSE</span></code>: You should choose a license for your code. <a class="reference external" href="https://choosealicense.com/">Choose A License</a> is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the <a class="reference external" href="https://choosealicense.com/licenses/mit/">MIT license</a> and <a class="reference external" href="https://choosealicense.com/licenses/apache-2.0/">Apache 2.0 license</a>.</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code>: This file tells python how to install your code, what dependencies to install, and various development configuration options.  You can use <code class="docutils literal notranslate"><span class="pre">flit</span> <span class="pre">init</span></code> to help build this file or just write it by hand.</p></li>
 </ul>
 </section>
 <section id="setting-dependency-versions">
 <h2>Setting dependency versions<a class="headerlink" href="#setting-dependency-versions" title="Permalink to this heading"></a></h2>
-<p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> are pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> or the lock file created by your build tool) is used to pin down <strong>exact</strong> package versions when reproducibility is important (e.g. all developers wanting to have the same versions of all dependencies installed or keeping a record of the package versions installed when a paper was published using the code).</p>
+<p>To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> are unpinned or pinned as <strong>ranges</strong> to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code> or a lock file created by your build tool) is used to pin down <strong>exact</strong> package versions when reproducibility is important (e.g. when you want all the developers to have the same versions of dependencies installed, keeping a record of the package versions installed when a paper was published using the code, or ensuring web apps deploy with the same versions used to run the tests).</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Most python packages use <a class="reference external" href="https://semver.org/">semantic versioning</a>.  This means the version numbers are set as MAJOR.MINOR.PATCH</p>
@@ -163,15 +172,11 @@
 </ul>
 </li>
 </ul>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>Related to the current changing landscape of Python packaging the packaging method in this workshop is <a class="reference external" href="https://github.com/dependabot/dependabot-core/issues/3290">not yet supported</a> by <code class="docutils literal notranslate"><span class="pre">dependabot</span></code>.  Hopefully it will be updated soon.  For now I have left the <code class="docutils literal notranslate"><span class="pre">dependabot</span></code> setup on this repository to show what it will look like once it is working again.  Dependabot currently works when dependencies are defined in <code class="docutils literal notranslate"><span class="pre">requirements.txt</span></code>, the old <code class="docutils literal notranslate"><span class="pre">setup.py</span></code>, or using <code class="docutils literal notranslate"><span class="pre">poetry</span></code>s version of a <code class="docutils literal notranslate"><span class="pre">pyporject.toml</span></code> file.</p>
-</div>
 </section>
 <section id="installing-your-package-locally">
 <h2>Installing your package locally<a class="headerlink" href="#installing-your-package-locally" title="Permalink to this heading"></a></h2>
 <p>When you install a python package it will typically involve copying the python files to your <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> directory.  Running <code class="docutils literal notranslate"><span class="pre">pip</span> <span class="pre">install</span> <span class="pre">.[dev]</span></code> in the top level directory (same folder as the <code class="docutils literal notranslate"><span class="pre">pyproject.toml</span></code> file) will do just this.  If you are actively developing your code and want to test out your latest changes you would need to reinstall the code with every change, this can become tedious.</p>
-<p>To help developers, <code class="docutils literal notranslate"><span class="pre">pip</span></code> also has the ability to install a package in “edit” mode, this creates a symbolic link in <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> that points to your source code, that way change can be seen without needing to reinstall the code.</p>
+<p>To help developers, <code class="docutils literal notranslate"><span class="pre">pip</span></code> also has the ability to install a package in “edit” mode, this creates a symbolic link in <code class="docutils literal notranslate"><span class="pre">site-packages</span></code> that points to your source code, that way change can be seen without needing to reinstall the code (but you will still need to re-start the python interpreter to see code changes).</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>-e<span class="w"> </span>.<span class="o">[</span>dev<span class="o">]</span>
 </pre></div>
 </div>

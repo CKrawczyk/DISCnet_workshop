@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Documenting Python code &mdash; Data Transforms 0.1.0 documentation</title>
@@ -30,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Data Transforms
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Data Transforms
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -60,6 +64,7 @@
 <li class="toctree-l3"><a class="reference internal" href="#building-the-docs">Building the docs</a></li>
 </ul>
 </li>
+<li class="toctree-l2"><a class="reference internal" href="#tutorial-driven-development">Tutorial Driven Development</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="test_driven_development.html">Test driven development</a></li>
@@ -82,7 +87,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Documenting Python code</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/writing_documentation.md.txt" rel="nofollow"> View page source</a>
@@ -95,14 +100,14 @@
              
   <section id="documenting-python-code">
 <h1>Documenting Python code<a class="headerlink" href="#documenting-python-code" title="Permalink to this heading"></a></h1>
-<p>When someone unfamiliar with your code first wants to use your code, the first place they will look is you documentation.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
+<p>When someone new is using your code for hte first time they will likely want to read your documentation to see how the code works.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
 <p>To help ensure that the source code and the documentation don’t get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a “triple quote string”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Return the sum of the two inputs&#39;&#39;&#39;</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
 </div>
-<p>Or a more explicit docstring (using <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#style-guide">numpy’s style guide</a>):</p>
+<p>Or a more explicit docstring (using <a class="reference external" href="https://numpydoc.readthedocs.io/en/latest/format.html#style-guide">numpy’s documentation style guide</a>):</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;Return the sum of the two inputs</span>
 
@@ -121,22 +126,26 @@
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>
 </pre></div>
 </div>
-<p>In addition to the API documentation from the docstrings you should also provide tutorials on how to use you code (python notebooks work great for this kind of documentation).  You can also provide additional information in markdown format (like these notes you are reading now).</p>
+<p>In addition to the API documentation from the docstrings you should also provide tutorials on how to use your code.  Python notebooks work great for this kind of documentation.  You can also provide additional information in markdown files (like these notes you are reading now).</p>
 <section id="sphinx">
 <h2>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this heading"></a></h2>
 <p>Once you have written your docs you need a way to collect all of it into a single place, typically a web site.  The most common way to do this in python is to use the <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> package.  The setup for Sphinx can be a bit involved, but once set up it “just works.”</p>
 <section id="config">
 <h3>Config<a class="headerlink" href="#config" title="Permalink to this heading"></a></h3>
 <p>Sphinx has already been set up on this project, but while I was doing it I took notes about every step.  To setup Sphinx on this project I used the following commands:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>pip<span class="w"> </span>install<span class="w"> </span>sphinx,<span class="w"> </span>myst-nb,<span class="w"> </span>sphinx_rtd_theme
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install sphinx and a few add-ons into the env</span>
+pip<span class="w"> </span>install<span class="w"> </span>sphinx,<span class="w"> </span>myst-nb,<span class="w"> </span>sphinx_rtd_theme
 
+<span class="c1"># navigate into the repository</span>
 <span class="nb">cd</span><span class="w"> </span>DISCnet_workshop
+<span class="c1"># make a new folder to hold the documentation</span>
 mkdir<span class="w"> </span>docs
 <span class="nb">cd</span><span class="w"> </span>docs
+<span class="c1"># set up sphinx</span>
 sphinx-quickstart
 </pre></div>
 </div>
-<p>with the following options:</p>
+<p>I used the following quickstart options:</p>
 <ul class="simple">
 <li><p>Separate source and build directories (y/n) [n]: y</p></li>
 <li><p>Project name: Data Transforms</p></li>
@@ -144,13 +153,18 @@ sphinx-quickstart
 <li><p>Project release []: 0.1.0</p></li>
 <li><p>Project language [en]: en</p></li>
 </ul>
-<p>The final part the setup is adjusting the <code class="docutils literal notranslate"><span class="pre">docs/source/conf.py</span></code> file to tell it where our source package lives:</p>
+<p>The final part the setup is adjusting the <code class="docutils literal notranslate"><span class="pre">docs/source/conf.py</span></code> file to:</p>
+<ol class="arabic simple">
+<li><p>tell it where our source package lives:</p></li>
+</ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="n">sys</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">abspath</span><span class="p">(</span><span class="s1">&#39;../..&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>Tell Sphinx what extensions to use:</p>
+<ol class="arabic simple" start="2">
+<li><p>Tell Sphinx what extensions to use:</p></li>
+</ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">extensions</span> <span class="o">=</span> <span class="p">[</span>
     <span class="s1">&#39;sphinx.ext.autodoc&#39;</span><span class="p">,</span>  <span class="c1"># auto find doc strings in source code</span>
     <span class="s1">&#39;sphinx.ext.napoleon&#39;</span><span class="p">,</span>  <span class="c1"># numpy style docstrings</span>
@@ -173,7 +187,9 @@ sphinx-quickstart
 <span class="p">]</span>
 </pre></div>
 </div>
-<p>And change the theme:</p>
+<ol class="arabic simple" start="3">
+<li><p>And change the theme:</p></li>
+</ol>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">html_theme</span> <span class="o">=</span> <span class="s1">&#39;sphinx_rtd_theme&#39;</span>
 </pre></div>
 </div>
@@ -208,6 +224,7 @@ sphinx-quickstart
    <span class="nc">:caption:</span> Setting the Stage
 
    introduction
+   schedule
    the_task
 
 <span class="p">..</span> <span class="ow">toctree</span><span class="p">::</span>
@@ -258,6 +275,11 @@ make<span class="w"> </span>html
 </pre></div>
 </div>
 </section>
+</section>
+<section id="tutorial-driven-development">
+<h2>Tutorial Driven Development<a class="headerlink" href="#tutorial-driven-development" title="Permalink to this heading"></a></h2>
+<p>It is quite common in fast moving projects for the documentation and tutorials to become out of date with the code.  To try and combat this it can be helpful to adapt to a tutorial driven workflow.  In this kind of workflow you sit down and write the full tutorial <strong>first</strong> and only once it is finished do you updated the code to match the new tutorial.  This ensure that the tutorial always matches the current code and helps you keep in mind how the code is intended to be used.</p>
+<p>This method works best when you can involve some of the people who will be using your code in the process of making the tutorials.  You can get rapid feedback about the user experience and use that to better inform you about the best way to structure the code.  These tutorials can also inform you of various test cases you can create for your code and works well with test driven development as well (more on this in the next section).</p>
 </section>
 </section>
 

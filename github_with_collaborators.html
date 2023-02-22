@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using GitHub with collaborators &mdash; Data Transforms 0.1.0 documentation</title>
@@ -30,11 +30,15 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> Data Transforms
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            Data Transforms
           </a>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -89,7 +93,7 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a></li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
       <li class="breadcrumb-item active">Using GitHub with collaborators</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/github_with_collaborators.md.txt" rel="nofollow"> View page source</a>
@@ -108,11 +112,6 @@
 <h2>Basic concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h2>
 <p>While many of you might already be familiar with Git, let’s make sure we are all on the same page and introduce some of the basic concepts:</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 33%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Name</p></th>
 <th class="head"><p>Description</p></th>
@@ -136,21 +135,21 @@
 <td></td>
 </tr>
 <tr class="row-odd"><td><p>Pull from remote</p></td>
-<td><p>“Pulling” the changes on the remote to you local</p></td>
+<td><p>“Pulling” the changes from the remote to you local repository</p></td>
 <td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>pull
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-even"><td><p>Push to remote</p></td>
-<td><p>“Pushing” local change to the remote</p></td>
+<td><p>“Pushing” changes from the local to the remote repository</p></td>
 <td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>push
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>Staging changes</p></td>
-<td><p>Adding files to be in the next commit</p></td>
+<td><p>Adding files to be included in the next commit</p></td>
 <td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>add<span class="w"> </span>&lt;file<span class="w"> </span>name&gt;
 </pre></div>
 </div>
@@ -177,14 +176,15 @@ git<span class="w"> </span>branch
 </tr>
 <tr class="row-even"><td><p>Merge</p></td>
 <td><p>Merging two branches together</p></td>
-<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
+<td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># merge &lt;branch name&gt; into the main branch</span>
+git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>merge<span class="w"> </span>&lt;branch<span class="w"> </span>name&gt;
 </pre></div>
 </div>
 </td>
 </tr>
 <tr class="row-odd"><td><p>Tag</p></td>
-<td><p>Naming a commit to make it easier to find in the future</p></td>
+<td><p>Naming a commit to make it easier to find in the future (typically new code release versions are tagged)</p></td>
 <td><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>tag<span class="w"> </span>&lt;tag<span class="w"> </span>name&gt;
 </pre></div>
 </div>
@@ -209,11 +209,11 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 <section id="github-vs-gitlab-vs-bitbucket">
 <h3>GitHub vs GitLab vs Bitbucket<a class="headerlink" href="#github-vs-gitlab-vs-bitbucket" title="Permalink to this heading"></a></h3>
 <p>While we are using GitHub for this workshop, it is not the only option for hosting remote git repositories.  The other major options are <a class="reference external" href="https://about.gitlab.com/">GitLab</a> and <a class="reference external" href="https://bitbucket.org/product/">Bitbucket</a>.  For the most part all there platforms offer the same services but they sometimes use different terms.  Below is a table for converting between the terms used by each platform:</p>
-<table class="colwidths-auto docutils align-default">
+<table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="text-left head"><p>GitHub</p></th>
-<th class="text-left head"><p>GitLab</p></th>
-<th class="text-left head"><p>Bitbucket</p></th>
+<tr class="row-odd"><th class="head text-left"><p>GitHub</p></th>
+<th class="head text-left"><p>GitLab</p></th>
+<th class="head text-left"><p>Bitbucket</p></th>
 </tr>
 </thead>
 <tbody>
@@ -256,37 +256,42 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 <li><p>assign a reviewer for your PR (it is your job to ask someone to look at your code, don’t expect the PR to “just be seen” by other developers)</p></li>
 <li><p>address any feedback left by the reviewer</p></li>
 <li><p>once approved <strong>rebase</strong> your changes onto the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> branch to ensure there are no code conflicts
-or if you want to clean up your git history (e.g. merge two commit together, change your commit messages, etc…) rebase in interactive mode (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span> <span class="pre">main</span></code>)</p></li>
+or if you want to clean up your git history rebase in interactive mode (<code class="docutils literal notranslate"><span class="pre">git</span> <span class="pre">rebase</span> <span class="pre">-i</span> <span class="pre">main</span></code>)</p></li>
 <li><p>push the rebased code back to the remote</p></li>
 <li><p>merge to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch using the big green button</p></li>
 <li><p>delete the brach on the remote once the merge is finish</p></li>
 <li><p>pull the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> (with your PR merged) locally</p></li>
 <li><p>(optional) delete your local copy of the merged branch</p></li>
 </ol>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>After the rebase when you go to push to the back to the remote (step 8) you will need to use <code class="docutils literal notranslate"><span class="pre">--force-with-lease</span></code> switch.  This is needed if any of the git history is re-written during the rebase.  This switch is a slightly safer version of <code class="docutils literal notranslate"><span class="pre">--force</span></code> where it will only let you continue if you are not overwriting the work of a different developer on the same branch.  This can prevent you from accidentally deleting someone else’s work.</p>
+</div>
+<p>And these steps in code:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># get latest code on main branch</span>
 git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull
 
 <span class="c1"># make new working branch</span>
-git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>checkout<span class="w"> </span>-b<span class="w"> </span>feature/my-feature-branch
 git<span class="w"> </span>add<span class="w"> </span>my_new_file.py
 git<span class="w"> </span>commit
-git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>push<span class="w"> </span>--set-upstream<span class="w"> </span>origin<span class="w"> </span>feature/my-feature-branch
 <span class="c1"># make PR on GitHub</span>
 
 <span class="c1"># get latest changes to main and rebase</span>
 git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull
-git<span class="w"> </span>checkout<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>checkout<span class="w"> </span>feature/my-feature-branch
 git<span class="w"> </span>rebase<span class="w"> </span>main
-git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>push<span class="w"> </span>--force-with-lease<span class="w"> </span>origin<span class="w"> </span>feature/my-feature-branch
 
 <span class="c1"># after merge on GitHub update your main branch</span>
 git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull
 
 <span class="c1"># clean up</span>
-git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>my-feature-branch
+git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </span>feature/my-feature-branch
 </pre></div>
 </div>
 <p>What does this workflow achieve?</p>
@@ -360,7 +365,7 @@ merged into the repo&#39;s **default** branch.
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alphagov/styleguides/blob/master/pull-requests.md">https://github.com/alphagov/styleguides/blob/master/pull-requests.md</a></p></li>
 </ul>
-<p>Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things they reviewer should be aware of when testing your code.  If the PR is in references to an open issue on the repo this should be mentioned as well.</p>
+<p>Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things the reviewer should be aware of when testing your code.  If the PR is in reference to an open issue on the repo this should be mentioned as well.</p>
 </section>
 <section id="writing-better-code-reviews">
 <h2>Writing better code reviews<a class="headerlink" href="#writing-better-code-reviews" title="Permalink to this heading"></a></h2>
@@ -371,6 +376,8 @@ merged into the repo&#39;s **default** branch.
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>git<span class="w"> </span>checkout<span class="w"> </span>main
 git<span class="w"> </span>pull<span class="w">  </span><span class="c1"># also fetches the names of all remote branches</span>
 git<span class="w"> </span>checkout<span class="w"> </span>&lt;name<span class="w"> </span>of<span class="w"> </span>branch<span class="w"> </span>on<span class="w"> </span>remote&gt;
+<span class="c1"># or in newer versions of git</span>
+git<span class="w"> </span>switch<span class="w"> </span>&lt;name<span class="w"> </span>of<span class="w"> </span>branch<span class="w"> </span>on<span class="w"> </span>remote&gt;
 </pre></div>
 </div>
 <ol class="arabic simple" start="2">
@@ -387,7 +394,7 @@ git<span class="w"> </span>checkout<span class="w"> </span>&lt;name<span class="
 <li><p>Switch to the PRs branch and ensure the bug is fixed</p></li>
 </ul>
 </li>
-<li><p>Look over the code diff on GitHub and leave inline comments you have about any of the lines</p>
+<li><p>Look over the code diff on GitHub and leave inline comments</p>
 <ul class="simple">
 <li><p>Questions about how code works</p></li>
 <li><p>Suggestions for make the code easier to read and/or more efficient</p></li>
@@ -403,7 +410,7 @@ git<span class="w"> </span>checkout<span class="w"> </span>&lt;name<span class="
 </ul>
 </li>
 <li><p>Either approve or block (pending changes) the PR</p></li>
-<li><p>If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes asked for are finished.</p></li>
+<li><p>If approved you are done, it is the responsibility of the author(s) to merge the PR.  If not re-review when the changes you asked for are finished.</p></li>
 </ol>
 <p>Here is an example of well constructed PR and review taken from one of the Zooniverse’s repositories <a class="reference external" href="https://github.com/zooniverse/front-end-monorepo/pull/2313">https://github.com/zooniverse/front-end-monorepo/pull/2313</a>.</p>
 </section>

@@ -15,13 +15,17 @@ A build system typically comes with a command line interface (CLI) that can auto
 Common build systems are:
 - [flit](https://flit.pypa.io/en/latest/): just a build system, nothing more
 - [hatch](https://hatch.pypa.io/latest/): build system and environment management
-- [pdm](https://pdm.fming.dev/latest/): build system, dependency management, dependency locking, and environment management (note: the environments are handled in the background so you don't have to do it by hand)
+- [pdm](https://pdm.fming.dev/latest/): build system, dependency management, dependency locking, and environment management
 - [poetry](https://python-poetry.org/docs): build system, dependency management, dependency locking, and environment management (note: not [PEP 621](https://peps.python.org/pep-0621/) compliant, but it is on their long-term [feature road map](https://github.com/python-poetry/roadmap/issues/3))
 
 Each of these build systems have different workflows when managing your python package, it can be useful to try some of them out and see what one fits your project best.
 
 ```{note}
-Python's packaging landscape is currently (Summer 2022) in flux.  You will find many out of date tutorials around making a `setup.py` and/or `setup.cfg` instead of/in addition to the `pyproject.toml`.  As of [PEP 621](https://peps.python.org/pep-0621/) (approved in 2021), the method outlined in these notes is the "approved python" way of making a package going forward.  As of `pip` version 22.1.2 this new way of packaging is fully supported. 
+Python's packaging landscape is currently (Winter 2023) in flux.  You will find many out of date tutorials around making a `setup.py` and/or `setup.cfg` instead of/in addition to the `pyproject.toml`.  As of [PEP 621](https://peps.python.org/pep-0621/) (approved in 2021), the method outlined in these notes is the "approved python" way of making a package going forward.  As of `pip` version 22.1.2 this new way of packaging is fully supported. 
+```
+
+```{note}
+What about Conda?  Technically Conda is a *system* package manager that includes a python package manager inside, this makes is easier to declare dependencies from other programming languages such as C and Fortran.  Because of this Conda only provides built packages against specific system architectures (no source distributions).  It split of from standard python before Python wheels were defined and as a result has a very different way of defining a python package's metadata.  We will not be covering this topic in this workshop and will rather stick with the current python standard.
 ```
 
 ## The source code structure
@@ -36,16 +40,17 @@ DISCnet_workshop (git repository)
 │       ├── __init__.py
 │       └── test_angle_metric.py (test file)
 ├── LICENSE (make sure you license your code)
-├── README.md (shown on the github page)
-└── pyproject.toml (contains package metadata and dependencies)
+├── README.md (shown on the github landing page)
+├── pyproject.toml (contains package metadata and dependencies)
+└── docs (folder with documentation files)
 ```
 
-- `__init__.py`: A python package treats every folder as a class with this file as the initialization function, useful for pulling functions from the files and folders inside this folder into the top level namespace.  The top level `__init__.py` typically also stores the package `__version__` variable.
+- `__init__.py`: A python package treats every folder as a class with this file as the initialization function, useful for creating a top level namespace for all the functions contained in the folder.  The top level `__init__.py` typically stores the package's `__version__` variable.
 - `LICENSE`: You should choose a license for your code. [Choose A License](https://choosealicense.com/) is a good resource for figuring out what license is best for your project.  The typical ones seen for research code are the [MIT license](https://choosealicense.com/licenses/mit/) and [Apache 2.0 license](https://choosealicense.com/licenses/apache-2.0/).
 - `pyproject.toml`: This file tells python how to install your code, what dependencies to install, and various development configuration options.  You can use `flit init` to help build this file or just write it by hand.
 
 ## Setting dependency versions
-To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in `pyproject.toml` are pinned as **ranges** to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either `requirements.txt` or the lock file created by your build tool) is used to pin down **exact** package versions when reproducibility is important (e.g. all developers wanting to have the same versions of all dependencies installed or keeping a record of the package versions installed when a paper was published using the code).
+To help with code reproducibility and dependency compatibility you can should pin dependency versions to a single value or a range.  It is python convention that the dependencies in `pyproject.toml` are unpinned or pinned as **ranges** to ensure they are easy to install into existing environments and not collide with the dependencies of other packages installed.  An optional file (either `requirements.txt` or a lock file created by your build tool) is used to pin down **exact** package versions when reproducibility is important (e.g. when you want all the developers to have the same versions of dependencies installed, keeping a record of the package versions installed when a paper was published using the code, or ensuring web apps deploy with the same versions used to run the tests).
 
 ```{note}
 Most python packages use [semantic versioning](https://semver.org/).  This means the version numbers are set as MAJOR.MINOR.PATCH 
@@ -60,14 +65,10 @@ The rule of thumb I use when pinning down my packages ranges:
 - Activate [dependabot](https://github.blog/2020-06-01-keep-all-your-packages-up-to-date-with-dependabot/) on GitHub to automatically make pull requests that update the upper bound when dependencies update (this will trigger our CI to run our tests automatically and let us know if the update breaks the code)
     - If a dependency update breaks the code (typically major version updates), update the code and set the lower bound to be the latest version of the dependency
 
-```{warning}
-Related to the current changing landscape of Python packaging the packaging method in this workshop is [not yet supported](https://github.com/dependabot/dependabot-core/issues/3290) by `dependabot`.  Hopefully it will be updated soon.  For now I have left the `dependabot` setup on this repository to show what it will look like once it is working again.  Dependabot currently works when dependencies are defined in `requirements.txt`, the old `setup.py`, or using `poetry`s version of a `pyporject.toml` file.
-```
-
 ## Installing your package locally
 When you install a python package it will typically involve copying the python files to your `site-packages` directory.  Running `pip install .[dev]` in the top level directory (same folder as the `pyproject.toml` file) will do just this.  If you are actively developing your code and want to test out your latest changes you would need to reinstall the code with every change, this can become tedious.
 
-To help developers, `pip` also has the ability to install a package in "edit" mode, this creates a symbolic link in `site-packages` that points to your source code, that way change can be seen without needing to reinstall the code.
+To help developers, `pip` also has the ability to install a package in "edit" mode, this creates a symbolic link in `site-packages` that points to your source code, that way change can be seen without needing to reinstall the code (but you will still need to re-start the python interpreter to see code changes).
 
 ```bash
 pip install -e .[dev]
