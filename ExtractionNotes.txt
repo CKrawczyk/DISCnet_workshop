@@ -1,0 +1,13 @@
+Notes:
+
+In the CSV files for each task, where an answer is logically inconsistent with
+the question, or is not given, NaN is provided.
+
+Each CSV consists of the following columns:
+SubjectID and UnitId, answer(s) to task number.
+
+For the click tasks, data is presented in column of [(x,y), (x,y)....], one
+pair of x,y coordinates for each click answer for a given event.
+
+
+note: df2 just "extracts" the annotations
