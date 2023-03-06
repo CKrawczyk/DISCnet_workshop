@@ -20,6 +20,22 @@ def T0(shared_df, annotations_df):
     return new_df.rename(columns={'annotations': "Answer"})
 
 
+def T2(shared_df, annotations_df):
+    '''
+    Extract the required variables for task 2.
+    '''
+    coords=[]
+    for i in range(0,len(annotations_df)):
+        img_coords=[]
+        for j in range(0,len(annotations_df[i][2]["value"])):
+            img_coords.append((annotations_df[i][2]["value"][j]['x'],annotations_df[i][2]["value"][j]['y']))
+        coords.append([img_coords])
+    
+    new_df = pd.concat([shared_df, pd.DataFrame(coords,columns=["T2coords"])],
+                       axis=1)
+    return new_df
+
+
 # Parse file name for script.
 parser = argparse.ArgumentParser()
 parser.add_argument('--fname', help='Path to file.', required=True)
