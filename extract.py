@@ -26,7 +26,7 @@ func_dict = {"T0": T0}
 # Loop over functions
 for fi in func_dict.keys():
     # Define new array.
-    new_df = pd.concat([df[['classification_id', 'user_name']],
+    new_df = pd.concat([df[['classification_id', 'user_id', 'subject_ids']],
                         annot_df.apply(func_dict[fi])],
                        axis=1)
     new_df.to_csv(f"{fi}.csv")
