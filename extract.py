@@ -15,8 +15,13 @@ def T0(shared_df, annotations_df):
     '''
     Extract the required variables for task 0.
     '''
-    new_df = pd.concat([shared_df, annotations_df.apply(lambda x: x[0]['value'])],
-                       axis=1)
+    new_df = pd.concat(
+        [   
+            shared_df,
+            annotations_df.apply(lambda x: x[0]['value']) # Selects annotaions for T0 only.
+        ],
+        axis=1
+    )
     return new_df.rename(columns={'annotations': "Answer"})
 
 
