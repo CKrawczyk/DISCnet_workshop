@@ -10,4 +10,4 @@ For the click tasks, data is presented in column of [(x,y), (x,y)....], one
 pair of x,y coordinates for each click answer for a given event.
 
 
-note: df2 just "extracts" the annotations
+note: df2 just "extracts" the annotations.
