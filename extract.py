@@ -1,3 +1,11 @@
+'''
+Executable data extraction script.
+
+Usage:
+
+python extract.py --fname <abs_path_to_file>
+'''
+
 import pandas as pd
 import json
 import argparse
