@@ -19,7 +19,6 @@ def T0(shared_df, annotations_df):
                        axis=1)
     return new_df.rename(columns={'annotations': "Answer"})
 
-
 def discnet_t3(shared_df):
     # Create empty array
     df_t3 = np.zeros((len(shared_df),3))
