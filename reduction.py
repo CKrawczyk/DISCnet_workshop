@@ -22,18 +22,21 @@ def import_img_data(fn,img_num):
     -------
     img_id: int
             Image ID
+    n_evals: int
+             Number of unique users that have evaluated the task for the image
     img_df: DataFrame
             DataFrame for image
     '''
 
     df = pd.read_csv(fn)
-    subject_id = df['subject_id']
+    subject_id = df['subject_ids']
     ids = subject_id.unique()
     ids = sorted(ids)
     img_id = ids[img_num]
     img_df = df.loc[subject_id == img_id]
+    n_evals = len(df['user_id'].unique())
     
-    return img_id, img_df
+    return img_id, n_evals, img_df
 
 # evaluate_task
 def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
