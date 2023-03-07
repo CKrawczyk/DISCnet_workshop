@@ -11,7 +11,7 @@ class TestExtraxtT2(unittest.TestCase):
         shared_df_data = {'classification_id': [0],
                            'user_id': [0],
                            'subject_ids': [0]
-                        }
+                         }
         shared_df = pd.DataFrame(data=shared_df_data)
 
         annotated_df_data = {'annotations': ['[{"task":"T0","task_label":"What is the cat doing?",\
@@ -35,8 +35,11 @@ class TestExtraxtT2(unittest.TestCase):
                                              "tool_label":"Ear"}]}]']}
         annotated_df = pd.DataFrame(data=annotated_df_data)['annotations'].apply(json.loads)
 
-        expected_df_data = {'classification_id': [0], 'user_id': [0], 'subject_ids': [0],\
-                             'T2_coords': [[(418.25, 167.96665954589844), (392.25, 164.96665954589844)]]}
+        expected_df_data = {'classification_id': [0],
+                            'user_id': [0],
+                            'subject_ids': [0],
+                            'T2_coords': [[(418.25, 167.96665954589844), (392.25, 164.96665954589844)]]
+                           }
         expected_df = pd.DataFrame(data=expected_df_data)
 
         result_df = T2(shared_df, annotated_df)
