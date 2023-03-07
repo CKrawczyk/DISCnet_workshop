@@ -120,8 +120,8 @@ def T4(shared_df, annotations_df):
         [
             shared_df,
             pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])
-        ]
-        , axis=1)
+        ],
+        axis=1)
     return new_df
 
 
