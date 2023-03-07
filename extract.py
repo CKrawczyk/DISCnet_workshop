@@ -1,5 +1,5 @@
 '''
-Executable data extraction script.
+Does stuff.
 
 Usage:
 
@@ -27,12 +27,26 @@ def T0(shared_df, annotations_df):
 
 def T2(shared_df, annotations_df):
     '''
-    Extract the required variables for task 2.
+    Extract the required variables for task 2. i.e the x and y coordinates of the eye locations.
+    Parameters
+    ----------
+    shared_df :  DataFrame
+        DataFrame containing only 'classification_id', 'user_id', and 'subject_ids'.
+    annotations_df : DataFrame
+        DataFrame containing relevent data.
+
+    Returns
+    -------
+    DataFrame
+        DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and lists of tuples of 
+        x and y coordinates.
+        
     '''
     coords = []
     for i in range(0, len(annotations_df)):
         img_coords = []
         for j in range(0, len(annotations_df[i][2]["value"])):
+            #Extracts the x and y coordinates from the data frame.
             img_coords.append((annotations_df[i][2]["value"][j]['x'], annotations_df[i][2]["value"][j]['y']))
         coords.append([img_coords])
     new_df = pd.concat([shared_df, pd.DataFrame(coords, columns=["T2coords"])],
