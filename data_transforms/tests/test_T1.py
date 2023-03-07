@@ -12,12 +12,12 @@ class TestExtractT1(unittest.TestCase):
                 ["id2_1", "id2_2", "id2_3"]
             ],
             columns=["id1", "id2", "id3"])
-        df_in_annotated = pd.DataFrame([[[{}, {"value": 2}]], [[{}, {"value": "hungry"}]]], columns="annotations")
+        df_in_annotated = pd.DataFrame([[[{}, {"value": 2}]], [[{}, {"value": "hungry"}]]], columns=[]"annotations"])
 
         df_expected = pd.concat(
             [
                 df_in_shared,
-                pd.DataFrame([[2], [np.nan]], columns="number of cats")
+                pd.DataFrame([[2], [np.nan]], columns=[]"Number of cats"])
             ],
             axis=1
         )
