@@ -27,6 +27,6 @@ class TestT4(unittest.TestCase):
         expected = [(300.25, 97.96665954589844), (406.25, 74.96665954589844)]
 
         result = T4(a, b)
-        result = result["coords"].iloc[13]
+        result = result["coords"].iloc[12]
 
         self.assertEqual(result, expected)
