@@ -3,10 +3,10 @@
 import pandas as pd
 import numpy as np
 import sklearn
-# summary_image of image function that tells for a specific function what the evaluation provides 
-# summary_all_images()
 
-# count_user_evaluations
+# summary_all_images() 
+
+# count_user_evaluations 
 
 def import_img_data(fn,img_num):
     '''Read CSV file and create DataFrame for specific image
@@ -38,7 +38,6 @@ def import_img_data(fn,img_num):
     
     return img_id, n_evals, img_df
 
-# evaluate_task
 def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
     ''' A function frame for task evaluation, which checks if the threshold of task evaluations is passed. It further defines what the output of task evaluations must be.
 
@@ -109,13 +108,10 @@ def task1(img_df):
 
     return consensus, consensus_reached
 
-# clustering function
 
-# compute_mean_and_std
 
 # get_coordinates
 
-# task 2    
 def task2(img_df):
     ''' A function that evaluates task2 assumming that the minimum threshold of evaluations is met.
 
@@ -125,36 +121,39 @@ def task2(img_df):
              Image Dataframe
     Returns
     _______
-    consensus : Task specific
-                Different tasks will return different consensus summary statistics
+    center_list : list
+                coordinates (<x>,<y>) for the N centers of the N clusters found by DBSCAN,
+                computed as mean of the x_i, y_i points in each cluster
+    center_list_std : list
+                uncertainties over the defined centers (center_list), defined as the std of the 
+                the x_i, y_i points in each cluster
+  
     consensus_flag : bool
                 Flag that returns true or false depending on wether a consensus is reached or not
-  
-    aux_info : Task specific
-                Additional information relating to the task
+
     '''
 
     coordinates = get_coordinates(img_df)
     eps = 0.5
     min_samples = 5
 
-    # read for imgid the x,y coordinates out
-    # give them to the clustering function
-    # return consensus ( i.e. mean positions and maybe their uncertainty), consensus_reached flag (True/False), auxilary info for the coding 
     
     clustering = sklearn.cluster.DBSCAN(eps, min_samples).fit(coordinates)
     
     center_list = np.zeros(shape = clustering.n_features_in_)
-    
+    center_list_std = np.zeros(shape = clustering.n_features_in_)
+
+    # adding the uncertainties
     for i in range(clustering.n_features_in_):
         
         center_list[i] = np.mean(coordinates[clustering.labels_==i], axis = 0)
+        center_list_std[i] = np.std(coordinates[clustering.labels_==i], axis = 0)
     
     consensus_flag = 1
     if clustering.n_features_in_ == 0:
   	consensus_flag = 0
 
-    return center_list, consensus_flag, 
+    return center_list, center_list_std, consensus_flag
 
  
 # task 3
