@@ -16,7 +16,6 @@ class TestT3(unittest.TestCase):
     def test_T3(self):
         '''Test if T3 works'''
 
-        shared_df = pd.dataframe
         new_df = T3(shared_df, annot_df)
         result = [
             new_df['classification_id'][0],
