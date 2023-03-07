@@ -68,7 +68,10 @@ annot_df = df['annotations'].apply(json.loads)
 shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
 # Define dictionary of functions to apply.
-func_dict = {"T0": T0, "T2": T2}
+func_dict = {
+    "T0": T0, 
+    "T2": T2
+}
 
 # Loop over functions
 for fi in func_dict.keys():
