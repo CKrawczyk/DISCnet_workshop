@@ -135,7 +135,7 @@ def T4(shared_df, annotations_df):
             pd.DataFrame(widths, columns=["widths"])
         ],
         axis=1)
-    
+
     return new_df
 
 
