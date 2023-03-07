@@ -6,7 +6,7 @@ import json
 
 class TestT0(unittest.TestCase):
 
-    test_df = pd.read_csv("many-tools-classifications.csv")
+    test_df = pd.read_csv("data_transforms/tests/many-tools-classifications.csv")
     test_annot = test_df['annotations'].apply(json.loads)
     test_shared = test_df[[
         'classification_id',
