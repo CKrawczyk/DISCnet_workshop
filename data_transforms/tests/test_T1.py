@@ -17,7 +17,7 @@ class TestExtractT1(unittest.TestCase):
         df_expected = pd.concat(
             [
                 df_in_shared,
-                pd.DataFrame([[2], [np.nan]], columns = "number of cats")
+                pd.DataFrame([[2], [np.nan]], columns="number of cats")
             ],
             axis=1
         )
