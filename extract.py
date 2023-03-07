@@ -9,6 +9,7 @@ python extract.py --fname <abs_path_to_file>
 import pandas as pd
 import json
 import argparse
+import numpy as np
 
 
 def T0(shared_df, annotations_df):
@@ -33,6 +34,36 @@ def T0(shared_df, annotations_df):
         axis=1
     )
     return new_df.rename(columns={'annotations': "Answer"})
+
+
+def T1(shared_df, annotations_df):
+    '''
+    Extract answer to the question "How many cats are in the image?" for task 1.
+     Args:
+         shared_df (pandas.Dataframe): ``pandas.Dataframe`` that contains quantities that will
+          be shared across all ``.csv`` files.
+         annotations_df (pandas.Dataframe): ``ps.Series`` with ``annotations`` for
+          each classification.
+     Returns:
+         new_df (pandas.Dataframe):  ``pandas.Dataframe`` with ``shared_df``
+          quantities and answer to "How many cats are in the image?".
+          Answers which cannot be converted to integers are stored as numpy nan values instead.
+    '''
+
+    def is_number(x):
+        try:
+            return int(x)
+        except ValueError:
+            return np.nan
+
+    new_df = pd.concat(
+        [
+            shared_df,
+            annotations_df.apply(lambda x: is_number(x[1]['value']))  # Selects annotations for T1 only.
+        ],
+        axis=1
+    )
+    return new_df.rename(columns={'annotations': "Number of cats"})
 
 
 def T2(shared_df, annotations_df):
