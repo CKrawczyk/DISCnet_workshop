@@ -129,9 +129,10 @@ def task2(img_df):
                 Different tasks will return different consensus summary statistics
     consensus_flag : bool
                 Flag that returns true or false depending on wether a consensus is reached or not
-  
-    aux_info : Task specific
-                Additional information relating to the task
+    clustering.labels_ : List
+   	                List of the central points (x,y) of each cluster found in task2
+    clustering.n_features_in_ : Integer
+                               The number of clusters found in task2
     '''
 
     coordinates = get_coordinates(img_df)
@@ -174,6 +175,8 @@ def task3(radius, clustering.labels_, clustering.n_features_in_):
                          List of the mean radius of each cluster
    consensus_flag : bool
                     Flag that returns true or false depending on wether a consensus is reached or not
+   aux_info : Task specific
+                Additional information relating to the task
    '''
                                
 
@@ -191,7 +194,7 @@ def task3(radius, clustering.labels_, clustering.n_features_in_):
     if clustering.n_features_in_ == 0:
   	consensus_flag = 0
     	
-    return cluster_radius_list, consensus_flag
+    return cluster_radius_list, consensus_flag, aux_info
 
 
 # task 4
