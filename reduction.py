@@ -159,9 +159,10 @@ def task2(img_df):
                 Different tasks will return different consensus summary statistics
     consensus_flag : bool
                 Flag that returns true or false depending on wether a consensus is reached or not
-  
-    aux_info : Task specific
-                Additional information relating to the task
+    clustering.labels_ : List
+   	                List of the central points (x,y) of each cluster found in task2
+    clustering.n_features_in_ : Integer
+                               The number of clusters found in task2
     '''
 
     coordinates = get_coordinates(img_df)
@@ -184,13 +185,45 @@ def task2(img_df):
     if clustering.n_features_in_ == 0:
   	consensus_flag = 0
 
-    return center_list, consensus_flag, None
+    return center_list, consensus_flag, clustering.labels_, clustering.n_features_in_
 
- 
-# task 3
-def task3(img_df):
-    #dostuff
-    return consensus, consensus_reached, aux_info
+# task 3   
+def task3(radius, clustering.labels_, clustering.n_features_in_):
+   ''' A function that evaluates task3, using the task2 function to implement clustering labels.
+   
+   Parameters
+   __________
+   radius : Dataframe
+   	    Radius Dataframe
+   clustering.labels_ : List
+   	                List of the central points (x,y) of each cluster found in task2
+   clustering.n_features_in_ : Integer
+                               The number of clusters found in task2
+   Returns
+   _______
+   cluster_radius_list : List
+                         List of the mean radius of each cluster
+   consensus_flag : bool
+                    Flag that returns true or false depending on wether a consensus is reached or not
+   aux_info : Task specific
+                Additional information relating to the task
+   '''
+
+    # Reads the list of central points of the clusters.
+    # Reads in all of the radii associated with each specific cluster and find the mean.
+    # also checks consensus if no clusters found.
+    
+    cluster_radius_list = np.zeros(shape = clustering.n_features_in_)
+    
+    for i in range(clustering.n_features_in_):
+    
+    	cluster_radius_list[i] = np.mean(radius[clustering.labels_==i])
+    	
+    consensus_flag = 1
+    if clustering.n_features_in_ == 0:
+  	consensus_flag = 0
+    	
+    return cluster_radius_list, consensus_flag, aux_info
 
 
 # task 4
