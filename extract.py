@@ -117,6 +117,41 @@ def T4(shared_df, annotations_df):
         widths.append([img_widths])
 
     new_df = pd.concat([shared_df, pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])],
+
+
+def T3(shared_df, annotations_df):
+
+    '''
+    Extract the required variables for task 3. i.e the radius of the nose x and y coordinates of the nose.
+    Parameters
+    ----------
+    shared_df :  DataFrame
+        DataFrame containing only 'classification_id', 'user_id', and 'subject_ids'.
+    annotations_df : DataFrame
+        DataFrame containing relevent data.
+    Returns
+    -------
+    DataFrame
+        DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and radius, x, y coordinates
+        of nose.
+    '''
+    # Create empty array
+    df_t3 = np.zeros((len(shared_df), 3))
+    # Add r, x, y to array, ignore empty lines
+    for i in range(len(shared_df)):
+        try:
+            df_t3[i, 0] = shared_df.iloc[i][3]['value'][0]['r']
+            df_t3[i, 1] = shared_df.iloc[i][3]['value'][0]['x']
+            df_t3[i, 2] = shared_df.iloc[i][3]['value'][0]['y']
+        except Exception: 
+            pass
+    # Mark empty lines as Nan
+    df_t3[df_t3 == 0] = np.nan
+    # Transfer into Pd dataframe 
+    d_pre = {'r': df_t3[:, 0], 'x': df_t3[:, 1], 'y': df_t3[:, 2]}
+    df_t3_pre = pd.DataFrame(data=d_pre)
+
+    new_df = pd.concat([shared_df, df_t3_pre],
                        axis=1)
     return new_df
 
@@ -138,7 +173,8 @@ shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 func_dict = {
     "T0": T0,
     "T2": T2,
-    "T4": T4
+    "T4": T4,
+    "T3": T3,
 }
 
 # Loop over functions
