@@ -38,7 +38,6 @@ def import_img_data(fn,img_num):
     
     return img_id, n_evals, img_df
 
-
 def run_all_tasks():
 
     for n in range(0,5):
@@ -201,3 +200,44 @@ def task4(img_df):
 
 # unittests in a separate file / or here ?
 
+def get_coords(img_df, radius=False, hw=False):
+    '''Function to separate coordinate values for each subject_id, depending on which task the coords are required for
+        Parameters
+    ----------
+    img_df : pd.DataFrame 
+        df for subject_id containing coords
+    radius : bool (default: False)
+        if True, return radius values for each classification, only relevant for T3
+    hw : bool (default: False)
+        if True, return height and width values for each classification, only relevant for T4  
+
+    Returns
+    -------
+    xy : pd.DataFrame Column
+        df column, with rows of tuples containing x-y coords for each classification for subject_id
+    r : pd.DataFrame Column
+        (only returned if radius=True) df column, with rows of tuples containing radius coords for each classification 
+        for subject_id, only relevant for T3
+    xyhw : N x 4 array 
+        (only returned if hw=True) array whereby each row contains x, y, height, width values for each sub-classifcation 
+        for subject_id which is then used for T4 clustering input, only relevant for T4
+    
+    '''
+
+    xy = img_df['xy']
+    if radius:
+        r = img_df['radius']
+    if hw:
+        height = img_df['height']
+        width = img_df['width']
+        xyhw = []
+        for i in range(len(height)):
+            for j in range(len(height[i])):
+                xyhw.append([xy[i][j][0], xy[i][j][1], height[i][j], width[i][j]])
+
+    if radius:
+        return xy, r
+    elif hw:
+        return np.array(xyhw)
+    else:
+        return xy
