@@ -14,7 +14,17 @@ import numpy as np
 
 def T0(shared_df, annotations_df):
     '''
-    Extract the required variables for task 0.
+    Extract answer to the question "What is the cat doing?" for task 0.
+
+    Args:
+        shared_df (pandas.Dataframe): ``pandas.Dataframe`` that contains quantities that will
+         be shared across all ``.csv`` files.
+        annotations_df (pandas.Dataframe): ``ps.Series`` with ``annotations for
+         each classification.
+
+    Returns:
+        new_df (pandas.Dataframe):  ``pandas.Dataframe`` with ``shared_df``
+         quantities and answer to "What is the cat doing?".
     '''
     new_df = pd.concat(
         [
