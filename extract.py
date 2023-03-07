@@ -113,7 +113,7 @@ def T4(shared_df, annotations_df):
 
         coords.append([img_coords])
         heights.append([img_heights])
-        widths.append([img_widthsm])
+        widths.append([img_widths])
 
     new_df = pd.concat([shared_df, pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])],
                        axis=1)
