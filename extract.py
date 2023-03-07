@@ -28,7 +28,16 @@ def T0(shared_df, annotations_df):
 
 def T1(shared_df, annotations_df):
     '''
-    Extract the required variables for task 1.
+    Extract answer to the question "How many cats are in the image?" for task 1.
+     Args:
+         shared_df (pandas.Dataframe): ``pandas.Dataframe`` that contains quantities that will
+          be shared across all ``.csv`` files.
+         annotations_df (pandas.Dataframe): ``ps.Series`` with ``annotations`` for
+          each classification.
+     Returns:
+         new_df (pandas.Dataframe):  ``pandas.Dataframe`` with ``shared_df``
+          quantities and answer to "How many cats are in the image?".
+          Answers which cannot be converted to integers are stored as numpy nan values instead.
     '''
 
     def is_number(x):
@@ -44,7 +53,7 @@ def T1(shared_df, annotations_df):
         ],
         axis=1
     )
-    return new_df.rename(columns={'annotations': "Answer"})
+    return new_df.rename(columns={'annotations': "Number of cats"})
 
 
 def T2(shared_df, annotations_df):
