@@ -22,7 +22,7 @@ def task4(rectangles):
         y = np.mean(recs[:,1])
         w = np.mean(recs[:,2])
         h = np.mean(recs[:,3])
-        mean_recs = np.append(mean_recs, np.array([[x,y,w,h]]), axis=0)
+        mean_recs = np.append(mean_recs, np.array([x,y,w,h]), axis=0)
         print(f"  Mean Values:")
         print(f"  ({x}, {y}, w={w}, h={h}")
         
