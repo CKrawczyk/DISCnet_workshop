@@ -36,7 +36,7 @@ def T1(shared_df, annotations_df):
             return int(x)
         except ValueError:
             return np.nan
-    
+
     new_df = pd.concat(
         [
             shared_df,
