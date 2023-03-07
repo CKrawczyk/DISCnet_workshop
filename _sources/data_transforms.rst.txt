@@ -14,3 +14,9 @@ Submodules
    :members:
    :undoc-members:
    :show-inheritance:
+
+
+.. automodule:: data_transforms.extract
+   :members:
+   :undoc-members:
+   :show-inheritance:

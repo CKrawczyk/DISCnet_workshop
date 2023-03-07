@@ -65,6 +65,12 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">data_transforms package</a><ul>
 <li class="toctree-l3"><a class="reference internal" href="#module-data_transforms.angle_metric">Submodules</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#data_transforms.angle_metric.angle_distance"><code class="docutils literal notranslate"><span class="pre">angle_distance()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.T0"><code class="docutils literal notranslate"><span class="pre">T0()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.T1"><code class="docutils literal notranslate"><span class="pre">T1()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.T2"><code class="docutils literal notranslate"><span class="pre">T2()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.T3"><code class="docutils literal notranslate"><span class="pre">T3()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.T4"><code class="docutils literal notranslate"><span class="pre">T4()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#data_transforms.extract.extract"><code class="docutils literal notranslate"><span class="pre">extract()</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -123,6 +129,113 @@ in degrees</p>
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<span class="target" id="module-data_transforms.extract"></span><p>Does stuff.</p>
+<p>Usage:</p>
+<p>python extract.py –fname &lt;abs_path_to_file&gt;</p>
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.T0">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T0" title="Permalink to this definition"></a></dt>
+<dd><p>Extract answer to the question “What is the cat doing?” for task 0.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>shared_df</strong> (<em>pandas.Dataframe</em>) – <code class="docutils literal notranslate"><span class="pre">pandas.Dataframe</span></code> that contains quantities that will
+be shared across all <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files.</p></li>
+<li><p><strong>annotations_df</strong> (<em>pandas.Dataframe</em>) – <code class="docutils literal notranslate"><span class="pre">ps.Series</span></code> with <a href="#id1"><span class="problematic" id="id2">``</span></a>annotations for
+each classification.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p><dl class="simple">
+<dt><code class="docutils literal notranslate"><span class="pre">pandas.Dataframe</span></code> with <code class="docutils literal notranslate"><span class="pre">shared_df</span></code></dt><dd><p>quantities and answer to “What is the cat doing?”.</p>
+</dd>
+</dl>
+</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>new_df (pandas.Dataframe)</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.T1">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T1" title="Permalink to this definition"></a></dt>
+<dd><dl class="simple">
+<dt>Extract answer to the question “How many cats are in the image?” for task 1.</dt><dd><dl class="simple">
+<dt>Args:</dt><dd><dl class="simple">
+<dt>shared_df (pandas.Dataframe): <code class="docutils literal notranslate"><span class="pre">pandas.Dataframe</span></code> that contains quantities that will</dt><dd><p>be shared across all <code class="docutils literal notranslate"><span class="pre">.csv</span></code> files.</p>
+</dd>
+<dt>annotations_df (pandas.Dataframe): <code class="docutils literal notranslate"><span class="pre">ps.Series</span></code> with <code class="docutils literal notranslate"><span class="pre">annotations</span></code> for</dt><dd><p>each classification.</p>
+</dd>
+</dl>
+</dd>
+<dt>Returns:</dt><dd><dl class="simple">
+<dt>new_df (pandas.Dataframe):  <code class="docutils literal notranslate"><span class="pre">pandas.Dataframe</span></code> with <code class="docutils literal notranslate"><span class="pre">shared_df</span></code></dt><dd><p>quantities and answer to “How many cats are in the image?”.
+Answers which cannot be converted to integers are stored as numpy nan values instead.</p>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.T2">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T2" title="Permalink to this definition"></a></dt>
+<dd><p>Extract the required variables for task 2. i.e the x and y coordinates of the eye locations.
+:param shared_df: DataFrame containing only ‘classification_id’, ‘user_id’, and ‘subject_ids’.
+:type shared_df: DataFrame
+:param annotations_df: DataFrame containing relevent data.
+:type annotations_df: DataFrame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame containing the ‘classification_id’, ‘user_id’, and ‘subject_ids’ and lists of tuples of
+x and y coordinates of the eye locations.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.T3">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T3" title="Permalink to this definition"></a></dt>
+<dd><p>Extract the required variables for task 3. i.e the radius of the nose x and y coordinates of the nose.
+:param shared_df: DataFrame containing only ‘classification_id’, ‘user_id’, and ‘subject_ids’.
+:type shared_df: DataFrame
+:param annotations_df: DataFrame containing relevent data.
+:type annotations_df: DataFrame</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>DataFrame containing the ‘classification_id’, ‘user_id’, and ‘subject_ids’ and radius, x, y coordinates
+of nose.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>DataFrame</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.T4">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T4" title="Permalink to this definition"></a></dt>
+<dd><p>Extract required variables for task 4.</p>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="data_transforms.extract.extract">
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.extract" title="Permalink to this definition"></a></dt>
+<dd><p>Extract all desired information from the zooniverse data file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>fname</strong> (<em>str</em>) – Absolute path to zooniverse <code class="docutils literal notranslate"><span class="pre">.csv</span></code> file.</p>
 </dd>
 </dl>
 </dd></dl>
