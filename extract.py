@@ -116,7 +116,13 @@ def T4(shared_df, annotations_df):
         heights.append([img_heights])
         widths.append([img_widths])
 
-    new_df = pd.concat([shared_df, pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])],
+    new_df = pd.concat(
+        [
+            shared_df,
+            pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])
+        ]
+        , axis=1)
+    return new_df
 
 
 def T3(shared_df, annotations_df):
