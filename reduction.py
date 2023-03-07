@@ -3,13 +3,40 @@
 import pandas as pd
 import numpy as np
 import sklearn
-
-# summary_image of image function that tells for a specific function what the evaluation provides
-
+# summary_image of image function that tells for a specific function what the evaluation provides 
 # summary_all_images()
 
 # count_user_evaluations
 
+def import_img_data(fn,img_num):
+    '''Read CSV file and create DataFrame for specific image
+
+    Parameters
+    ----------
+    fn : string
+         CSV file name
+    img_num: int
+             Image number (at most the number of unique images in file)
+
+    Returns
+    -------
+    img_id: int
+            Image ID
+    n_evals: int
+             Number of unique users that have evaluated the task for the image
+    img_df: DataFrame
+            DataFrame for image
+    '''
+
+    df = pd.read_csv(fn)
+    subject_id = df['subject_ids']
+    ids = subject_id.unique()
+    ids = sorted(ids)
+    img_id = ids[img_num]
+    img_df = df.loc[subject_id == img_id]
+    n_evals = len(df['user_id'].unique())
+    
+    return img_id, n_evals, img_df
 
 # evaluate_task
 def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
@@ -55,9 +82,32 @@ def task0(img_df):
 
 
 # task 1
-def task1(img_df):)
-    #dostuff
-    return consensus, consensus_reached, aux_info
+def task1(img_df):
+    '''Determine the consensus number of cats in an image
+
+    Parameters
+    ----------
+    img_df: DataFrame 
+            Image data
+
+    Returns
+    -------
+    consensus: Int
+               Consensus value of number of cats
+    consensus_reached: Bool
+                       True if consensus is selected by over 70% of voters
+    '''
+
+    img_df_clean = img_df.dropna()
+    n_cats = img_df_clean['value']
+    consensus = stats.mode(n_cats)
+    max_pcnt = n_cats.count(consensus)/len(n_cats) * 100
+    if max_pcnt < 70:
+        consensus_reached = False
+    else:
+        consensus_reached = True
+
+    return consensus, consensus_reached
 
 # clustering function
 
@@ -120,15 +170,3 @@ def task4(img_df):
 
 # unittests in a separate file / or here ?
 
-
-# function to separate the DataFrame into DataFrames for each image
-def separate_img(df):
-    subject_id = df['subject_id']
-    ids = subject_id.unique()
-    ids = sorted(ids)
-
-    img_df = []
-    for i,ID in enumerate(ids):
-        img_df.append(df.loc[subject_id == ID])
-
-    return img_df
