@@ -7,7 +7,7 @@ import pandas as pd
 class TestT4(unittest.TestCase):
     def test_first(self):
         '''Test T4'''
-        df = pd.read_csv("tests/many-tools-classifications.csv")
+        df = pd.read_csv("data_transforms/tests/many-tools-classifications.csv")
         a = df[['classification_id', 'user_id', 'subject_ids']]
         b = df['annotations'].apply(json.loads)
 
@@ -20,7 +20,7 @@ class TestT4(unittest.TestCase):
 
     def test_last(self):
         '''Test T4'''
-        df = pd.read_csv("tests/many-tools-classifications.csv")
+        df = pd.read_csv("data_transforms/tests/many-tools-classifications.csv")
         a = df[['classification_id', 'user_id', 'subject_ids']]
         b = df['annotations'].apply(json.loads)
 
