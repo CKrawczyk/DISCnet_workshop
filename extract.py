@@ -1,5 +1,5 @@
 '''
-Executable data extraction script.
+Does stuff.
 
 Usage:
 
@@ -9,11 +9,22 @@ python extract.py --fname <abs_path_to_file>
 import pandas as pd
 import json
 import argparse
+import numpy as np
 
 
 def T0(shared_df, annotations_df):
     '''
-    Extract the required variables for task 0.
+    Extract answer to the question "What is the cat doing?" for task 0.
+
+    Args:
+        shared_df (pandas.Dataframe): ``pandas.Dataframe`` that contains quantities that will
+         be shared across all ``.csv`` files.
+        annotations_df (pandas.Dataframe): ``ps.Series`` with ``annotations for
+         each classification.
+
+    Returns:
+        new_df (pandas.Dataframe):  ``pandas.Dataframe`` with ``shared_df``
+         quantities and answer to "What is the cat doing?".
     '''
     new_df = pd.concat(
         [
@@ -25,14 +36,58 @@ def T0(shared_df, annotations_df):
     return new_df.rename(columns={'annotations': "Answer"})
 
 
+def T1(shared_df, annotations_df):
+    '''
+    Extract answer to the question "How many cats are in the image?" for task 1.
+     Args:
+         shared_df (pandas.Dataframe): ``pandas.Dataframe`` that contains quantities that will
+          be shared across all ``.csv`` files.
+         annotations_df (pandas.Dataframe): ``ps.Series`` with ``annotations`` for
+          each classification.
+     Returns:
+         new_df (pandas.Dataframe):  ``pandas.Dataframe`` with ``shared_df``
+          quantities and answer to "How many cats are in the image?".
+          Answers which cannot be converted to integers are stored as numpy nan values instead.
+    '''
+
+    def is_number(x):
+        try:
+            return int(x)
+        except ValueError:
+            return np.nan
+
+    new_df = pd.concat(
+        [
+            shared_df,
+            annotations_df.apply(lambda x: is_number(x[1]['value']))  # Selects annotations for T1 only.
+        ],
+        axis=1
+    )
+    return new_df.rename(columns={'annotations': "Number of cats"})
+
+
 def T2(shared_df, annotations_df):
     '''
-    Extract the required variables for task 2.
+    Extract the required variables for task 2. i.e the x and y coordinates of the eye locations.
+    Parameters
+    ----------
+    shared_df :  DataFrame
+        DataFrame containing only 'classification_id', 'user_id', and 'subject_ids'.
+    annotations_df : DataFrame
+        DataFrame containing relevent data.
+
+    Returns
+    -------
+    DataFrame
+        DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and lists of tuples of
+        x and y coordinates of the eye locations.
+
     '''
     coords = []
     for i in range(0, len(annotations_df)):
         img_coords = []
         for j in range(0, len(annotations_df[i][2]["value"])):
+            # Extracts the x and y coordinates from the data frame.
             img_coords.append((annotations_df[i][2]["value"][j]['x'], annotations_df[i][2]["value"][j]['y']))
         coords.append([img_coords])
     new_df = pd.concat([shared_df, pd.DataFrame(coords, columns=["T2coords"])],
@@ -84,6 +139,7 @@ func_dict = {
     "T2": T2, 
     "T4": T4
 }
+
 # Loop over functions
 for fi in func_dict.keys():
     # Define new array.
