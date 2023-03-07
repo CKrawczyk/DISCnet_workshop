@@ -25,6 +25,7 @@ def T0(shared_df, annotations_df):
     )
     return new_df.rename(columns={'annotations': "Answer"})
 
+
 def T1(shared_df, annotations_df):
     '''
     Extract the required variables for task 1.
@@ -33,9 +34,9 @@ def T1(shared_df, annotations_df):
     def is_number(x):
         try:
             return int(x)
-        except:
+        except ValueError:
             return np.nan
-        
+    
     new_df = pd.concat(
         [
             shared_df,
