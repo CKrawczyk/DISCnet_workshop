@@ -38,6 +38,36 @@ def import_img_data(fn,img_num):
     
     return img_id, n_evals, img_df
 
+def run_all_tasks():
+
+    for n in range(0,5):
+        fn = "T" + str(n) + ".csv"
+        df = pd.read_csv(fn)
+        img_num = len(df['subject_ids'].unique())
+
+        c = np.zeros(img_num)
+        cr = np.zeros(img_num)
+        a_inf = np.zeros(img_num)
+        # loop over each image
+        for i in range(0,img_num):
+            img_id[i], n_evals[i], img_df = import_img_data(fn, i)
+            if n == 0:
+                output = task0(img_df)
+            if n == 1:
+                output = task1(img_df)
+            if n == 2:
+                output = task2(img_df)
+            if n == 3:
+                output = task3(img_df)
+            if n == 4:
+                output = task4(img_df)
+
+            c[i], cr[i], a_inf[i] = output
+
+            df = pd.DataFrame({'img_id': img_id, 'consensus': c, 'consensus_reached': cr, 'aux_info': a_inf}) 
+            df.to_csv("consensus" + fn, index=False)
+
+
 # evaluate_task
 def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
     ''' A function frame for task evaluation, which checks if the threshold of task evaluations is passed. It further defines what the output of task evaluations must be.
@@ -63,7 +93,7 @@ def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
     '''
 
     consensus = None  # contains the information describing what the consensus is
-    censensus_reached = False  # contains wether or not a consensus has been reached
+    consensus_reached = False  # contains wether or not a consensus has been reached
     aux_info = None  # contains additinoal information, e.g. the significance of the consensus
 
     if count_user_evaluations(imgid) > task_threshold:
@@ -107,7 +137,7 @@ def task1(img_df):
     else:
         consensus_reached = True
 
-    return consensus, consensus_reached
+    return consensus, consensus_reached, None
 
 # clustering function
 
@@ -154,7 +184,7 @@ def task2(img_df):
     if clustering.n_features_in_ == 0:
   	consensus_flag = 0
 
-    return center_list, consensus_flag, 
+    return center_list, consensus_flag, None
 
  
 # task 3
@@ -169,19 +199,6 @@ def task4(img_df):
     return consensus, consensus_reached, aux_info
 
 # unittests in a separate file / or here ?
-
-
-# function to separate the DataFrame into DataFrames for each image
-def separate_img(df):
-    subject_id = df['subject_id']
-    ids = subject_id.unique()
-    ids = sorted(ids)
-
-    img_df = []
-    for i,ID in enumerate(ids):
-        img_df.append(df.loc[subject_id == ID])
-
-    return img_df
 
 def get_coords(img_df, radius=False, hw=False):
     '''Function to separate coordinate values for each subject_id, depending on which task the coords are required for
