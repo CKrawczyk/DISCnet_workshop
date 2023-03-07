@@ -143,11 +143,11 @@ def T3(shared_df, annotations_df):
             df_t3[i, 0] = shared_df.iloc[i][3]['value'][0]['r']
             df_t3[i, 1] = shared_df.iloc[i][3]['value'][0]['x']
             df_t3[i, 2] = shared_df.iloc[i][3]['value'][0]['y']
-        except Exception: 
+        except Exception:
             pass
     # Mark empty lines as Nan
     df_t3[df_t3 == 0] = np.nan
-    # Transfer into Pd dataframe 
+    # Transfer into Pd dataframe
     d_pre = {'r': df_t3[:, 0], 'x': df_t3[:, 1], 'y': df_t3[:, 2]}
     df_t3_pre = pd.DataFrame(data=d_pre)
 
