@@ -38,15 +38,15 @@ def T2(shared_df, annotations_df):
     Returns
     -------
     DataFrame
-        DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and lists of tuples of 
+        DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and lists of tuples of
         x and y coordinates.
-        
+
     '''
     coords = []
     for i in range(0, len(annotations_df)):
         img_coords = []
         for j in range(0, len(annotations_df[i][2]["value"])):
-            #Extracts the x and y coordinates from the data frame.
+            # Extracts the x and y coordinates from the data frame.
             img_coords.append((annotations_df[i][2]["value"][j]['x'], annotations_df[i][2]["value"][j]['y']))
         coords.append([img_coords])
     new_df = pd.concat([shared_df, pd.DataFrame(coords, columns=["T2coords"])],
@@ -69,7 +69,7 @@ shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
 # Define dictionary of functions to apply.
 func_dict = {
-    "T0": T0, 
+    "T0": T0,
     "T2": T2
 }
 
