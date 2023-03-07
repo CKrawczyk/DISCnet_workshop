@@ -142,13 +142,13 @@ def T3(shared_df, annotations_df):
         of nose.
     '''
     # Create empty array
-    df_t3 = np.zeros((len(shared_df), 3))
+    df_t3 = np.zeros((len(annotations_df), 3))
     # Add r, x, y to array, ignore empty lines
-    for i in range(len(shared_df)):
+    for i in range(len(annotations_df)):
         try:
-            df_t3[i, 0] = shared_df.iloc[i][3]['value'][0]['r']
-            df_t3[i, 1] = shared_df.iloc[i][3]['value'][0]['x']
-            df_t3[i, 2] = shared_df.iloc[i][3]['value'][0]['y']
+            df_t3[i, 0] = annotations_df.iloc[i][3]['value'][0]['r']
+            df_t3[i, 1] = annotations_df.iloc[i][3]['value'][0]['x']
+            df_t3[i, 2] = annotations_df.iloc[i][3]['value'][0]['y']
         except Exception:
             pass
     # Mark empty lines as Nan
