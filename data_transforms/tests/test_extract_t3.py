@@ -3,7 +3,7 @@ from data_transforms.extract import T3
 import pandas as pd
 import json
 
-fname = 'many-tools-classifications.csv'
+fname = 'data_transforms/tests/many-tools-classifications.csv'
 df = pd.read_csv(fname)
 
 # Convert string of list of dicts.
