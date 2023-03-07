@@ -8,7 +8,6 @@ python extract.py --fname <abs_path_to_file>
 
 import pandas as pd
 import json
-import argparse
 import numpy as np
 
 
@@ -162,29 +161,33 @@ def T3(shared_df, annotations_df):
     return new_df
 
 
-# Parse file name for script.
-parser = argparse.ArgumentParser()
-parser.add_argument('--fname', help='Path to file.', required=True)
-args = parser.parse_args()
+def extract(fname):
+    '''
+    Extract all desired information from the zooniverse data file.
 
-# Load origonal file.
-df = pd.read_csv(args.fname)
+    Args:
+        fname (str): Absolute path to zooniverse ``.csv`` file.
+    '''
 
-# Convert string of list of dicts.
-# Is a pandas Series.
-annot_df = df['annotations'].apply(json.loads)
-shared_df = df[['classification_id', 'user_id', 'subject_ids']]
+    # Load origonal file.
+    df = pd.read_csv(fname)
 
-# Define dictionary of functions to apply.
-func_dict = {
-    "T0": T0,
-    "T2": T2,
-    "T4": T4,
-    "T3": T3,
-}
+    # Convert string of list of dicts.
+    # Is a pandas Series.
+    annot_df = df['annotations'].apply(json.loads)
+    shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
-# Loop over functions
-for fi in func_dict.keys():
-    # Define new array.
-    new_df = func_dict[fi](shared_df, annot_df)
-    new_df.to_csv(f"{fi}.csv")
+    # Define dictionary of functions to apply.
+    func_dict = {
+        "T0": T0,
+        "T2": T2,
+        "T4": T4,
+        "T3": T3,
+        "T1": T1
+    }
+
+    # Loop over functions
+    for fi in func_dict.keys():
+        # Define new array.
+        new_df = func_dict[fi](shared_df, annot_df)
+        new_df.to_csv(f"{fi}.csv")
