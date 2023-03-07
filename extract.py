@@ -94,6 +94,7 @@ def T2(shared_df, annotations_df):
                        axis=1)
     return new_df
 
+
 def T4(shared_df, annotations_df):
     """
     Extract required variables for task 4.
@@ -135,8 +136,8 @@ shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
 # Define dictionary of functions to apply.
 func_dict = {
-    "T0": T0, 
-    "T2": T2, 
+    "T0": T0,
+    "T2": T2,
     "T4": T4
 }
 
