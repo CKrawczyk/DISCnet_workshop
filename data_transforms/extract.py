@@ -183,6 +183,7 @@ def extract(fname):
         "T2": T2,
         "T4": T4,
         "T3": T3,
+        "T1": T1
     }
 
     # Loop over functions
