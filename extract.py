@@ -39,6 +39,31 @@ def T2(shared_df, annotations_df):
                        axis=1)
     return new_df
 
+def T4(shared_df, annotations_df):
+    """
+    Extract required variables for task 4.
+    """
+    coords = []
+    heights = []
+    widths = []
+    # dfnew=pd.DataFrame(data=None,columns=['x1','y1','w1','h1','x2','y2','w2','h2'])
+    for i in range(len(annotations_df)):
+        img_coords = []
+        img_heights = []
+        img_widths = []
+        for j in range(0, len(annotations_df[i][4]["value"])):
+            img_coords.append((annotations_df[i][4]["value"][j]['x'], annotations_df[i][4]["value"][j]['y']))
+            img_heights.append(annotations_df[i][4]["value"][j]["height"])
+            img_widths.append(annotations_df[i][4]["value"][j]["width"])
+
+        coords.append([img_coords])
+        heights.append([img_heights])
+        widths.append([img_widthsm])
+
+    new_df = pd.concat([shared_df, pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])],
+                       axis=1)
+    return new_df
+
 
 # Parse file name for script.
 parser = argparse.ArgumentParser()
@@ -54,7 +79,9 @@ annot_df = df['annotations'].apply(json.loads)
 shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
 # Define dictionary of functions to apply.
-func_dict = {"T0": T0, "T2": T2}
+func_dict = {"T0": T0, 
+             "T2": T2, 
+             "T4": T4}
 
 # Loop over functions
 for fi in func_dict.keys():
