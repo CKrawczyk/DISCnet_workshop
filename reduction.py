@@ -77,9 +77,41 @@ def evaluate_tasks(img_df, specfic_task_evaluation, task_threshold):
 
 # task 0
 def task0(img_df):
-    #dostuff
-    return consensus, consensus_reached, aux_info
+    '''Returns Consensus, Consensus reached and any extra information for task 0
 
+    Parameters
+    ----------
+    img_df: Pandas DataFrame
+            Contains table of data relating to task 0
+
+    Returns
+    -------
+    Consensus:          string
+                        Mode of data
+    Consensus_reached:  boolean
+                        Is the mode greater than 70%, yes = True
+    aux_info:           floats
+                        percentages for all options and total amount of users
+    '''
+
+    num_arr = img_df['Answer']
+    length = len(num_arr)
+    play, sleep, other = num_arr.count("playing"), num_arr.count("sleeping"), num_arr.count("other")
+    total = ones+twos+threes
+    Consensus = stats.mode(num_arr)
+    mode_num = num_arr.count(Consensus)
+    pcnt_play = np.round((play/total) * 100)
+    pcnt_sleep = np.round((sleep/total) * 100)
+    pcnt_other = np.round((other/total) * 100)
+    list = [pcnt_plays, pcnt_sleep, pcnt_other]
+    max_pcnt = max(list)
+    if max_pcnt < 70:
+        Consensus_reached = False
+    else:
+        Consensus_reached = True
+
+    aux_info =	{"Evals": length,"% play": pcnt_play,"% sleep": pcnt_sleep,"% other": pcnt_other}
+    return consensus, consensus_reached, aux_info
 
 # task 1
 def task1(img_df):
