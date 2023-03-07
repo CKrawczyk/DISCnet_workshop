@@ -191,11 +191,3 @@ def extract(fname):
         # Define new array.
         new_df = func_dict[fi](shared_df, annot_df)
         new_df.to_csv(f"{fi}.csv")
-
-
-# Parse file name for script.
-parser = argparse.ArgumentParser()
-parser.add_argument('--fname', help='Path to file.', required=True)
-args = parser.parse_args()
-
-extract(args.fname)
