@@ -13,7 +13,7 @@ shared_df = df[['classification_id', 'user_id', 'subject_ids']]
 
 
 class TestT3(unittest.TestCase):
-    def test_T3(self, annot_df, shared_df):
+    def test_T3(self):
         '''Test if T3 works'''
 
         shared_df = pd.dataframe
