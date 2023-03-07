@@ -41,8 +41,8 @@ def task1(imgid):)
 # compute_mean_and_std
 
 
-# task 2    
-def task2(imgid, coordinates, eps, min_samples):
+# Clustering and finding central points of each cluster
+def clustering(coordinates, eps, min_samples):
 
     # read for imgid the x,y coordinates out
     # give them to the clustering function
@@ -56,19 +56,22 @@ def task2(imgid, coordinates, eps, min_samples):
         
         center_list[i] = np.mean(coordinates[clustering.labels_==i], axis = 0)
         
-    return center_list
+    return center_list, clustering.labels_, clustering.n_features_in_
+    
+    
+def task3_radius(radius, center_list, clustering.labels_, clustering.n_features_in_):
 
- 
-# task 3
-def task3(imgid):
-    #dostuff
-    return consensus, consensus_reached, aux_info
-
-
-# task 4
-def task4(imgid):
-    #dostuff
-    return consensus, consensus_reached, aux_info
+    # Reads the list of central points of the clusters.
+    # Reads in all of the radii associated with each specific cluster and find the mean.
+    
+    cluster_radius_list = np.zeros(shape = clustering.n_features_in_)
+    
+    for i in range(clustering.n_features_in_):
+    
+    	cluster_radius_list[i] = np.mean(radius[clustering.labels_==i])
+    	
+    return cluster_radius_list
+    	
 
 # unittests in a separate file / or here ?
 
