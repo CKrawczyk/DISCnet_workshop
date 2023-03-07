@@ -9,6 +9,7 @@ python extract.py --fname <abs_path_to_file>
 import pandas as pd
 import json
 import argparse
+import numpy as np
 
 
 def T0(shared_df, annotations_df):
@@ -19,6 +20,26 @@ def T0(shared_df, annotations_df):
         [
             shared_df,
             annotations_df.apply(lambda x: x[0]['value'])  # Selects annotaions for T0 only.
+        ],
+        axis=1
+    )
+    return new_df.rename(columns={'annotations': "Answer"})
+
+def T1(shared_df, annotations_df):
+    '''
+    Extract the required variables for task 1.
+    '''
+
+    def is_number(x):
+        try:
+            return int(x)
+        except:
+            return np.nan
+        
+    new_df = pd.concat(
+        [
+            shared_df,
+            annotations_df.apply(lambda x: is_number(x[1]['value']))  # Selects annotations for T1 only.
         ],
         axis=1
     )
