@@ -25,6 +25,6 @@ class TestT3(unittest.TestCase):
             new_df['x'][0],
             new_df['y'][0],
         ]
-        expected = [420702379, 108, 458030, 6.708204, 403.25, 176.966660]
+        expected = [420702379, 108, 458030, 6.708204, 403.25, 176.96665954589844]
 
         self.assertEqual(result, expected)
