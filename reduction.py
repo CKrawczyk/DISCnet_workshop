@@ -1,5 +1,6 @@
 import pandas as pd
 import numpy as np
+import sklearn
 
 # summary_image of image function that tells for a specific function what the evaluation provides
 
@@ -40,12 +41,22 @@ def task1(imgid):)
 # compute_mean_and_std
 
 
-# task 2
-def task2(imgid):
+# task 2    
+def task2(imgid, coordinates, eps, min_samples):
+
     # read for imgid the x,y coordinates out
     # give them to the clustering function
     # return consensus ( i.e. mean positions and maybe their uncertainty), consensus_reached flag (True/False), auxilary info for the coding 
-    return consensus, conensus_reached, aux_info
+    
+    clustering = sklearn.cluster.DBSCAN(eps, min_samples).fit(coordinates)
+    
+    center_list = np.zeros(shape = clustering.n_features_in_)
+    
+    for i in range(clustering.n_features_in_):
+        
+        center_list[i] = np.mean(coordinates[clustering.labels_==i], axis = 0)
+        
+    return center_list
 
  
 # task 3
