@@ -118,9 +118,24 @@ def T4(shared_df, annotations_df):
     new_df = pd.concat(
         [
             shared_df,
-            pd.DataFrame(coords, heights, widths, columns=["coords", "heights", "widths"])
+            pd.DataFrame(coords, columns=["coords"])
         ],
         axis=1)
+
+    new_df = pd.concat(
+        [
+            new_df,
+            pd.DataFrame(heights, columns=["heights"])
+        ],
+        axis=1)
+
+    new_df = pd.concat(
+        [
+            new_df,
+            pd.DataFrame(widths, columns=["widths"])
+        ],
+        axis=1)
+    
     return new_df
 
 
