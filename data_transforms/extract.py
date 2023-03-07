@@ -89,7 +89,7 @@ def T2(shared_df, annotations_df):
             # Extracts the x and y coordinates from the data frame.
             img_coords.append((annotations_df[i][2]["value"][j]['x'], annotations_df[i][2]["value"][j]['y']))
         coords.append([img_coords])
-    new_df = pd.concat([shared_df, pd.DataFrame(coords, columns=["T2coords"])],
+    new_df = pd.concat([shared_df, pd.DataFrame(coords, columns=["T2_coords"])],
                        axis=1)
     return new_df
 
