@@ -39,7 +39,7 @@ def T2(shared_df, annotations_df):
     -------
     DataFrame
         DataFrame containing the 'classification_id', 'user_id', and 'subject_ids' and lists of tuples of
-        x and y coordinates.
+        x and y coordinates of the eye locations.
 
     '''
     coords = []
