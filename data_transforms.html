@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>data_transforms package &mdash; Data Transforms 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=92153b16" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -105,15 +106,15 @@
            <div itemprop="articleBody">
              
   <section id="module-data_transforms">
-<span id="data-transforms-package"></span><h1>data_transforms package<a class="headerlink" href="#module-data_transforms" title="Permalink to this heading"></a></h1>
+<span id="data-transforms-package"></span><h1>data_transforms package<a class="headerlink" href="#module-data_transforms" title="Link to this heading"></a></h1>
 <p>The data transforms package takes data structured in complex nested JSON
 format and flattens it into un-nested structures ready for analysis.</p>
 <section id="module-data_transforms.angle_metric">
-<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-data_transforms.angle_metric" title="Permalink to this heading"></a></h2>
+<span id="submodules"></span><h2>Submodules<a class="headerlink" href="#module-data_transforms.angle_metric" title="Link to this heading"></a></h2>
 <p>Utility functions for calculating angle-based metrics</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.angle_metric.angle_distance">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.angle_metric.</span></span><span class="sig-name descname"><span class="pre">angle_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.angle_metric.angle_distance" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.angle_metric.</span></span><span class="sig-name descname"><span class="pre">angle_distance</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">a</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">b</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.angle_metric.angle_distance" title="Link to this definition"></a></dt>
 <dd><p>A function that takes in two angles and returns the
 absolute values of the interior angle between them.</p>
 <dl class="field-list simple">
@@ -133,12 +134,12 @@ in degrees</p>
 </dl>
 </dd></dl>
 
-<span class="target" id="module-data_transforms.extract"></span><p>Does stuff.</p>
+<p id="module-data_transforms.extract">Does stuff.</p>
 <p>Usage:</p>
 <p>python extract.py –fname &lt;abs_path_to_file&gt;</p>
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.T0">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T0" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T0</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T0" title="Link to this definition"></a></dt>
 <dd><p>Extract answer to the question “What is the cat doing?” for task 0.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -164,7 +165,7 @@ each classification.</p></li>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.T1">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T1" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T1</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T1" title="Link to this definition"></a></dt>
 <dd><dl class="simple">
 <dt>Extract answer to the question “How many cats are in the image?” for task 1.</dt><dd><dl class="simple">
 <dt>Args:</dt><dd><dl class="simple">
@@ -187,7 +188,7 @@ Answers which cannot be converted to integers are stored as numpy nan values ins
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.T2">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T2" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T2</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T2" title="Link to this definition"></a></dt>
 <dd><p>Extract the required variables for task 2. i.e the x and y coordinates of the eye locations.
 :param shared_df: DataFrame containing only ‘classification_id’, ‘user_id’, and ‘subject_ids’.
 :type shared_df: DataFrame
@@ -206,7 +207,7 @@ x and y coordinates of the eye locations.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.T3">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T3" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T3</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T3" title="Link to this definition"></a></dt>
 <dd><p>Extract the required variables for task 3. i.e the radius of the nose x and y coordinates of the nose.
 :param shared_df: DataFrame containing only ‘classification_id’, ‘user_id’, and ‘subject_ids’.
 :type shared_df: DataFrame
@@ -225,13 +226,13 @@ of nose.</p>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.T4">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T4" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">T4</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">shared_df</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">annotations_df</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.T4" title="Link to this definition"></a></dt>
 <dd><p>Extract required variables for task 4.</p>
 </dd></dl>
 
 <dl class="py function">
 <dt class="sig sig-object py" id="data_transforms.extract.extract">
-<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.extract" title="Permalink to this definition"></a></dt>
+<span class="sig-prename descclassname"><span class="pre">data_transforms.extract.</span></span><span class="sig-name descname"><span class="pre">extract</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">fname</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#data_transforms.extract.extract" title="Link to this definition"></a></dt>
 <dd><p>Extract all desired information from the zooniverse data file.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Test driven development &mdash; Data Transforms 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=92153b16" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -103,17 +104,17 @@
            <div itemprop="articleBody">
              
   <section id="test-driven-development">
-<h1>Test driven development<a class="headerlink" href="#test-driven-development" title="Permalink to this heading"></a></h1>
+<h1>Test driven development<a class="headerlink" href="#test-driven-development" title="Link to this heading"></a></h1>
 <p>When writing code you want to make sure the code works as intended, previously identified bugs stay fixed, and the code being written can solve the desired research question.  Test driven development is a way to systematically achieve these goals.</p>
 <section id="what-are-tests">
-<h2>What are tests<a class="headerlink" href="#what-are-tests" title="Permalink to this heading"></a></h2>
+<h2>What are tests<a class="headerlink" href="#what-are-tests" title="Link to this heading"></a></h2>
 <p>The basic function of a test is to pass a given input to your code that has <strong>a known</strong> output and check that the output matches your expectations.  The key here is the known output you are testing against comes from some source that is <strong>not</strong> your code (e.g. an analytic solution, work it out by hand, some other code you know works, etc…).</p>
 <p>These test cases are written as functions within your code and can be run at any time to ensure any changes made in the code have not broken these test cases.  Using CI you can set up your code repository to run these tests any time a new PR is made and block the PR from merging if any of the tests fail.</p>
 <p>When bugs arise in your code, it is best practice to first write a new test that reproduces the bug before fixing the bug.  That way you can be sure the bug is identified, fixed, and changes made in the future will not reintroduce the same bug into your code.</p>
 <p>Once you become comfortable with writing tests you may find it easier to write your tests first and the code second.  Doing this encourages you to think about the main goals of the code you are about to write, and when the tests pass you know the code is finished.  This process of writing the test first is know as test driven development.</p>
 </section>
 <section id="python-s-built-in-unittest-library">
-<h2>Python’s built in unittest library<a class="headerlink" href="#python-s-built-in-unittest-library" title="Permalink to this heading"></a></h2>
+<h2>Python’s built in unittest library<a class="headerlink" href="#python-s-built-in-unittest-library" title="Link to this heading"></a></h2>
 <p>Python comes with a built in testing library called <a class="reference external" href="https://docs.python.org/3/library/unittest.html">unittest</a> that includes full object mocking capabilities.  Unittest organizes tests into classes (subclassed from <code class="docutils literal notranslate"><span class="pre">unittest.TestCase</span></code>) where each test is a method on the class that has a name starting with <code class="docutils literal notranslate"><span class="pre">test_</span></code>.  There are also special <code class="docutils literal notranslate"><span class="pre">setUp</span></code> and <code class="docutils literal notranslate"><span class="pre">tearDown</span></code> methods that, if defined, will run before and after <em>each</em> test method.  This class also provides various assert functions such as <code class="docutils literal notranslate"><span class="pre">self.assertEqual</span></code>, <code class="docutils literal notranslate"><span class="pre">self.assertDictEqual</span></code>, and <code class="docutils literal notranslate"><span class="pre">self.assertGreater</span></code> (see <a class="reference external" href="https://docs.python.org/3/library/unittest.html">API documentation for full list</a>) that provide more useful error messages when they fail than a plain <code class="docutils literal notranslate"><span class="pre">assert</span></code> statement does.  All the examples in this workshop use <code class="docutils literal notranslate"><span class="pre">unittest</span></code>’s framework and syntax.</p>
 <p>Python will auto-discover any tests that are in your current directory by looking for any files that follow the pattern <code class="docutils literal notranslate"><span class="pre">test*.py</span></code> by default (this search pattern can be changed when the unittest command is run).  The test file must be importable from the top level directory of the project (i.e. a blank <code class="docutils literal notranslate"><span class="pre">__init__.py</span></code> is in the folders containing any tests).  Test can be run with the command:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>python<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover
@@ -122,7 +123,7 @@
 <p>If this command does not find your tests you can specify various command line options to help it out, see <a class="reference external" href="https://docs.python.org/3/library/unittest.html#test-discovery">the discover documentation</a> for more information.</p>
 </section>
 <section id="other-python-testing-libraries">
-<h2>Other python testing libraries<a class="headerlink" href="#other-python-testing-libraries" title="Permalink to this heading"></a></h2>
+<h2>Other python testing libraries<a class="headerlink" href="#other-python-testing-libraries" title="Link to this heading"></a></h2>
 <p>The other commonly used python testing library is <a class="reference external" href="https://docs.pytest.org/en/latest/">pytest</a>.  It has its own syntax for writing tests that is more compact than <code class="docutils literal notranslate"><span class="pre">unittest</span></code>, but can come at the cost of clarity for more complex tests.  Pytest is also fully compatible with tests written in <code class="docutils literal notranslate"><span class="pre">unittest</span></code> syntax.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -134,7 +135,7 @@
 </div>
 </section>
 <section id="types-of-tests">
-<h2>Types of tests<a class="headerlink" href="#types-of-tests" title="Permalink to this heading"></a></h2>
+<h2>Types of tests<a class="headerlink" href="#types-of-tests" title="Link to this heading"></a></h2>
 <p>There are several flavors of tests that can be written for code.  The main three I have come across are:</p>
 <ul class="simple">
 <li><p>Unit tests</p></li>
@@ -147,7 +148,7 @@
 <p>These are the names that make the most sense to me, but others might use different names for the same kinds of tests.</p>
 </div>
 <section id="unit-tests">
-<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Permalink to this heading"></a></h3>
+<h3>Unit tests<a class="headerlink" href="#unit-tests" title="Link to this heading"></a></h3>
 <p>The goal of unit tests are to test a “unit” of code (e.g. a single function definition or a single class method) in <strong>isolation</strong> from all the other units of code that make up the software.  These test are mostly for checking if the unit of code works as written (i.e. the algorithm was coded correctly).  Here is an example of a simple unit test:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">1</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="n">N</span>
@@ -173,7 +174,7 @@
 </div>
 </section>
 <section id="integration-tests">
-<h3>Integration tests<a class="headerlink" href="#integration-tests" title="Permalink to this heading"></a></h3>
+<h3>Integration tests<a class="headerlink" href="#integration-tests" title="Link to this heading"></a></h3>
 <p>The goal of integration tests are to test if multiple units of code work <strong>together</strong> correctly.  For example if you had a function who’s only job is to call two other functions in a particular order and pass the results from one function into the next, an integration test would check exactly these things.  It would <strong>not</strong> check that the two sub-functions return the correct values (that is the job of a unit test for those sub-functions), just that that values passed back are sent to the correct place.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">func_1</span><span class="p">(</span><span class="n">a</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">a</span> <span class="o">+</span> <span class="mi">1</span>
@@ -230,12 +231,12 @@
 </div>
 </section>
 <section id="validation-tests">
-<h3>Validation tests<a class="headerlink" href="#validation-tests" title="Permalink to this heading"></a></h3>
+<h3>Validation tests<a class="headerlink" href="#validation-tests" title="Link to this heading"></a></h3>
 <p>The goal of validation tests are to check if the code written is appropriate for problem you are trying to solve (i.e. is the code using the correct algorithm).  For example, can you get away with using a 2nd order ODE integrator or do you need to using a 4th order one to keep the desired level of accuracy.  Often these are just a flavor of an integration test or unit test, but with “science quality” data being passed in.</p>
 </section>
 </section>
 <section id="test-coverage">
-<h2>Test coverage<a class="headerlink" href="#test-coverage" title="Permalink to this heading"></a></h2>
+<h2>Test coverage<a class="headerlink" href="#test-coverage" title="Link to this heading"></a></h2>
 <p>Test coverage is a way of tracking what lines of your source code were run when each of your tests ran.  When writing tests for a function you goal should be to have as much coverage as possible.  This typically means making sure you have at least one test for every branch in your code (i.e. one test for each <code class="docutils literal notranslate"><span class="pre">if</span></code> branch in the code).  Sometimes when writing your tests you will realize that there are branches in your code that can never be reached and can be safely removed from the code.</p>
 <p>To check test coverage you can use the <a class="reference external" href="https://coverage.readthedocs.io/en/latest/">coverage package</a>, once installed it will wrap around your chosen test runner and check how many lines of you package’s code were run by your tests.  After the tests are run you can generate a report to see how many lines were covered.  The basic usage is:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>coverage<span class="w"> </span>run<span class="w"> </span>--source<span class="w"> </span>data_transforms<span class="w"> </span>--omit<span class="w"> </span>*test*<span class="w"> </span>-m<span class="w"> </span>unittest<span class="w"> </span>discover
@@ -260,7 +261,7 @@ coverage<span class="w"> </span>report
 <p>This leaves you with an easy to remember command for running your tests with all the project specific options placed in a single configuration file.</p>
 </section>
 <section id="mocks">
-<h2>Mocks<a class="headerlink" href="#mocks" title="Permalink to this heading"></a></h2>
+<h2>Mocks<a class="headerlink" href="#mocks" title="Link to this heading"></a></h2>
 <p>In the integration tests section above the example makes use of what are called “function mocks.”  These are special classes that are used to <strong>fully replace</strong> another function or class.  This mock will keep track of how many times it is called, what arguments and keywords it was called with, and what it should return when called.</p>
 <p>The easiest way to use a mock is with the <code class="docutils literal notranslate"><span class="pre">&#64;patch</span></code> decorator, this takes the full import path of the object to be mocked, and an optional <code class="docutils literal notranslate"><span class="pre">return_value</span></code> specifying what value should be returned when the mock is called.  By default any method or return value accessed on a mock is also a mock, so there is no need to know the full object spec beforehand.</p>
 <div class="admonition note">

@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Documenting Python code &mdash; Data Transforms 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=92153b16" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -99,7 +100,7 @@
            <div itemprop="articleBody">
              
   <section id="documenting-python-code">
-<h1>Documenting Python code<a class="headerlink" href="#documenting-python-code" title="Permalink to this heading"></a></h1>
+<h1>Documenting Python code<a class="headerlink" href="#documenting-python-code" title="Link to this heading"></a></h1>
 <p>When someone new is using your code for hte first time they will likely want to read your documentation to see how the code works.  It is good practice for your documentation to start with a brief description of what your package does (1-2 paragraphs) and clear instructions for how to install the code.</p>
 <p>To help ensure that the source code and the documentation don’t get out of sync, the documentation for each function should be included as a docstring on the function in the source code.  In python this is done with a “triple quote string”:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="k">def</span> <span class="nf">sum_two_numbers</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">):</span>
@@ -128,10 +129,10 @@
 </div>
 <p>In addition to the API documentation from the docstrings you should also provide tutorials on how to use your code.  Python notebooks work great for this kind of documentation.  You can also provide additional information in markdown files (like these notes you are reading now).</p>
 <section id="sphinx">
-<h2>Sphinx<a class="headerlink" href="#sphinx" title="Permalink to this heading"></a></h2>
+<h2>Sphinx<a class="headerlink" href="#sphinx" title="Link to this heading"></a></h2>
 <p>Once you have written your docs you need a way to collect all of it into a single place, typically a web site.  The most common way to do this in python is to use the <a class="reference external" href="https://www.sphinx-doc.org/en/master/index.html">Sphinx</a> package.  The setup for Sphinx can be a bit involved, but once set up it “just works.”</p>
 <section id="config">
-<h3>Config<a class="headerlink" href="#config" title="Permalink to this heading"></a></h3>
+<h3>Config<a class="headerlink" href="#config" title="Link to this heading"></a></h3>
 <p>Sphinx has already been set up on this project, but while I was doing it I took notes about every step.  To setup Sphinx on this project I used the following commands:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># install sphinx and a few add-ons into the env</span>
 pip<span class="w"> </span>install<span class="w"> </span>sphinx,<span class="w"> </span>myst-nb,<span class="w"> </span>sphinx_rtd_theme
@@ -195,7 +196,7 @@ sphinx-quickstart
 </div>
 </section>
 <section id="api-documentation-with-apidoc">
-<h3>API documentation with <code class="docutils literal notranslate"><span class="pre">apidoc</span></code><a class="headerlink" href="#api-documentation-with-apidoc" title="Permalink to this heading"></a></h3>
+<h3>API documentation with <code class="docutils literal notranslate"><span class="pre">apidoc</span></code><a class="headerlink" href="#api-documentation-with-apidoc" title="Link to this heading"></a></h3>
 <p>For Sphinx to be able to read the docstrings from your source code it first needs be told what source files to look in.  This can either be done by adding your source folders by hand to <code class="docutils literal notranslate"><span class="pre">docs/soruce/index.rst</span></code> or by using the <code class="docutils literal notranslate"><span class="pre">sphinx-apidoc</span></code> command to build these <code class="docutils literal notranslate"><span class="pre">.rst</span></code> files for you.  We will be using this automated approach for this workshop:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sphinx-apidoc<span class="w"> </span>-MEf<span class="w"> </span>-o<span class="w"> </span>./docs/source<span class="w"> </span>./data_transforms<span class="w"> </span>./data_transforms/tests
 </pre></div>
@@ -255,7 +256,7 @@ sphinx-quickstart
 </div>
 </section>
 <section id="building-the-docs">
-<h3>Building the docs<a class="headerlink" href="#building-the-docs" title="Permalink to this heading"></a></h3>
+<h3>Building the docs<a class="headerlink" href="#building-the-docs" title="Link to this heading"></a></h3>
 <p>With the <code class="docutils literal notranslate"><span class="pre">rst</span></code> files inplace, we can build the docs with:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="nb">cd</span><span class="w"> </span>docs
 make<span class="w"> </span>html
@@ -277,7 +278,7 @@ make<span class="w"> </span>html
 </section>
 </section>
 <section id="tutorial-driven-development">
-<h2>Tutorial Driven Development<a class="headerlink" href="#tutorial-driven-development" title="Permalink to this heading"></a></h2>
+<h2>Tutorial Driven Development<a class="headerlink" href="#tutorial-driven-development" title="Link to this heading"></a></h2>
 <p>It is quite common in fast moving projects for the documentation and tutorials to become out of date with the code.  To try and combat this it can be helpful to adapt to a tutorial driven workflow.  In this kind of workflow you sit down and write the full tutorial <strong>first</strong> and only once it is finished do you updated the code to match the new tutorial.  This ensure that the tutorial always matches the current code and helps you keep in mind how the code is intended to be used.</p>
 <p>This method works best when you can involve some of the people who will be using your code in the process of making the tutorials.  You can get rapid feedback about the user experience and use that to better inform you about the best way to structure the code.  These tutorials can also inform you of various test cases you can create for your code and works well with test driven development as well (more on this in the next section).</p>
 </section>

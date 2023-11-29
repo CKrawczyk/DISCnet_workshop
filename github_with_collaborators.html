@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Using GitHub with collaborators &mdash; Data Transforms 0.1.0 documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/my_theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="_static/css/my_theme.css?v=92153b16" />
+      <link rel="stylesheet" type="text/css" href="_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -105,11 +106,11 @@
            <div itemprop="articleBody">
              
   <section id="using-github-with-collaborators">
-<h1>Using GitHub with collaborators<a class="headerlink" href="#using-github-with-collaborators" title="Permalink to this heading"></a></h1>
+<h1>Using GitHub with collaborators<a class="headerlink" href="#using-github-with-collaborators" title="Link to this heading"></a></h1>
 <p>At some point in you will likely have a massive hard drive crash, or realize you introduced a bug in your code and want to revert it back to its working state (perhaps from several weeks before). Or you may end up working on a bit of code with other people. In any of these cases version control saves the day.</p>
 <p>In this workshop we will be using Git as our version control software, and GitHub as our remote repository service for working with collaborators.</p>
 <section id="basic-concepts">
-<h2>Basic concepts<a class="headerlink" href="#basic-concepts" title="Permalink to this heading"></a></h2>
+<h2>Basic concepts<a class="headerlink" href="#basic-concepts" title="Link to this heading"></a></h2>
 <p>While many of you might already be familiar with Git, let’s make sure we are all on the same page and introduce some of the basic concepts:</p>
 <table class="docutils align-default">
 <thead>
@@ -207,7 +208,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </div>
 <p>Full Git documentation can be found in <a class="reference external" href="https://git-scm.com/book/en">The Git Book</a>, this include a good section about the motivation behind Git and the problems it was designed to solve.</p>
 <section id="github-vs-gitlab-vs-bitbucket">
-<h3>GitHub vs GitLab vs Bitbucket<a class="headerlink" href="#github-vs-gitlab-vs-bitbucket" title="Permalink to this heading"></a></h3>
+<h3>GitHub vs GitLab vs Bitbucket<a class="headerlink" href="#github-vs-gitlab-vs-bitbucket" title="Link to this heading"></a></h3>
 <p>While we are using GitHub for this workshop, it is not the only option for hosting remote git repositories.  The other major options are <a class="reference external" href="https://about.gitlab.com/">GitLab</a> and <a class="reference external" href="https://bitbucket.org/product/">Bitbucket</a>.  For the most part all there platforms offer the same services but they sometimes use different terms.  Below is a table for converting between the terms used by each platform:</p>
 <table class="docutils align-default">
 <thead>
@@ -242,7 +243,7 @@ git<span class="w"> </span>config<span class="w"> </span>--global<span class="w"
 </section>
 </section>
 <section id="git-workflow">
-<h2>Git workflow<a class="headerlink" href="#git-workflow" title="Permalink to this heading"></a></h2>
+<h2>Git workflow<a class="headerlink" href="#git-workflow" title="Link to this heading"></a></h2>
 <p>There are many different ways to effectively use git within a collaboration, and many more ways to have it be a nightmare.  For this workshop we will be using the workflow I use when working with the Zooniverse.  The workflow is as follows:</p>
 <ol class="arabic simple">
 <li><p>checkout the latest <code class="docutils literal notranslate"><span class="pre">main</span></code> branch and pull down the latest changes</p></li>
@@ -317,7 +318,7 @@ git<span class="w"> </span>branch<span class="w"> </span>-d<span class="w"> </sp
 </ul>
 </section>
 <section id="writing-better-commit-messages">
-<h2>Writing better commit messages<a class="headerlink" href="#writing-better-commit-messages" title="Permalink to this heading"></a></h2>
+<h2>Writing better commit messages<a class="headerlink" href="#writing-better-commit-messages" title="Link to this heading"></a></h2>
 <p>This section of notes is partially adapted from gov.uk’s style guides found at:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alphagov/styleguides/blob/master/git.md">https://github.com/alphagov/styleguides/blob/master/git.md</a></p></li>
@@ -360,7 +361,7 @@ merged into the repo&#39;s **default** branch.
 </div>
 </section>
 <section id="writing-better-prs">
-<h2>Writing better PRs<a class="headerlink" href="#writing-better-prs" title="Permalink to this heading"></a></h2>
+<h2>Writing better PRs<a class="headerlink" href="#writing-better-prs" title="Link to this heading"></a></h2>
 <p>This section of notes is partially adapted from gov.uk’s style guides found at:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/alphagov/styleguides/blob/master/pull-requests.md">https://github.com/alphagov/styleguides/blob/master/pull-requests.md</a></p></li>
@@ -368,7 +369,7 @@ merged into the repo&#39;s **default** branch.
 <p>Once you have a branch with some commits you want to merge into the main branch, the next step is to have those changes reviewed by another developer.  On GitHub this process is known as creating a Pull Request (PR).  When opening a PR you should provide a detailed description of changes introduced, the reason the changes were made, and any specific things the reviewer should be aware of when testing your code.  If the PR is in reference to an open issue on the repo this should be mentioned as well.</p>
 </section>
 <section id="writing-better-code-reviews">
-<h2>Writing better code reviews<a class="headerlink" href="#writing-better-code-reviews" title="Permalink to this heading"></a></h2>
+<h2>Writing better code reviews<a class="headerlink" href="#writing-better-code-reviews" title="Link to this heading"></a></h2>
 <p>When working in a team it is important to review other people’s code along side writing your own code.  While it might be tempting to just quickly look code changes on GitHub and leave a short message like “looks good to me” that is only useful for very small changes to the code.  For larger changes a full review should be done.</p>
 <ol class="arabic simple">
 <li><p>Pull down the changes locally</p></li>
@@ -415,7 +416,7 @@ git<span class="w"> </span>switch<span class="w"> </span>&lt;name<span class="w"
 <p>Here is an example of well constructed PR and review taken from one of the Zooniverse’s repositories <a class="reference external" href="https://github.com/zooniverse/front-end-monorepo/pull/2313">https://github.com/zooniverse/front-end-monorepo/pull/2313</a>.</p>
 </section>
 <section id="ci-continuous-integration">
-<h2>CI (continuous integration)<a class="headerlink" href="#ci-continuous-integration" title="Permalink to this heading"></a></h2>
+<h2>CI (continuous integration)<a class="headerlink" href="#ci-continuous-integration" title="Link to this heading"></a></h2>
 <p>If you want to test your code automatically every time new code is committed you can set up CI.  These days this is easy to do on GitHub using GitHub Actions (GHA).  These are script you can write and place in the <code class="docutils literal notranslate"><span class="pre">.github/workflows</span></code> folder of the repository that contain instructions for creating a VM with you code in it.  Typically these actions are used to do things like:</p>
 <ul class="simple">
 <li><p>run all tests when new code is pushed to any branch</p></li>
@@ -431,7 +432,7 @@ git<span class="w"> </span>switch<span class="w"> </span>&lt;name<span class="w"
 </ul>
 <p>GitHub can also be configured with branch protection that will ensure that particular GHAs must complete successfully before any code can be merged into it.</p>
 <section id="tox">
-<h3>tox<a class="headerlink" href="#tox" title="Permalink to this heading"></a></h3>
+<h3>tox<a class="headerlink" href="#tox" title="Link to this heading"></a></h3>
 <p>While GHA are great they only run tests in the cloud, so the turn around time can be slow when you want to test a change across different python versions.  <a class="reference external" href="https://tox.wiki/en/latest/">Tox</a> is a way to automatically setup and run your tests across different python environments (each with different python versions) all on your local computer.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -440,7 +441,7 @@ git<span class="w"> </span>switch<span class="w"> </span>&lt;name<span class="w"
 </section>
 </section>
 <section id="cd-continuous-delivery-deployment">
-<h2>CD (continuous delivery/deployment)<a class="headerlink" href="#cd-continuous-delivery-deployment" title="Permalink to this heading"></a></h2>
+<h2>CD (continuous delivery/deployment)<a class="headerlink" href="#cd-continuous-delivery-deployment" title="Link to this heading"></a></h2>
 <p>A related concept to CI is CD.  This takes the concept of CI and goes one step further by automatically taking changes to the <code class="docutils literal notranslate"><span class="pre">main</span></code> branch (or any other branch) and hosting them for immediate use.  These are also handled with GHA.  Typical examples are:</p>
 <ul class="simple">
 <li><p>re-deploying a website on a merge to <code class="docutils literal notranslate"><span class="pre">main</span></code></p></li>
