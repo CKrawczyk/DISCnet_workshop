@@ -18,7 +18,7 @@ dependencies = [
 [project.optional-dependencies]
 test = [
     "coverage[toml] >=6.3.2,<7.4.1",
-    "flake8 >=4.0.1,<6.1.1",
+    "flake8 >=4.0.1,<7.0.1",
 ]
 doc = [
     "myst-nb >=0.15.0,<1.0.1",
