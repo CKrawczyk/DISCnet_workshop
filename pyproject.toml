@@ -17,7 +17,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = [
-    "coverage[toml] >=6.3.2,<7.4.1",
+    "coverage[toml] >=6.3.2,<7.4.2",
     "flake8 >=4.0.1,<7.0.1",
 ]
 doc = [
